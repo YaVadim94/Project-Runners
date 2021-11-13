@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Project_Runners.Data.Models;
 
@@ -18,10 +19,18 @@ namespace Project_Runners.Web.Controllers
             _context = context;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Test()
+        [HttpGet("cases")]
+        public async Task<IActionResult> GetCases()
         {
-            return NoContent();
+            var cases = await _context.Cases.ToListAsync();
+            return Ok(cases);
+        }
+        
+        [HttpGet("runs")]
+        public async Task<IActionResult> GetRuns()
+        {
+            var runs = await _context.Runs.ToListAsync();
+            return Ok(runs);
         }
     }
 }
