@@ -1,31 +1,26 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Project_Runners.Data;
+using Microsoft.Extensions.Logging;
+using Project_Runners.Data.Models;
 
-namespace Project_Runners.Controllers
+namespace Project_Runners.Web.Controllers
 {
-    /// <summary>
-    /// Тестовый контроллер
-    /// </summary>
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class TestController : ControllerBase
     {
         private readonly DataContext _context;
-
         public TestController(DataContext context)
         {
             _context = context;
         }
 
-        /// <summary>
-        /// Тестовый метод
-        /// </summary>
+        [HttpGet]
         public async Task<IActionResult> Test()
         {
-            var test = await _context.Runs.ToListAsync();
-            
             return NoContent();
         }
     }

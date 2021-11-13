@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Project_Runners.Data.Models;
 
-namespace Project_Runners.Data
+namespace Project_Runners.Data.Models
 {
     /// <summary>
     /// Класс контекста БД
@@ -10,13 +9,12 @@ namespace Project_Runners.Data
     {
         public DataContext(DbContextOptions<DataContext> opt) : base(opt)
         {
-            
         }
 
         /// <summary> Прогоны </summary>
-        public DbSet<Run> Runs { get; set; } = null!;
+        public DbSet<Run> Runs { get; set; }
 
         /// <summary> Кейсы </summary>
-        public DbSet<Case> Cases { get; set; } = null!;
+        public DbSet<Case> Cases { get; set; }
     }
 }
