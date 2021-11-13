@@ -14,9 +14,9 @@ namespace Project_Runners.Data
         }
 
         /// <summary> Прогоны </summary>
-        public DbSet<Run> Runs { get; set; }
+        public DbSet<Run> Runs { get; set; } = null!;
 
         /// <summary> Кейсы </summary>
-        public DbSet<Case> Cases { get; set; }
+        public DbSet<Case> Cases { get; set; } = null!;
     }
 }

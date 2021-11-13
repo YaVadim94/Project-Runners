@@ -39,6 +39,8 @@ namespace Project_Runners
 
             app.UseRouting();
             
+            app.UseAuthorization();
+            
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
