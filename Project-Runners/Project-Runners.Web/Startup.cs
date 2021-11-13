@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Project_Runners.Application.Hangfire.Extensions;
 using Project_Runners.Data;
 using Project_Runners.Web.Helpers;
 using Serilog;
@@ -69,6 +70,7 @@ namespace Project_Runners.Web
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 
             DataSeedingHelper.SeedDataBase(app);
+            app.AddRunCreator();
         }
     }
 }
