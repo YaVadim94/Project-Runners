@@ -1,4 +1,6 @@
-﻿namespace Project_Runners.Data.Models.Base
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Project_Runners.Data.Models.Base
 {
     /// <summary>
     /// Базовая сущность
@@ -6,6 +8,7 @@
     public abstract class EntityBase
     {
         /// <summary> Идентификатор </summary>
+        [Key]
         public long Id { get; set; }
     }
 }

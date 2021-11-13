@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -6,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Project_Runners.Data;
 using Project_Runners.Data.Models;
 using Project_Runners.Web.Helpers;
 using Serilog;
@@ -28,6 +30,9 @@ namespace Project_Runners.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("InMem"));
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            
+            
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

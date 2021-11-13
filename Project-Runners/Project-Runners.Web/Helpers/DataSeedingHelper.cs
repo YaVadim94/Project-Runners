@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Project_Runners.Data;
 using Project_Runners.Data.Models;
 
 namespace Project_Runners.Web.Helpers
@@ -26,6 +28,9 @@ namespace Project_Runners.Web.Helpers
                 context.Cases.Add(new Case{Id = 1});
                 context.Cases.Add(new Case{Id = 2});
                 context.Cases.Add(new Case{Id = 3});
+                context.Cases.Add(new Case{Id = 4});
+                context.Cases.Add(new Case{Id = 5});
+                context.Cases.Add(new Case{Id = 6});
             }
 
             if (!context.Runs.Any())
@@ -33,9 +38,19 @@ namespace Project_Runners.Web.Helpers
                 Console.WriteLine("--> Seeding by runs...");
                 context.Runs.Add(new Run{Id = 1});
                 context.Runs.Add(new Run{Id = 2});
-                context.Runs.Add(new Run{Id = 3});
             }
 
+            if (!context.RunCases.Any())
+            {
+                Console.WriteLine("--> Seeding by runCases...");
+                context.RunCases.Add(new RunCase{RunId = 1, CaseId = 1});
+                context.RunCases.Add(new RunCase{RunId = 1, CaseId = 2});
+                context.RunCases.Add(new RunCase{RunId = 1, CaseId = 3});
+                context.RunCases.Add(new RunCase{RunId = 2, CaseId = 4});
+                context.RunCases.Add(new RunCase{RunId = 2, CaseId = 5});
+                context.RunCases.Add(new RunCase{RunId = 2, CaseId = 6});
+            }
+            
             context.SaveChanges();
         }
     }
