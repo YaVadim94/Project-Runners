@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project-Runners", "Project-Runners\Project-Runners.csproj", "{B95F0AD7-798F-42FD-9069-7FD153312179}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project-Runners.Web", "Project-Runners.Web\Project-Runners.Web.csproj", "{B95F0AD7-798F-42FD-9069-7FD153312179}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
