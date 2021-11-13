@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project-Runners.Web", "Project-Runners.Web\Project-Runners.Web.csproj", "{B95F0AD7-798F-42FD-9069-7FD153312179}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project-Runners.Application", "Project-Runners.Application\Project-Runners.Application.csproj", "{AECF64AF-EBD2-4AD7-8B41-BF9C361B72E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project-Runners.Data", "Project-Runners.Data\Project-Runners.Data.csproj", "{39BC1A70-C357-448E-865F-673BA43281B4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,13 @@ Global
 		{B95F0AD7-798F-42FD-9069-7FD153312179}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B95F0AD7-798F-42FD-9069-7FD153312179}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B95F0AD7-798F-42FD-9069-7FD153312179}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AECF64AF-EBD2-4AD7-8B41-BF9C361B72E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AECF64AF-EBD2-4AD7-8B41-BF9C361B72E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AECF64AF-EBD2-4AD7-8B41-BF9C361B72E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AECF64AF-EBD2-4AD7-8B41-BF9C361B72E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39BC1A70-C357-448E-865F-673BA43281B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39BC1A70-C357-448E-865F-673BA43281B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39BC1A70-C357-448E-865F-673BA43281B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39BC1A70-C357-448E-865F-673BA43281B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
