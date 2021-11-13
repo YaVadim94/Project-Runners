@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Project_Runners.Data.Models;
+using Project_Runners.Web.Helpers;
 
 namespace Project_Runners.Web
 {
@@ -31,7 +32,7 @@ namespace Project_Runners.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -47,16 +48,8 @@ namespace Project_Runners.Web
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
-
-            // AddData(app.ApplicationServices.GetService<DataContext>());
+            
+            DataSeedingHelper.SeedDataBase(app);
         }
-
-        // private void AddData(DataContext context)
-        // {
-        //     context.Runs.Add(new Run());
-        //     context.Cases.Add(new Case());
-        //
-        //     context.SaveChanges();
-        // }
     }
 }
