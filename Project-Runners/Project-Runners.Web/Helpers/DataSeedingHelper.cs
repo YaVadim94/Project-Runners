@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Project_Runners.Data;
+using Project_Runners.Data.Enums;
 using Project_Runners.Data.Models;
 
 namespace Project_Runners.Web.Helpers
@@ -36,8 +37,8 @@ namespace Project_Runners.Web.Helpers
             if (!context.Runs.Any())
             {
                 Console.WriteLine("--> Seeding by runs...");
-                context.Runs.Add(new Run{Id = 1, Name = "SuperStar"});
-                context.Runs.Add(new Run{Id = 2, Name = "Onion"});
+                context.Runs.Add(new Run{Id = 1, Name = "SuperStar", Status = RunStatus.Successed});
+                context.Runs.Add(new Run{Id = 2, Name = "Onion", Status = RunStatus.Failed});
             }
 
             if (!context.RunCases.Any())

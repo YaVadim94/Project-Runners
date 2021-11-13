@@ -1,4 +1,6 @@
-﻿namespace Project_Runners.Data.Enums
+﻿using System.Runtime.Serialization;
+
+namespace Project_Runners.Data.Enums
 {
     /// <summary>
     /// Статус прохождения
@@ -6,8 +8,11 @@
     public enum RunStatus
     {
         NotStarted,
+        
         InProgress,
+        
         Successed,
+        
         Failed
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Project_Runners.Data.Enums;
 
 namespace Project_Runners.Web.Models
 {
@@ -13,6 +15,9 @@ namespace Project_Runners.Web.Models
 
         /// <summary> Наименование </summary>
         public string Name { get; set; }
+
+        /// <summary> Статус </summary>
+        public RunStatus Status { get; set; }
 
         /// <summary> Кейсы прогона </summary>
         public IEnumerable<CaseDto> Cases { get; set; }
