@@ -13,4 +13,8 @@
       <Folder Include="Controllers" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Project-Runners.Application\Project-Runners.Application.csproj" />
+    </ItemGroup>
+
 </Project>
