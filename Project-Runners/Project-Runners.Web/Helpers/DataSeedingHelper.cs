@@ -25,19 +25,19 @@ namespace Project_Runners.Web.Helpers
             {
                 Console.WriteLine("--> Seeding by cases...");
                 
-                context.Cases.Add(new Case{Id = 1});
-                context.Cases.Add(new Case{Id = 2});
-                context.Cases.Add(new Case{Id = 3});
-                context.Cases.Add(new Case{Id = 4});
-                context.Cases.Add(new Case{Id = 5});
-                context.Cases.Add(new Case{Id = 6});
+                context.Cases.Add(new Case{Id = 1, Name = "The Who"});
+                context.Cases.Add(new Case{Id = 2, Name = "Guns N` Roses"});
+                context.Cases.Add(new Case{Id = 3, Name = "Nirvana"});
+                context.Cases.Add(new Case{Id = 4, Name = "Metallica"});
+                context.Cases.Add(new Case{Id = 5, Name = "AC/DC"});
+                context.Cases.Add(new Case{Id = 6, Name = "The Rolling Stones"});
             }
 
             if (!context.Runs.Any())
             {
                 Console.WriteLine("--> Seeding by runs...");
-                context.Runs.Add(new Run{Id = 1});
-                context.Runs.Add(new Run{Id = 2});
+                context.Runs.Add(new Run{Id = 1, Name = "SuperStar"});
+                context.Runs.Add(new Run{Id = 2, Name = "Onion"});
             }
 
             if (!context.RunCases.Any())
