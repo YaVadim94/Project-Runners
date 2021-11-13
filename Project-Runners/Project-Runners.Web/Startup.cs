@@ -1,5 +1,7 @@
 using System;
 using System.Text.Json.Serialization;
+using Hangfire;
+using Hangfire.MemoryStorage;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -29,7 +31,14 @@ namespace Project_Runners.Web
         {
             services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("InMem"));
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
+            services.AddHangfire(opt =>
+            {
+                opt.UseSerilogLogProvider();
+                opt.UseMemoryStorage();
+            });
+            
+            services.AddHangfireServer();
+            
             services
                 .AddControllers()
                 .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
@@ -51,6 +60,8 @@ namespace Project_Runners.Web
 
             app.UseHttpsRedirection();
 
+            app.UseHangfireDashboard();
+            
             app.UseRouting();
 
             app.UseAuthorization();
