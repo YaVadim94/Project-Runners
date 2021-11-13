@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Project_Runners.Data.Models;
 using Project_Runners.Web.Helpers;
+using Serilog;
 
 namespace Project_Runners.Web
 {
@@ -16,11 +17,14 @@ namespace Project_Runners.Web
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(configuration, "Serilog")
+                .CreateLogger();
+            
         }
 
         public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
+        
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("InMem"));
@@ -30,8 +34,7 @@ namespace Project_Runners.Web
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "Project_Runners.Web", Version = "v1"});
             });
         }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
