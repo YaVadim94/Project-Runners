@@ -1,6 +1,4 @@
-﻿using System.Runtime.Serialization;
-
-namespace Project_Runners.Data.Enums
+﻿namespace Project_Runners.Data.Enums
 {
     /// <summary>
     /// Статус прохождения

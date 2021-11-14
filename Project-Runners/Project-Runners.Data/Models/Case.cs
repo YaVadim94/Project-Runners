@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Project_Runners.Data.Models.Base;
 
 namespace Project_Runners.Data.Models

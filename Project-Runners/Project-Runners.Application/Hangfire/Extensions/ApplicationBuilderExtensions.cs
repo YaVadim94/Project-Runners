@@ -1,6 +1,4 @@
-﻿using System;
-using Hangfire;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Project_Runners.Application.Hangfire.JobRunners;
 

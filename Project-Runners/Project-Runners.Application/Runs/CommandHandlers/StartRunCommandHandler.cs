@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Project_Runners.Application.Runs.Models.Commands;
@@ -34,8 +33,11 @@ namespace Project_Runners.Application.Runs.CommandHandlers
             
             notStartedRuns.ForEach(run =>
             {
+                run.Status = RunStatus.InProgress;
                 Console.WriteLine($" -----> Run: \"{run.Name}\" has just started");
             });
+
+            await _context.SaveChangesAsync(cancellationToken);
             
             return Unit.Value;
         }

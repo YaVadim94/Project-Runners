@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using Project_Runners.Data.Enums;
 
 namespace Project_Runners.Web.Models
