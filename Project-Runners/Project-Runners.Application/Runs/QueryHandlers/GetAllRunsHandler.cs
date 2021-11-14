@@ -25,6 +25,9 @@ namespace Project_Runners.Application.Runs.QueryHandlers
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Получить все прогоны
+        /// </summary>
         public async Task<IEnumerable<RunDto>> Handle(GetAllRunsQuery request, CancellationToken cancellationToken)
         {
             var runs = await _context.Runs

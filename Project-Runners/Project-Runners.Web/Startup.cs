@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text.Json.Serialization;
+using AutoMapper.EquivalencyExpression;
 using Hangfire;
 using Hangfire.MemoryStorage;
 using MediatR;
@@ -36,7 +37,7 @@ namespace Project_Runners.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("InMem"));
-            services.AddAutoMapper(GetAssemblies());
+            services.AddAutoMapper(opt => opt.AddCollectionMappers(), GetAssemblies());
             services.AddHangfire(opt =>
             {
                 opt.UseSerilogLogProvider();
