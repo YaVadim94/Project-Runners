@@ -2,6 +2,7 @@
 using Hangfire;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Project_Runners.Application.Hangfire.JobRunners;
 
 namespace Project_Runners.Application.Hangfire.Extensions
 {
@@ -12,7 +13,10 @@ namespace Project_Runners.Application.Hangfire.Extensions
     {
         public static IApplicationBuilder AddRunCreator(this IApplicationBuilder app)
         {
-            RecurringJob.AddOrUpdate("RunCreator", () => Console.WriteLine("Run Created"), Cron.Minutely);
+            var runner = app.ApplicationServices.GetRequiredService<IRunCreateJobRunner>();
+            
+            runner.Start();
+
             return app;
         }
     }

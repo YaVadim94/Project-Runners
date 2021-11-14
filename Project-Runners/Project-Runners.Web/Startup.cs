@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Project_Runners.Application.Hangfire.Extensions;
+using Project_Runners.Application.Hangfire.JobRunners;
 using Project_Runners.Application.Runs.Mapping;
 using Project_Runners.Data;
 using Project_Runners.Web.Helpers;
@@ -51,21 +52,11 @@ namespace Project_Runners.Web
                 .AddControllers()
                 .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo {Title = "Project_Runners.Web", Version = "v1"});
-            });
+            services.AddTransient<IRunCreateJobRunner, RunCreateJobRunner>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Project_Runners.Web v1"));
-            }
-
             app.UseHttpsRedirection();
 
             app.UseHangfireDashboard();
