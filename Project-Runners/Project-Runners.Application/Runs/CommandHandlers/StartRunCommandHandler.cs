@@ -11,7 +11,7 @@ using Project_Runners.Data.Enums;
 namespace Project_Runners.Application.Runs.CommandHandlers
 {
     /// <summary>
-    /// Обработчик события старта прогона
+    /// Start run handler
     /// </summary>
     public class StartRunCommandHandler : IRequestHandler<StartRunCommand>
     {
@@ -23,7 +23,7 @@ namespace Project_Runners.Application.Runs.CommandHandlers
         }
 
         /// <summary>
-        /// Начать прогон
+        /// Start run
         /// </summary>
         public async Task<Unit> Handle(StartRunCommand request, CancellationToken cancellationToken)
         {

@@ -25,6 +25,9 @@ namespace Project_Runners.Web.Controllers
             _mediator = mediator;
         }
 
+        /// <summary>
+        /// Get all runs
+        /// </summary>
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -37,6 +40,9 @@ namespace Project_Runners.Web.Controllers
             return Ok(contract);
         }
 
+        /// <summary>
+        /// Get run by id
+        /// </summary>
         [HttpGet("{id:long}")]
         public async Task<IActionResult> GetById(long id)
         {
@@ -49,6 +55,9 @@ namespace Project_Runners.Web.Controllers
             return Ok(contract);
         }
 
+        /// <summary>
+        /// Create new run
+        /// </summary>
         [HttpPost]
         public async Task<IActionResult> Create(CreateRunContract contract)
         {
