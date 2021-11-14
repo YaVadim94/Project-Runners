@@ -11,5 +11,8 @@ namespace Project_Runners.Data.Models
     {
         /// <summary> Прогоны </summary>
         public ICollection<RunCase> Runs { get; set; }
+
+        /// <summary> Результаты прогонов данного кейса </summary>
+        public ICollection<CaseResult> CaseResults { get; set; }
     }
 }

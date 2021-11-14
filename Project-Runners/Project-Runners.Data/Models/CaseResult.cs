@@ -16,5 +16,11 @@ namespace Project_Runners.Data.Models
 
         /// <summary> Прогон </summary>
         public Run Run { get; set; }
+
+        /// <summary> Идентификатор кейса </summary>
+        public long CaseId { get; set; }
+
+        /// <summary> Кейс </summary>
+        public Case Case { get; set; }
     }
 }
