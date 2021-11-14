@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Project_Runners.Application.Runs.Models.Queries;
 using Project_Runners.Data;
 using Project_Runners.Data.Models;
 using Project_Runners.Web.Models;
@@ -18,20 +20,24 @@ namespace Project_Runners.Web.Controllers
     {
         private readonly DataContext _context;
         private readonly IMapper _mapper;
-        public TestController(DataContext context, IMapper mapper)
+        private readonly IMediator _mediator;
+        public TestController(DataContext context, IMapper mapper, IMediator mediator)
         {
             _context = context;
             _mapper = mapper;
+            _mediator = mediator;
         }
 
         [HttpGet("runs")]
-        public async Task<IEnumerable<RunDto>> GetRuns()
+        public async Task<IActionResult> GetRuns()
         {
-            var runs = await _context.Runs
-                .Include(r => r.Cases).ThenInclude(c => c.Case)
-                .ToListAsync();
+            var query = new GetAllRunsQuery();
+
+            var dto = await _mediator.Send(query);
             
-            return _mapper.Map<IEnumerable<RunDto>>(runs);
+            var contract = _mapper.Map<IEnumerable<RunContract>>(dto);
+            
+            return Ok(contract);
         }
         
     }

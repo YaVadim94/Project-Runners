@@ -1,7 +1,11 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using System.Text.Json.Serialization;
 using Hangfire;
 using Hangfire.MemoryStorage;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Project_Runners.Application.Hangfire.Extensions;
+using Project_Runners.Application.Runs.Mapping;
 using Project_Runners.Data;
 using Project_Runners.Web.Helpers;
 using Serilog;
@@ -31,7 +36,7 @@ namespace Project_Runners.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("InMem"));
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddAutoMapper(GetAssemblies());
             services.AddHangfire(opt =>
             {
                 opt.UseSerilogLogProvider();
@@ -39,6 +44,7 @@ namespace Project_Runners.Web
             });
             
             services.AddHangfireServer();
+            services.AddMediatR(GetAssemblies().ToArray());
             
             services
                 .AddControllers()
@@ -71,6 +77,13 @@ namespace Project_Runners.Web
 
             DataSeedingHelper.SeedDataBase(app);
             app.AddRunCreator();
+        }
+
+        private IEnumerable<Assembly> GetAssemblies()
+        {
+            yield return GetType().Assembly;
+            yield return typeof(RunsProfile).Assembly;
+            yield return typeof(DataContext).Assembly;
         }
     }
 }

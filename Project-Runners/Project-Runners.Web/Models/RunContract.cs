@@ -8,7 +8,7 @@ namespace Project_Runners.Web.Models
     /// <summary>
     /// Дто прогона
     /// </summary>
-    public class RunDto
+    public class RunContract
     {
         /// <summary> Идентификатор </summary>
         public long Id { get; set; }
@@ -20,6 +20,6 @@ namespace Project_Runners.Web.Models
         public RunStatus Status { get; set; }
 
         /// <summary> Кейсы прогона </summary>
-        public IEnumerable<CaseDto> Cases { get; set; }
+        public IEnumerable<CaseContract> Cases { get; set; }
     }
 }
