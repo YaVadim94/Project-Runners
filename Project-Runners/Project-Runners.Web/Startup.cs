@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Project_Runners.Application.Hangfire.Extensions;
 using Project_Runners.Application.Hangfire.JobRunners;
+using Project_Runners.Application.RabbitMQ;
 using Project_Runners.Application.Runs.Mapping;
 using Project_Runners.Data;
 using Project_Runners.Web.Helpers;
@@ -50,6 +51,7 @@ namespace Project_Runners.Web
                 .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
             services.AddTransient<IRunCreateJobRunner, RunCreateJobRunner>();
+            services.AddSingleton<IMessageBusService, MessageBusService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -66,6 +68,8 @@ namespace Project_Runners.Web
 
             DataSeedingHelper.SeedDataBase(app);
             app.AddRunCreator();
+
+            app.ApplicationServices.GetRequiredService<IMessageBusService>();
         }
 
         private IEnumerable<Assembly> GetAssemblies()
