@@ -25,8 +25,6 @@ namespace Project_Runners.Application.Hangfire.JobRunners
         /// </summary>
         public void Start()
         {
-            //TODO: написать обёртку на раннеры, которые будут разруливать добавление новой джобы, если такая уже крутится
-
             var methodInfo = GetType()
                 .GetMethod(nameof(Execute), BindingFlags.Instance | BindingFlags.Public);
 
