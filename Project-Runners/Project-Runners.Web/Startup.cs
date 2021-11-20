@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Project_Runners.Application.Hangfire.Extensions;
 using Project_Runners.Application.Hangfire.JobRunners;
 using Project_Runners.Application.RabbitMQ;
+using Project_Runners.Application.RabbitMQ.Models;
 using Project_Runners.Application.Runs.Mapping;
 using Project_Runners.Data;
 using Project_Runners.Web.Helpers;
@@ -69,7 +70,8 @@ namespace Project_Runners.Web
             DataSeedingHelper.SeedDataBase(app);
             app.AddRunCreator();
 
-            app.ApplicationServices.GetRequiredService<IMessageBusService>();
+            var service = app.ApplicationServices.GetRequiredService<IMessageBusService>();
+            service.Publish(new MessageDto{Body = "ololo"});
         }
 
         private IEnumerable<Assembly> GetAssemblies()

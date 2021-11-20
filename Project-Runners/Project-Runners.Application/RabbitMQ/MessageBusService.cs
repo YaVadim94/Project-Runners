@@ -1,4 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using Project_Runners.Application.RabbitMQ.Models;
 using RabbitMQ.Client;
 
@@ -11,6 +15,8 @@ namespace Project_Runners.Application.RabbitMQ
     {
         private IConnection _connection;
         private IModel _channel;
+
+        private const string EXCHANGE_NAME = "direct-exchange";
         
         public MessageBusService(IConfiguration configuration)
         {
@@ -26,7 +32,19 @@ namespace Project_Runners.Application.RabbitMQ
 
             _connection = factory.CreateConnection();
             _channel = _connection.CreateModel();
-            _channel.ExchangeDeclare(exchange: "direct-exchange", type: ExchangeType.Direct);
+            _channel.ExchangeDeclare(exchange: EXCHANGE_NAME, type: ExchangeType.Direct);
+        }
+
+
+        /// <summary>
+        /// Опубликовать сообщение
+        /// </summary>
+        public void Publish(MessageDto message)
+        {
+            var json = JsonConvert.SerializeObject(message);
+            var body = Encoding.UTF8.GetBytes(json);
+            
+            _channel.BasicPublish(EXCHANGE_NAME, routingKey: string.Empty, body: body);
         }
     }
 }
