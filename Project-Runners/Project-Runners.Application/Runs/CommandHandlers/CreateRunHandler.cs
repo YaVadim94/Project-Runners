@@ -1,7 +1,10 @@
-﻿using System.Threading;
+﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
+using Project_Runners.Application.RabbitMQ;
+using Project_Runners.Application.RabbitMQ.Models;
 using Project_Runners.Application.Runs.Models.Commands;
 using Project_Runners.Data;
 using Project_Runners.Data.Models;
@@ -13,9 +16,9 @@ namespace Project_Runners.Application.Runs.CommandHandlers
     /// </summary>
     public class CreateRunHandler : IRequestHandler<CreateRunCommand, long>
     {
-        private readonly IMapper _mapper;
         private readonly DataContext _context;
-        
+        private readonly IMapper _mapper;
+
         public CreateRunHandler(IMapper mapper, DataContext context)
         {
             _mapper = mapper;

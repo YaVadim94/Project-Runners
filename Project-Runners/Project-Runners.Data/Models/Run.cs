@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Project_Runners.Data.Enums;
 using Project_Runners.Data.Models.Base;
 
@@ -17,5 +18,8 @@ namespace Project_Runners.Data.Models
 
         /// <summary> Результаты прохождения кейсов </summary>
         public ICollection<CaseResult> CaseResults { get; set; }
+
+        /// <summary> Идентификатор очереди </summary>
+        public Guid QueueId { get; set; }
     }
 }

@@ -68,10 +68,7 @@ namespace Project_Runners.Web
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 
             DataSeedingHelper.SeedDataBase(app);
-            app.AddRunCreator();
-
-            var service = app.ApplicationServices.GetRequiredService<IMessageBusService>();
-            service.Publish(new MessageDto{Body = "ololo"});
+            //app.AddRunCreator();
         }
 
         private IEnumerable<Assembly> GetAssemblies()

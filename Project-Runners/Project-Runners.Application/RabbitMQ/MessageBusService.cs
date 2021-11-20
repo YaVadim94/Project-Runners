@@ -13,6 +13,8 @@ namespace Project_Runners.Application.RabbitMQ
     /// </summary>
     public class MessageBusService : IMessageBusService
     {
+        private readonly RabbitMQConfig _config;
+        
         private IConnection _connection;
         private IModel _channel;
 
@@ -20,31 +22,44 @@ namespace Project_Runners.Application.RabbitMQ
         
         public MessageBusService(IConfiguration configuration)
         {
-            var config = configuration.GetSection("RabbitMQ").Get<RabbitMQConfig>();
-            
-            var factory = new ConnectionFactory
-            {
-                HostName = config.HostName,
-                Port = config.Port,
-                UserName = config.UserName,
-                Password = config.Password
-            };
+            _config = configuration.GetSection("RabbitMQ").Get<RabbitMQConfig>();
 
-            _connection = factory.CreateConnection();
-            _channel = _connection.CreateModel();
-            _channel.ExchangeDeclare(exchange: EXCHANGE_NAME, type: ExchangeType.Direct);
+            TryToCreateConnection();
         }
 
 
         /// <summary>
         /// Опубликовать сообщение
         /// </summary>
-        public void Publish(MessageDto message)
+        public void Publish(MessageDto message, string routingKey = "")
         {
+            if (!_connection.IsOpen && TryToCreateConnection())
+                return;
+                
             var json = JsonConvert.SerializeObject(message);
             var body = Encoding.UTF8.GetBytes(json);
             
-            _channel.BasicPublish(EXCHANGE_NAME, routingKey: string.Empty, body: body);
+            _channel.BasicPublish(EXCHANGE_NAME, routingKey, body: body);
+        }
+
+        private bool TryToCreateConnection()
+        {
+            var factory = new ConnectionFactory
+            {
+                HostName = _config.HostName,
+                Port = _config.Port,
+                UserName = _config.UserName,
+                Password = _config.Password
+            };
+
+            _connection = factory.CreateConnection();
+            _channel = _connection.CreateModel();
+            _channel.ExchangeDeclare(exchange: EXCHANGE_NAME, type: ExchangeType.Direct);
+
+            if(!_connection.IsOpen)
+                Console.WriteLine("Не удалось подключиться к шине данных");
+            
+            return _connection.IsOpen;
         }
     }
 }

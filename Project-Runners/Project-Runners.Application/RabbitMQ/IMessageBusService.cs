@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Project_Runners.Application.RabbitMQ.Models;
 
 namespace Project_Runners.Application.RabbitMQ
@@ -11,6 +12,6 @@ namespace Project_Runners.Application.RabbitMQ
         /// <summary>
         /// Опубликовать сообщение
         /// </summary>
-        void Publish(MessageDto message);
+        void Publish(MessageDto message, string routingKey = "");
     }
 }

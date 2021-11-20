@@ -7,6 +7,7 @@ namespace Project_Runners.Application.Runs.Models.Commands
     /// </summary>
     public class StartRunCommand : IRequest
     {
-        
+        /// <summary> Идентификатор прогона </summary>
+        public long Id { get; set; }
     }
 }

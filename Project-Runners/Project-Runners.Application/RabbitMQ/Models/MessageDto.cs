@@ -6,6 +6,6 @@
     public class MessageDto
     {
         /// <summary> Тело сообщения </summary>
-        public string Body { get; set; }
+        public object Body { get; set; }
     }
 }

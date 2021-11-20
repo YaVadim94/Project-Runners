@@ -67,5 +67,15 @@ namespace Project_Runners.Web.Controllers
 
             return CreatedAtAction(nameof(GetById), new {Id = id}, id);
         }
+
+        [HttpPatch("{id:long}/start")]
+        public async Task<IActionResult> Start(long id)
+        {
+            var command = new StartRunCommand {Id = id};
+
+            await _mediator.Send(command);
+
+            return NoContent();
+        }
     }
 }

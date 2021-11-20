@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using AutoMapper;
 using AutoMapper.EquivalencyExpression;
 using Project_Runners.Application.Extensions;
@@ -24,12 +25,15 @@ namespace Project_Runners.Application.Runs.Mapping
             CreateMap<CreateRunCommand, Run>()
                 .MapMember(d => d.Cases, s => s.CaseIds)
                 .MapMember(d => d.Status, s => RunStatus.NotStarted)
+                .MapMember(d => d.QueueId, s => Guid.NewGuid())
                 .PreserveReferences();
 
             CreateMap<long, RunCase>()
                 .MapMember(d => d.CaseId, s => s)
                 .EqualityComparison((s, d) => d.CaseId == s);
 
+            CreateMap<Case, CaseForRunningDto>()
+                .IgnoreMember(d => d.RunId);
         }
     }
 }
