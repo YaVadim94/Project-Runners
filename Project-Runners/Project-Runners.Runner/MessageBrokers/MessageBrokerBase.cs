@@ -1,13 +1,11 @@
-﻿using System;
-using System.Text;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Project_runners.Common;
+using Project_runners.Common.Models;
 using Project_Runners.Runner.Extensions;
-using Project_Runners.Runner.Models;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
-namespace Project_Runners.Runner.RabbitMq
+namespace Project_Runners.Runner.MessageBrokers
 {
     /// <summary>
     /// Базовый класс брокера для работы с RabbitMq
@@ -15,13 +13,13 @@ namespace Project_Runners.Runner.RabbitMq
     public abstract class MessageBrokerBase
     {
         private readonly RabbitMQConfig _config;
-        private IConnection _connection;
         private IModel _channel;
+        private IConnection _connection;
 
         protected MessageBrokerBase(IConfiguration configuration)
         {
             _config = configuration.GetSection("RabbitMQ").Get<RabbitMQConfig>();
-            
+
             OpenConnection();
         }
 
@@ -29,16 +27,23 @@ namespace Project_Runners.Runner.RabbitMq
         /// Обработать сообщение
         /// </summary>
         protected abstract void Consume(object obj, BasicDeliverEventArgs args);
-        
+
         public void Subscribe()
         {
             var consumer = new EventingBasicConsumer(_channel);
 
-            consumer.Received += Consume;
-            
-            _channel.BasicConsume(queue: CommonConstants.QUEUE_NAME, autoAck: false, consumer: consumer);
+            consumer.Received += ConsumeBase;
+
+            _channel.BasicConsume(CommonConstants.QUEUE_NAME, false, consumer);
         }
 
+        private void ConsumeBase(object obj, BasicDeliverEventArgs args)
+        {
+            Consume(obj, args);
+            
+            _channel.BasicAck(deliveryTag: args.DeliveryTag, multiple: false);
+        }
+        
         private void OpenConnection()
         {
             var factory = new ConnectionFactory
@@ -53,11 +58,11 @@ namespace Project_Runners.Runner.RabbitMq
             _channel = _connection.CreateModel();
 
             _channel.QueueDeclare(
-                queue: CommonConstants.QUEUE_NAME,
-                durable: true,
-                exclusive: false,
-                autoDelete: false,
-                arguments: null);
+                CommonConstants.QUEUE_NAME,
+                true,
+                false,
+                false,
+                null);
         }
     }
 }

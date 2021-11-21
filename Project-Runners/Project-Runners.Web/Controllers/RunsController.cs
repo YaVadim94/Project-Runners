@@ -14,19 +14,17 @@ namespace Project_Runners.Web.Controllers
     [Route("api/[controller]")]
     public class RunsController : ControllerBase
     {
-        private readonly DataContext _context;
         private readonly IMapper _mapper;
         private readonly IMediator _mediator;
 
-        public RunsController(DataContext context, IMapper mapper, IMediator mediator)
+        public RunsController(IMapper mapper, IMediator mediator)
         {
-            _context = context;
             _mapper = mapper;
             _mediator = mediator;
         }
 
         /// <summary>
-        /// Get all runs
+        /// Получить все прогоны
         /// </summary>
         [HttpGet]
         public async Task<IActionResult> GetAll()
@@ -41,7 +39,7 @@ namespace Project_Runners.Web.Controllers
         }
 
         /// <summary>
-        /// Get run by id
+        /// Получить прогон по id
         /// </summary>
         [HttpGet("{id:long}")]
         public async Task<IActionResult> GetById(long id)
@@ -56,7 +54,7 @@ namespace Project_Runners.Web.Controllers
         }
 
         /// <summary>
-        /// Create new run
+        /// Создать новый прогон
         /// </summary>
         [HttpPost]
         public async Task<IActionResult> Create(CreateRunContract contract)
@@ -68,6 +66,9 @@ namespace Project_Runners.Web.Controllers
             return CreatedAtAction(nameof(GetById), new {Id = id}, id);
         }
 
+        /// <summary>
+        /// Начать прогон тестов
+        /// </summary>
         [HttpPatch("{id:long}/start")]
         public async Task<IActionResult> Start(long id)
         {

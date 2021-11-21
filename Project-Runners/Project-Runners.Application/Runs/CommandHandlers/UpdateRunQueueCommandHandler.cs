@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -9,10 +8,9 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Project_Runners.Application.Extensions;
 using Project_Runners.Application.RabbitMQ;
-using Project_Runners.Application.RabbitMQ.Models;
 using Project_Runners.Application.Runs.Models;
 using Project_Runners.Application.Runs.Models.Commands;
-using Project_Runners.Application.Runs.Models.Dto;
+using Project_runners.Common.Models;
 using Project_Runners.Data;
 using Project_Runners.Data.Enums;
 
@@ -98,7 +96,7 @@ namespace Project_Runners.Application.Runs.CommandHandlers
                 var dto = _mapper.Map<CaseForRunningDto>(caseToSend);
                 dto.RunId = runId;
                 
-                _messageBusService.Publish(new MessageDto{Body = dto});
+                _messageBusService.Publish(dto);
             }
         }
     }

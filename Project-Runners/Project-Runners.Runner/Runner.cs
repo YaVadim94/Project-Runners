@@ -1,8 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
-using Project_Runners.Runner.Extensions;
-using Project_Runners.Runner.Models;
-using Project_Runners.Runner.RabbitMq;
+using Project_Runners.Runner.MessageBrokers;
 
 namespace Project_Runners.Runner
 {
@@ -11,17 +9,17 @@ namespace Project_Runners.Runner
     /// </summary>
     public class Runner
     {
-        /// <summary> Конфигерации </summary>
-        private IConfiguration Configuration { get; set; }
-        
         public Runner(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
+        /// <summary> Конфигерации </summary>
+        private IConfiguration Configuration { get; }
+
         public async Task Start()
         {
-            var messageBroker = new MessageBroker(Configuration);
+            var messageBroker = new CaseForRunningConsumer(Configuration);
             messageBroker.Subscribe();
 
             while (true)

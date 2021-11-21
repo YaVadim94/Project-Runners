@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Project_Runners.Application.Extensions;
-using Project_Runners.Application.RabbitMQ;
-using Project_Runners.Application.RabbitMQ.Models;
 using Project_Runners.Application.Runs.Models.Commands;
-using Project_Runners.Application.Runs.Models.Dto;
 using Project_Runners.Data;
 using Project_Runners.Data.Enums;
 

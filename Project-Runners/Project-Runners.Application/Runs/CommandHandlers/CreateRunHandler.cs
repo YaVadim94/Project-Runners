@@ -1,10 +1,7 @@
-﻿using System.Linq;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
-using Project_Runners.Application.RabbitMQ;
-using Project_Runners.Application.RabbitMQ.Models;
 using Project_Runners.Application.Runs.Models.Commands;
 using Project_Runners.Data;
 using Project_Runners.Data.Models;

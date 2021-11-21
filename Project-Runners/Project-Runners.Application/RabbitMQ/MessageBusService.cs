@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using Project_Runners.Application.RabbitMQ.Models;
 using Project_runners.Common;
 using Project_runners.Common.Models;
 using RabbitMQ.Client;
@@ -31,12 +29,12 @@ namespace Project_Runners.Application.RabbitMQ
         /// <summary>
         /// Опубликовать сообщение
         /// </summary>
-        public void Publish(MessageDto message, string routingKey = "")
+        public void Publish(object messageDto, string routingKey = "")
         {
             if (!_connection.IsOpen && TryToCreateConnection())
                 return;
                 
-            var json = JsonConvert.SerializeObject(message);
+            var json = JsonConvert.SerializeObject(messageDto);
             var body = Encoding.UTF8.GetBytes(json);
             
             _channel.BasicPublish(string.Empty, routingKey: CommonConstants.QUEUE_NAME, body: body);

@@ -14,7 +14,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Project_Runners.Application.Hangfire.Extensions;
 using Project_Runners.Application.Hangfire.JobRunners;
 using Project_Runners.Application.RabbitMQ;
-using Project_Runners.Application.RabbitMQ.Models;
 using Project_Runners.Application.Runs.Mapping;
 using Project_Runners.Data;
 using Project_Runners.Web.Helpers;
