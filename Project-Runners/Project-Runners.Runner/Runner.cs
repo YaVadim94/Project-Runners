@@ -21,7 +21,7 @@ namespace Project_Runners.Runner
         public async Task Start()
         {
             var messageBroker = new CaseForRunningConsumer(Configuration, new CaseRunService());
-            messageBroker.Subscribe();
+            await messageBroker.Subscribe();
 
             while (true)
                 await Task.Delay(1000);

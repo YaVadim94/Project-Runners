@@ -36,7 +36,7 @@ namespace Project_Runners.Runner.MessageBrokers
             var testCaseDto = JsonConvert.DeserializeObject<CaseForRunningDto>(message);
 
             var result = _caseRunService.RunCase(testCaseDto);
-            await _caseResultsApi.SendResult(result);
+            await _caseResultsApi.Create(result);
                 
             Task.Delay(1000).GetAwaiter().GetResult();
         }
