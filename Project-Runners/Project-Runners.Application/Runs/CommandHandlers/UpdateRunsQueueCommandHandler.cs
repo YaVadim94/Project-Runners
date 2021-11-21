@@ -28,9 +28,8 @@ namespace Project_Runners.Application.Runs.CommandHandlers
         /// </summary>
         public async Task<Unit> Handle(UpdateRunsQueueCommand request, CancellationToken cancellationToken)
         {
-            var validStatuses = new[] {RunStatus.InProgress, RunStatus.NotStarted};
             var inProgressRunIds = await _context.Runs
-                .Where(r => validStatuses.Contains(r.Status))
+                .Where(r => r.Status == RunStatus.InProgress)
                 .Select(r => r.Id)
                 .ToListAsync(cancellationToken);
 

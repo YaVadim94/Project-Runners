@@ -31,6 +31,15 @@ namespace Project_Runners.Web.Helpers
                 context.Cases.Add(new Case{Id = 4, Name = "Metallica"});
                 context.Cases.Add(new Case{Id = 5, Name = "AC/DC"});
                 context.Cases.Add(new Case{Id = 6, Name = "The Rolling Stones"});
+                context.Cases.Add(new Case{Id = 7, Name = "The Rolling Stones"});
+                context.Cases.Add(new Case{Id = 8, Name = "The Rolling Stones"});
+                context.Cases.Add(new Case{Id = 9, Name = "The Rolling Stones"});
+                context.Cases.Add(new Case{Id = 10, Name = "The Rolling Stones"});
+                context.Cases.Add(new Case{Id = 11, Name = "The Rolling Stones"});
+                context.Cases.Add(new Case{Id = 12, Name = "The Rolling Stones"});
+                context.Cases.Add(new Case{Id = 13, Name = "The Rolling Stones"});
+                context.Cases.Add(new Case{Id = 14, Name = "The Rolling Stones"});
+                context.Cases.Add(new Case{Id = 15, Name = "The Rolling Stones"});
             }
 
             if (!context.Runs.Any())
@@ -38,6 +47,7 @@ namespace Project_Runners.Web.Helpers
                 Console.WriteLine("--> Seeding by runs...");
                 context.Runs.Add(new Run{Id = 1, Name = "SuperStar", Status = RunStatus.Successed});
                 context.Runs.Add(new Run{Id = 2, Name = "Onion", Status = RunStatus.Failed});
+                context.Runs.Add(new Run{Id = 3, Name = "Beautiful", Status = RunStatus.InProgress});
             }
 
             if (!context.RunCases.Any())
@@ -49,6 +59,22 @@ namespace Project_Runners.Web.Helpers
                 context.RunCases.Add(new RunCase{RunId = 2, CaseId = 4});
                 context.RunCases.Add(new RunCase{RunId = 2, CaseId = 5});
                 context.RunCases.Add(new RunCase{RunId = 2, CaseId = 6});
+                
+                context.RunCases.Add(new RunCase{RunId = 3, CaseId = 1});
+                context.RunCases.Add(new RunCase{RunId = 3, CaseId = 2});
+                context.RunCases.Add(new RunCase{RunId = 3, CaseId = 3});
+                context.RunCases.Add(new RunCase{RunId = 3, CaseId = 4});
+                context.RunCases.Add(new RunCase{RunId = 3, CaseId = 5});
+                context.RunCases.Add(new RunCase{RunId = 3, CaseId = 6});
+                context.RunCases.Add(new RunCase{RunId = 3, CaseId = 7});
+                context.RunCases.Add(new RunCase{RunId = 3, CaseId = 8});
+                context.RunCases.Add(new RunCase{RunId = 3, CaseId = 9});
+                context.RunCases.Add(new RunCase{RunId = 3, CaseId = 10});
+                context.RunCases.Add(new RunCase{RunId = 3, CaseId = 11});
+                context.RunCases.Add(new RunCase{RunId = 3, CaseId = 12});
+                context.RunCases.Add(new RunCase{RunId = 3, CaseId = 13});
+                context.RunCases.Add(new RunCase{RunId = 3, CaseId = 14});
+                context.RunCases.Add(new RunCase{RunId = 3, CaseId = 15});
             }
             
             context.SaveChanges();
