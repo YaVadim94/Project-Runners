@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Project_Runners.Application.RabbitMQ.Models;
+using Project_runners.Common;
 using Project_runners.Common.Models;
 using RabbitMQ.Client;
 
@@ -19,8 +20,6 @@ namespace Project_Runners.Application.RabbitMQ
         private IConnection _connection;
         private IModel _channel;
 
-        private const string EXCHANGE_NAME = "direct-exchange";
-        
         public MessageBusService(IConfiguration configuration)
         {
             _config = configuration.GetSection("RabbitMQ").Get<RabbitMQConfig>();
@@ -40,7 +39,7 @@ namespace Project_Runners.Application.RabbitMQ
             var json = JsonConvert.SerializeObject(message);
             var body = Encoding.UTF8.GetBytes(json);
             
-            _channel.BasicPublish(EXCHANGE_NAME, routingKey, body: body);
+            _channel.BasicPublish(string.Empty, routingKey: CommonConstants.QUEUE_NAME, body: body);
         }
 
         private bool TryToCreateConnection()
@@ -55,8 +54,14 @@ namespace Project_Runners.Application.RabbitMQ
 
             _connection = factory.CreateConnection();
             _channel = _connection.CreateModel();
-            _channel.ExchangeDeclare(exchange: EXCHANGE_NAME, type: ExchangeType.Direct);
 
+            _channel.QueueDeclare(
+                queue: CommonConstants.QUEUE_NAME,
+                durable: true,
+                exclusive: false,
+                autoDelete: false,
+                arguments: null);
+            
             if(!_connection.IsOpen)
                 Console.WriteLine("Не удалось подключиться к шине данных");
             

@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Project_Runners.Runner.Extensions;
 using Project_Runners.Runner.Models;
+using Project_Runners.Runner.RabbitMq;
 
 namespace Project_Runners.Runner
 {
@@ -11,17 +12,18 @@ namespace Project_Runners.Runner
     public class Runner
     {
         /// <summary> Конфигерации </summary>
-        public IConfiguration Configuration { get; set; }
+        private IConfiguration Configuration { get; set; }
         
         public Runner(IConfiguration configuration)
         {
             Configuration = configuration;
-
-            var test = configuration.GetSection("RabbitMQ").Get<RabbitMQConfig>();
         }
 
         public async Task Start()
         {
+            var messageBroker = new MessageBroker(Configuration);
+            messageBroker.Subscribe();
+
             while (true)
                 await Task.Delay(1000);
         }

@@ -29,4 +29,8 @@
       </None>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Project-Runners.Common\Project-Runners.Common.csproj" />
+    </ItemGroup>
+
 </Project>
