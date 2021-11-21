@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -55,9 +56,11 @@ namespace Project_Runners.Application.Runs.CommandHandlers
             {
                 run.Status = RunStatus.Failed;
                 await _context.SaveChangesAsync(cancellationToken);
+                Console.WriteLine($"---> Прогон провален: {run.Name}");
                 return Unit.Value;
             }
             
+            Console.WriteLine($"---> Обновление очереди для прогона: {run.Name}");
             SendCasesToQueue(casesWithResults, run.Id);
             return Unit.Value;
         }

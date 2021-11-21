@@ -51,7 +51,7 @@ namespace Project_Runners.Web
                 .AddControllers()
                 .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
-            services.AddTransient<IRunCreateJobRunner, RunCreateJobRunner>();
+            services.AddTransient<UpdateRunsQueueJobRunner>();
             services.AddSingleton<IMessageBusService, MessageBusService>();
         }
 
@@ -68,7 +68,7 @@ namespace Project_Runners.Web
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 
             DataSeedingHelper.SeedDataBase(app);
-            //app.AddRunCreator();
+            app.StartBackgroundServices();
         }
 
         private IEnumerable<Assembly> GetAssemblies()

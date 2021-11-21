@@ -3,23 +3,15 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Hangfire;
 using Hangfire.Common;
-using MediatR;
 using Project_Runners.Application.Runs.Models.Commands;
 
 namespace Project_Runners.Application.Hangfire.JobRunners
 {
     /// <summary>
-    /// Класс, отвечающий за запуск задачи на создание прогона
+    /// Базовый класс для запуска фоновых задач
     /// </summary>
-    public class RunCreateJobRunner : IRunCreateJobRunner
+    public abstract class JobRunnerBase
     {
-        private readonly IMediator _mediator;
-
-        public RunCreateJobRunner(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
-
         /// <summary>
         /// Запусть задачу
         /// </summary>
@@ -35,11 +27,10 @@ namespace Project_Runners.Application.Hangfire.JobRunners
             manager.AddOrUpdate(jobId, job, Cron.Minutely());
         }
 
-        public async Task Execute()
-        {
-            var command = new StartRunCommand();
-
-            await _mediator.Send(command);
-        }
+        /// <summary>
+        /// Задача для выполнения. Этот метод создан для того, чтобы раннеры удобно пользовались медиатором.
+        /// Не использовать явно!
+        /// </summary>
+        public abstract Task Execute();
     }
 }
