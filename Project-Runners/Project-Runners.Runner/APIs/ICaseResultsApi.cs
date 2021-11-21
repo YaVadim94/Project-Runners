@@ -12,7 +12,7 @@ namespace Project_Runners.Runner.APIs
         /// <summary>
         /// Отправить результат прогона
         /// </summary>
-        [Post("case-results/result")]
+        [Post("/case-results/result")]
         public Task SendResult(CaseResultContract contract);
     }
 }

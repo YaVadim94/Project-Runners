@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using Project_runners.Common;
 using Project_runners.Common.Models;
 using Project_Runners.Runner.Extensions;
@@ -26,22 +28,29 @@ namespace Project_Runners.Runner.MessageBrokers
         /// <summary>
         /// Обработать сообщение
         /// </summary>
-        protected abstract void Consume(object obj, BasicDeliverEventArgs args);
+        protected abstract Task Consume(object obj, BasicDeliverEventArgs args);
 
-        public void Subscribe()
+        public async Task Subscribe()
         {
-            var consumer = new EventingBasicConsumer(_channel);
+            var consumer = new AsyncEventingBasicConsumer(_channel);
 
             consumer.Received += ConsumeBase;
 
             _channel.BasicConsume(CommonConstants.QUEUE_NAME, false, consumer);
         }
 
-        private void ConsumeBase(object obj, BasicDeliverEventArgs args)
+        private async Task ConsumeBase(object obj, BasicDeliverEventArgs args)
         {
-            Consume(obj, args);
-            
-            _channel.BasicAck(deliveryTag: args.DeliveryTag, multiple: false);
+            try
+            {
+                await Consume(obj, args);
+                
+                _channel.BasicAck(deliveryTag: args.DeliveryTag, multiple: false);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Произошла ошибка: {ex.Message}");
+            }
         }
         
         private void OpenConnection()
@@ -51,7 +60,8 @@ namespace Project_Runners.Runner.MessageBrokers
                 HostName = _config.HostName,
                 Port = _config.Port,
                 UserName = _config.UserName,
-                Password = _config.Password
+                Password = _config.Password,
+                DispatchConsumersAsync = true
             };
 
             _connection = factory.CreateConnection();

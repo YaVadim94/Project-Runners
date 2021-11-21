@@ -29,23 +29,16 @@ namespace Project_Runners.Runner.MessageBrokers
         /// <summary>
         /// Обработать сообщение
         /// </summary>
-        protected override void Consume(object obj, BasicDeliverEventArgs args)
+        protected override async Task Consume(object obj, BasicDeliverEventArgs args)
         {
-            try
-            {
-                var body = args.Body.ToArray();
-                var message = Encoding.UTF8.GetString(body);
-                var testCaseDto = JsonConvert.DeserializeObject<CaseForRunningDto>(message);
+            var body = args.Body.ToArray();
+            var message = Encoding.UTF8.GetString(body);
+            var testCaseDto = JsonConvert.DeserializeObject<CaseForRunningDto>(message);
 
-                var result = _caseRunService.RunCase(testCaseDto);
-                _caseResultsApi.SendResult(result);
+            var result = _caseRunService.RunCase(testCaseDto);
+            await _caseResultsApi.SendResult(result);
                 
-                Task.Delay(1000).GetAwaiter().GetResult();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Произошла ошибка: {ex.Message}");
-            }
+            Task.Delay(1000).GetAwaiter().GetResult();
         }
     }
 }
