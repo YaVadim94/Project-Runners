@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -48,23 +49,43 @@ namespace Project_Runners.Application.Runs.CommandHandlers
                 (c, results) => new CaseWithResults{Case = c.Case, CaseResults = results})
                 .ToList();
 
-            var runFailed = casesWithResults
-                .Any(cwr => cwr.CaseResults.Any(result => result.Status == RunStatus.Successed)
-                            || cwr.CaseResults.Count() >= 3);
+            var status = GetStatus(casesWithResults);
 
-            if (runFailed)
+            switch (status)
             {
-                run.Status = RunStatus.Failed;
-                await _context.SaveChangesAsync(cancellationToken);
-                Console.WriteLine($"---> Прогон провален: {run.Name}");
-                return Unit.Value;
+                case RunStatus.Successed:
+                case RunStatus.Failed:
+                    run.Status = status;
+                    await _context.SaveChangesAsync(cancellationToken);
+                    Console.WriteLine($"---> Прогон провален: {run.Name}");
+                    return Unit.Value;
+                
+                case RunStatus.InProgress:
+                    Console.WriteLine($"---> Обновление очереди для прогона: {run.Name}");
+                    SendCasesToQueue(casesWithResults, run.Id);
+                    return Unit.Value;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(status));
             }
-            
-            Console.WriteLine($"---> Обновление очереди для прогона: {run.Name}");
-            SendCasesToQueue(casesWithResults, run.Id);
-            return Unit.Value;
         }
 
+        private static RunStatus GetStatus(ICollection<CaseWithResults> casesWithResults)
+        {
+            var runFailed = casesWithResults
+                .Any(cwr => cwr.CaseResults.All(result => result.Status != RunStatus.Successed)
+                            && cwr.CaseResults.Count() >= 3);
+
+            var runSucceeded = casesWithResults
+                .Any(cwr => cwr.CaseResults.Any(result => result.Status == RunStatus.Successed));
+
+            return casesWithResults switch
+            {
+                { } when runFailed => RunStatus.Failed,
+                { } when runSucceeded => RunStatus.Successed,
+                _ => RunStatus.InProgress
+            };
+        }
+        
         private void SendCasesToQueue(IEnumerable<CaseWithResults> casesWithResults, long runId)
         {
             var casesToSend = casesWithResults
