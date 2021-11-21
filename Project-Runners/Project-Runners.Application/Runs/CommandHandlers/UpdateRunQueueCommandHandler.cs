@@ -70,11 +70,13 @@ namespace Project_Runners.Application.Runs.CommandHandlers
         private static RunStatus GetStatus(ICollection<CaseWithResults> casesWithResults)
         {
             var runFailed = casesWithResults
-                .Any(cwr => cwr.CaseResults.All(result => result.Status != RunStatus.Successed)
-                            && cwr.CaseResults.Count() >= 3);
+                .All(cwr => cwr.CaseResults.Any()
+                    && cwr.CaseResults.All(result => result.Status == RunStatus.Failed)
+                    && cwr.CaseResults.Count() >= 3);
 
             var runSucceeded = casesWithResults
-                .Any(cwr => cwr.CaseResults.Any(result => result.Status == RunStatus.Successed));
+                .All(cwr => cwr.CaseResults.Any(result => result.Status == RunStatus.Successed)
+                    && cwr.CaseResults.Count() <= 3);
 
             return casesWithResults switch
             {

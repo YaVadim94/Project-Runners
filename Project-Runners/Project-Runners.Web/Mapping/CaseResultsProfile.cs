@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
 using Project_Runners.Application.CaseResults.Models.Commands;
-using Project_Runners.Application.Extensions;
 using Project_runners.Common.Models;
-using Project_Runners.Data.Models;
 
-namespace Project_Runners.Application.CaseResults.Mapping
+namespace Project_Runners.Web.Mapping
 {
     /// <summary>
     /// Мапинг для результатов тестов
@@ -13,9 +11,7 @@ namespace Project_Runners.Application.CaseResults.Mapping
     {
         public CaseResultsProfile()
         {
-            CreateMap<CreateCaseResultCommand, CaseResult>()
-                .IgnoreMember(d => d.Id)
-                .MapMember(d => d.CaseId, s => s.Id);
+            CreateMap<CaseResultContract, CreateCaseResultCommand>();
         }
     }
 }
