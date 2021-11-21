@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Project_Runners.Application.RabbitMQ.Models;
+using Project_runners.Common.Models;
 using RabbitMQ.Client;
 
 namespace Project_Runners.Application.RabbitMQ
