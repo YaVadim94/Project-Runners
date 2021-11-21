@@ -5,7 +5,10 @@ using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Project_runners.Common.Models;
 using Project_Runners.Data.Enums;
+using Project_Runners.Runner.APIs;
+using Project_Runners.Runner.Services;
 using RabbitMQ.Client.Events;
+using Refit;
 
 namespace Project_Runners.Runner.MessageBrokers
 {
@@ -14,8 +17,13 @@ namespace Project_Runners.Runner.MessageBrokers
     /// </summary>
     public class CaseForRunningConsumer : MessageBrokerBase
     {
-        public CaseForRunningConsumer(IConfiguration configuration) : base(configuration)
+        private readonly CaseRunService _caseRunService;
+        private readonly ICaseResultsApi _caseResultsApi;
+
+        public CaseForRunningConsumer(IConfiguration configuration, CaseRunService caseRunService) : base(configuration)
         {
+            _caseRunService = caseRunService;
+            _caseResultsApi = RestService.For<ICaseResultsApi>(configuration.GetSection("Project-Runners.Api").Value);
         }
 
         /// <summary>
@@ -29,13 +37,8 @@ namespace Project_Runners.Runner.MessageBrokers
                 var message = Encoding.UTF8.GetString(body);
                 var testCaseDto = JsonConvert.DeserializeObject<CaseForRunningDto>(message);
 
-                var caseResult = new CaseResultContract
-                {
-                    Id = testCaseDto.Id,
-                    RunId = testCaseDto.RunId,
-                    Status = CalculateStatus()
-                };
-                Console.WriteLine($"Run: {caseResult.RunId}, Case: {caseResult.Id}, Status: {caseResult.Status}");
+                var result = _caseRunService.RunCase(testCaseDto);
+                _caseResultsApi.SendResult(result);
                 
                 Task.Delay(1000).GetAwaiter().GetResult();
             }
@@ -43,16 +46,6 @@ namespace Project_Runners.Runner.MessageBrokers
             {
                 Console.WriteLine($"Произошла ошибка: {ex.Message}");
             }
-        }
-
-        private RunStatus CalculateStatus()
-        {
-            var value = DateTime.Now.Ticks % 10;
-            return value switch
-            {
-                >= 5 => RunStatus.Successed,
-                _ => RunStatus.Failed
-            };
         }
     }
 }

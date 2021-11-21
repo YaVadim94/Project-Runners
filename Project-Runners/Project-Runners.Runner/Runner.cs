@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Project_Runners.Runner.MessageBrokers;
+using Project_Runners.Runner.Services;
 
 namespace Project_Runners.Runner
 {
@@ -19,7 +20,7 @@ namespace Project_Runners.Runner
 
         public async Task Start()
         {
-            var messageBroker = new CaseForRunningConsumer(Configuration);
+            var messageBroker = new CaseForRunningConsumer(Configuration, new CaseRunService());
             messageBroker.Subscribe();
 
             while (true)

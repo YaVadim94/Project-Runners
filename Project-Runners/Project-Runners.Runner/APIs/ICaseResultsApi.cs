@@ -2,7 +2,7 @@
 using Project_runners.Common.Models;
 using Refit;
 
-namespace Project_Runners.Runner.HttpClients.APIs
+namespace Project_Runners.Runner.APIs
 {
     /// <summary>
     /// API для прогонов
@@ -12,7 +12,7 @@ namespace Project_Runners.Runner.HttpClients.APIs
         /// <summary>
         /// Отправить результат прогона
         /// </summary>
-        [Post("api/case-results/result")]
-        public Task Result(CaseResultContract contract);
+        [Post("case-results/result")]
+        public Task SendResult(CaseResultContract contract);
     }
 }
