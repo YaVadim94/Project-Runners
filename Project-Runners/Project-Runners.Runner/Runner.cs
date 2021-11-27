@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Project_Runners.Runner.MessageBrokers;
 using Project_Runners.Runner.Services;
 
@@ -11,18 +12,17 @@ namespace Project_Runners.Runner
     /// </summary>
     public class Runner
     {
-        public Runner(IConfiguration configuration)
+        public static IServiceProvider ServiceProvider { get; set; }
+        
+        public Runner(IServiceProvider serviceProvider)
         {
-            Configuration = configuration;
+            ServiceProvider = serviceProvider;
         }
-
-        /// <summary> Конфигерации </summary>
-        private IConfiguration Configuration { get; }
 
         public async Task Start()
         {
             Console.WriteLine("Start runner");
-            var messageBroker = new CaseForRunningConsumer(Configuration, new CaseRunService());
+            var messageBroker = ServiceProvider.GetRequiredService<CaseForRunningConsumer>();
             await messageBroker.Subscribe();
 
             while (true)

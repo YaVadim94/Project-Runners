@@ -1,5 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Project_Runners.Runner.Extensions;
+using Project_Runners.Runner.Services;
 
 namespace Project_Runners.Runner
 {
@@ -13,11 +16,13 @@ namespace Project_Runners.Runner
         /// </summary>
         private static async Task Main(string[] args)
         {
-            var config = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
-                .Build();
+            IServiceCollection services = new ServiceCollection();
 
-            var runner = new Runner(config);
+            services.AddServices();
+
+            var serviceProvider = services.BuildServiceProvider();
+            
+            var runner = new Runner(serviceProvider);
             await runner.Start();
         }
     }
