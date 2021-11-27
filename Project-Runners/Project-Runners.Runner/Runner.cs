@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Project_Runners.Runner.MessageBrokers;
 using Project_Runners.Runner.Services;
@@ -20,6 +21,7 @@ namespace Project_Runners.Runner
 
         public async Task Start()
         {
+            Console.WriteLine("Start runner");
             var messageBroker = new CaseForRunningConsumer(Configuration, new CaseRunService());
             await messageBroker.Subscribe();
 

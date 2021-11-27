@@ -53,10 +53,10 @@ namespace Project_Runners.Application.RabbitMQ
             _connection = factory.CreateConnection();
             _channel = _connection.CreateModel();
 
-            _channel.QueueDeclare(
-                queue: CommonConstants.QUEUE_NAME,
+            _channel.ExchangeDeclare(
+                exchange: CommonConstants.DIRECT_EXCHANGE,
+                type: CommonConstants.DIRECT,
                 durable: true,
-                exclusive: false,
                 autoDelete: false,
                 arguments: null);
             

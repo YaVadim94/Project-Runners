@@ -37,6 +37,8 @@ namespace Project_Runners.Runner.MessageBrokers
             consumer.Received += ConsumeBase;
 
             _channel.BasicConsume(CommonConstants.QUEUE_NAME, false, consumer);
+
+            Console.WriteLine("Subscribed");
         }
 
         private async Task ConsumeBase(object obj, BasicDeliverEventArgs args)

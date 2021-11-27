@@ -31,15 +31,15 @@ namespace Project_Runners.Web.Helpers
                 context.Cases.Add(new Case{Id = 4, Name = "Metallica"});
                 context.Cases.Add(new Case{Id = 5, Name = "AC/DC"});
                 context.Cases.Add(new Case{Id = 6, Name = "The Rolling Stones"});
-                context.Cases.Add(new Case{Id = 7, Name = "The Rolling Stones"});
-                context.Cases.Add(new Case{Id = 8, Name = "The Rolling Stones"});
-                context.Cases.Add(new Case{Id = 9, Name = "The Rolling Stones"});
-                context.Cases.Add(new Case{Id = 10, Name = "The Rolling Stones"});
-                context.Cases.Add(new Case{Id = 11, Name = "The Rolling Stones"});
-                context.Cases.Add(new Case{Id = 12, Name = "The Rolling Stones"});
-                context.Cases.Add(new Case{Id = 13, Name = "The Rolling Stones"});
-                context.Cases.Add(new Case{Id = 14, Name = "The Rolling Stones"});
-                context.Cases.Add(new Case{Id = 15, Name = "The Rolling Stones"});
+                context.Cases.Add(new Case{Id = 7, Name = "The Rolling Stones_1"});
+                context.Cases.Add(new Case{Id = 8, Name = "The Rolling Stone_2"});
+                context.Cases.Add(new Case{Id = 9, Name = "The Rolling Stones_3"});
+                context.Cases.Add(new Case{Id = 10, Name = "The Rolling Stones_4"});
+                context.Cases.Add(new Case{Id = 11, Name = "The Rolling Stones_5"});
+                context.Cases.Add(new Case{Id = 12, Name = "The Rolling Stones_6"});
+                context.Cases.Add(new Case{Id = 13, Name = "The Rolling Stones_7"});
+                context.Cases.Add(new Case{Id = 14, Name = "The Rolling Stones_8"});
+                context.Cases.Add(new Case{Id = 15, Name = "The Rolling Stones_9"});
             }
 
             if (!context.Runs.Any())
