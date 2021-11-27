@@ -36,7 +36,7 @@ namespace Project_Runners.Runner.MessageBrokers
 
             consumer.Received += ConsumeBase;
 
-            _channel.BasicConsume(CommonConstants.QUEUE_NAME, false, consumer);
+            _channel.BasicConsume(CommonConstants.DIRECT_QUEUE, false, consumer);
 
             Console.WriteLine("Subscribed");
         }
@@ -57,6 +57,24 @@ namespace Project_Runners.Runner.MessageBrokers
         
         private void OpenConnection()
         {
+            try
+            {
+                Connect();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Не удалось подключиться к шине данных: {ex.Message}");
+                Task.Delay(TimeSpan.FromSeconds(10)).GetAwaiter().GetResult();
+            }
+            finally
+            {
+                if (_channel.IsClosed)
+                    Connect();
+            }
+        }
+
+        private void Connect()
+        {
             var factory = new ConnectionFactory
             {
                 HostName = _config.HostName,
@@ -70,11 +88,17 @@ namespace Project_Runners.Runner.MessageBrokers
             _channel = _connection.CreateModel();
 
             _channel.QueueDeclare(
-                CommonConstants.QUEUE_NAME,
-                true,
-                false,
-                false,
-                null);
+                queue: CommonConstants.DIRECT_QUEUE,
+                durable: true,
+                exclusive: false,
+                autoDelete: true,
+                arguments: null);
+
+            _channel.QueueBind(
+                queue: CommonConstants.DIRECT_QUEUE,
+                exchange: CommonConstants.DIRECT_EXCHANGE,
+                routingKey: CommonConstants.DIRECT_QUEUE,
+                arguments: null);
         }
     }
 }

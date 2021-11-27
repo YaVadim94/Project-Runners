@@ -37,7 +37,7 @@ namespace Project_Runners.Application.RabbitMQ
             var json = JsonConvert.SerializeObject(messageDto);
             var body = Encoding.UTF8.GetBytes(json);
             
-            _channel.BasicPublish(string.Empty, routingKey: CommonConstants.QUEUE_NAME, body: body);
+            _channel.BasicPublish(string.Empty, routingKey: CommonConstants.DIRECT_QUEUE, body: body);
         }
 
         private bool TryToCreateConnection()
