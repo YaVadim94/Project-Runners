@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using Project_runners.Common.Models;
 using Project_Runners.Data.Enums;
 using Project_Runners.Runner.APIs;
+using Project_Runners.Runner.Models.Enums;
 using Project_Runners.Runner.Services;
 using RabbitMQ.Client.Events;
 using Refit;
@@ -17,22 +18,26 @@ namespace Project_Runners.Runner.MessageBrokers
     /// </summary>
     public class CaseForRunningConsumer : MessageBrokerBase
     {
+        private readonly StateService _stateService;
         private readonly CaseRunService _caseRunService;
         private readonly ICaseResultsApi _caseResultsApi;
 
-        public CaseForRunningConsumer(IConfiguration configuration, CaseRunService caseRunService) : base(configuration)
+        public CaseForRunningConsumer(IConfiguration configuration, CaseRunService caseRunService,
+            StateService stateService) : base(configuration)
         {
             _caseRunService = caseRunService;
+            _stateService = stateService;
             _caseResultsApi = RestService.For<ICaseResultsApi>(configuration.GetSection("Project-Runners.Api").Value);
         }
 
         /// <summary>
         /// Обработать сообщение
         /// </summary>
-        protected override async Task Consume(object obj, BasicDeliverEventArgs args)
+        protected override async Task Consume(string message)
         {
-            var body = args.Body.ToArray();
-            var message = Encoding.UTF8.GetString(body);
+            if(_stateService.RunnerState == RunnerState.Running)
+                return;
+            
             var testCaseDto = JsonConvert.DeserializeObject<CaseForRunningDto>(message);
 
             var result = _caseRunService.RunCase(testCaseDto);

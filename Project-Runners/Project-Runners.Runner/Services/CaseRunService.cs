@@ -1,6 +1,7 @@
 ﻿using System;
 using Project_runners.Common.Models;
 using Project_Runners.Data.Enums;
+using Project_Runners.Runner.Models.Enums;
 
 namespace Project_Runners.Runner.Services
 {
@@ -11,6 +12,7 @@ namespace Project_Runners.Runner.Services
     {
         public CaseResultContract RunCase(CaseForRunningDto dto)
         {
+
             var caseResult = new CaseResultContract
             {
                 Id = dto.Id,
@@ -19,7 +21,7 @@ namespace Project_Runners.Runner.Services
             };
             
             Console.WriteLine($"Run: {caseResult.RunId}, Case: {caseResult.Id}, Status: {caseResult.Status}");
-            
+
             return caseResult;
         }
         

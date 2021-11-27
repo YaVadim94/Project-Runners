@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using Project_runners.Common;
 using Project_runners.Common.Models;
 using Project_Runners.Runner.Extensions;
@@ -28,7 +30,7 @@ namespace Project_Runners.Runner.MessageBrokers
         /// <summary>
         /// Обработать сообщение
         /// </summary>
-        protected abstract Task Consume(object obj, BasicDeliverEventArgs args);
+        protected abstract Task Consume(string message);
 
         public async Task Subscribe()
         {
@@ -45,7 +47,10 @@ namespace Project_Runners.Runner.MessageBrokers
         {
             try
             {
-                await Consume(obj, args);
+                var body = args.Body.ToArray();
+                var message = Encoding.UTF8.GetString(body);
+
+                await Consume(message);
                 
                 _channel.BasicAck(deliveryTag: args.DeliveryTag, multiple: false);
             }
