@@ -2,8 +2,8 @@
 using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Project_runners.Common.Enums;
 using Project_Runners.Data;
-using Project_Runners.Data.Enums;
 using Project_Runners.Data.Models;
 
 namespace Project_Runners.Web.Helpers

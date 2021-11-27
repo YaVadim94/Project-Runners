@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Project_Runners.Data.Enums;
+using Project_runners.Common.Enums;
 
 namespace Project_Runners.Web.Models
 {

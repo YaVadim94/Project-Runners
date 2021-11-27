@@ -2,10 +2,13 @@
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Project_runners.Common;
 using Project_runners.Common.Models;
 using Project_Runners.Runner.Extensions;
+using Project_Runners.Runner.Models.Enums;
+using Project_Runners.Runner.Services;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
@@ -30,7 +33,7 @@ namespace Project_Runners.Runner.MessageBrokers
         /// <summary>
         /// Обработать сообщение
         /// </summary>
-        protected abstract Task Consume(string message);
+        protected abstract Task Consume(MessageDto message);
 
         public async Task Subscribe()
         {
@@ -49,14 +52,16 @@ namespace Project_Runners.Runner.MessageBrokers
             {
                 var body = args.Body.ToArray();
                 var message = Encoding.UTF8.GetString(body);
+                var dto = JsonConvert.DeserializeObject<MessageDto>(message);
 
-                await Consume(message);
+                await Consume(dto);
                 
                 _channel.BasicAck(deliveryTag: args.DeliveryTag, multiple: false);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Произошла ошибка: {ex.Message}");
+                Console.WriteLine($"Error occurs: {ex.Message}");
+                Runner.ServiceProvider.GetRequiredService<StateService>().SetState(RunnerState.Waiting);
             }
         }
         

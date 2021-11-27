@@ -1,4 +1,4 @@
-﻿namespace Project_Runners.Data.Enums
+﻿namespace Project_runners.Common.Enums
 {
     /// <summary>
     /// Статус прохождения

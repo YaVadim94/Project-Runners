@@ -8,16 +8,18 @@ namespace Project_Runners.Runner.Services
     public class StateService
     {
         private object _locker = new();
-        private RunnerState _runnerState;
+
+        /// <summary> Состояние раннера </summary>
+        public RunnerState RunnerState { get; private set; }
         
-        /// <summary> Состояние </summary>
-        public RunnerState RunnerState {
-            get => _runnerState;
-            set
-            {
-                lock (_locker)
-                    _runnerState = value;
-            }
+        public StateService()
+        {
+            RunnerState = RunnerState.Waiting;
+        }
+
+        public void SetState(RunnerState state)
+        {
+            RunnerState = state;
         }
     }
 }

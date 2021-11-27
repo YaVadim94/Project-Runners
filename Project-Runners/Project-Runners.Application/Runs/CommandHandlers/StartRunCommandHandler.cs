@@ -5,8 +5,8 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Project_Runners.Application.Extensions;
 using Project_Runners.Application.Runs.Models.Commands;
+using Project_runners.Common.Enums;
 using Project_Runners.Data;
-using Project_Runners.Data.Enums;
 
 namespace Project_Runners.Application.Runs.CommandHandlers
 {

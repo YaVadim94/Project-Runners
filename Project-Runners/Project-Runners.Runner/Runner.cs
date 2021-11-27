@@ -22,7 +22,7 @@ namespace Project_Runners.Runner
         public async Task Start()
         {
             Console.WriteLine("Start runner");
-            var messageBroker = ServiceProvider.GetRequiredService<CaseForRunningConsumer>();
+            var messageBroker = ServiceProvider.GetRequiredService<MessageBroker>();
             await messageBroker.Subscribe();
 
             while (true)

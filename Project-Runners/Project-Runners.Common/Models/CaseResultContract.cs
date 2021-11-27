@@ -1,4 +1,4 @@
-﻿using Project_Runners.Data.Enums;
+﻿using Project_runners.Common.Enums;
 
 namespace Project_runners.Common.Models
 {
