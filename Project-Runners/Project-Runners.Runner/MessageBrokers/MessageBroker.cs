@@ -25,9 +25,10 @@ namespace Project_Runners.Runner.MessageBrokers
         /// </summary>
         protected override Task Consume(MessageDto dto)
         {
-            var handler = dto.Command switch
+            IEventHandler handler = dto.Command switch
             {
                 Command.RunCase => Runner.ServiceProvider.GetRequiredService<CaseEventHandler>(),
+                Command.SendState => Runner.ServiceProvider.GetRequiredService<StateEventHandler>(),
                 _ => throw new ArgumentOutOfRangeException(nameof(dto.Command))
             };
 

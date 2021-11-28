@@ -97,9 +97,13 @@ namespace Project_Runners.Application.Runs.CommandHandlers
 
             foreach (var caseToSend in casesToSend)
             {
-                var dto = _mapper.Map<CaseForRunningDto>(caseToSend);
-                dto.RunId = runId;
-                
+                var dto = new MessageDto
+                {
+                    Command = Command.RunCase,
+                    Case = _mapper.Map<CaseForRunningDto>(caseToSend, opt =>
+                        opt.AfterMap((s, d) => { d.RunId = runId; }))
+                };
+
                 _messageBusService.Publish(dto, CommonConstants.DIRECT_QUEUE);
             }
         }

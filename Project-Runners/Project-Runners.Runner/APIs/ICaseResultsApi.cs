@@ -6,7 +6,7 @@ using Refit;
 namespace Project_Runners.Runner.APIs
 {
     /// <summary>
-    /// API для прогонов
+    /// API прогонов
     /// </summary>
     public interface ICaseResultsApi
     {

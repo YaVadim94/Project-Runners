@@ -22,6 +22,7 @@ namespace Project_Runners.Runner.Extensions
                 .AddSingleton<MessageBroker>()
                 .AddTransient<CasePlayer>()
                 .AddTransient<CaseEventHandler>()
+                .AddTransient<StateEventHandler>()
                 ;
         }
 
