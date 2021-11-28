@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using Project_runners.Common.Enums;
 using Project_runners.Common.Models;
 using Project_Runners.Runner.APIs;
-using Project_Runners.Runner.Models.Enums;
 using Project_Runners.Runner.Services;
 using Refit;
 

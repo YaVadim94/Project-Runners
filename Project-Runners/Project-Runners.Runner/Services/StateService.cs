@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text;
-using Project_Runners.Runner.Models.Enums;
+using Project_runners.Common.Enums;
 
 namespace Project_Runners.Runner.Services
 {

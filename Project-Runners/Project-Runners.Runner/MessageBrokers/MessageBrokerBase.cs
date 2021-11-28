@@ -7,7 +7,6 @@ using Newtonsoft.Json;
 using Project_runners.Common;
 using Project_runners.Common.Models;
 using Project_Runners.Runner.Extensions;
-using Project_Runners.Runner.Models.Enums;
 using Project_Runners.Runner.Services;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;

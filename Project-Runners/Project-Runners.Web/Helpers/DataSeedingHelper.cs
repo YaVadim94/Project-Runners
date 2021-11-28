@@ -2,6 +2,7 @@
 using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Project_runners.Common;
 using Project_runners.Common.Enums;
 using Project_Runners.Data;
 using Project_Runners.Data.Models;
@@ -16,9 +17,22 @@ namespace Project_Runners.Web.Helpers
         public static void SeedDataBase(IApplicationBuilder app)
         {
             using var serviceScope = app.ApplicationServices.CreateScope();
-            SeedData(serviceScope.ServiceProvider.GetService<DataContext>());
+            var context = serviceScope.ServiceProvider.GetService<DataContext>();
+            SeedData(context);
+            SeedByRunners(context);
         }
 
+        private static void SeedByRunners(DataContext context)
+        {
+            if (context.Runners.Any())
+                return;
+            
+            Console.WriteLine("--> Seeding by runners...");
+
+            context.Runners
+                .Add(new Runner {Id = 1, Name = CommonConstants.DIRECT_QUEUE, State = RunnerState.Waiting});
+        }
+        
         private static void SeedData(DataContext context)
         {
             if (!context.Cases.Any())
@@ -42,13 +56,7 @@ namespace Project_Runners.Web.Helpers
                 context.Cases.Add(new Case{Id = 15, Name = "The Rolling Stones_9"});
             }
 
-            if (!context.Runs.Any())
-            {
-                Console.WriteLine("--> Seeding by runs...");
-                context.Runs.Add(new Run{Id = 1, Name = "SuperStar", Status = RunStatus.Successed});
-                context.Runs.Add(new Run{Id = 2, Name = "Onion", Status = RunStatus.Failed});
-                context.Runs.Add(new Run{Id = 3, Name = "Beautiful", Status = RunStatus.InProgress});
-            }
+
 
             if (!context.RunCases.Any())
             {

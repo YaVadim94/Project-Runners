@@ -6,7 +6,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Project_runners.Common.Enums;
 using Project_runners.Common.Models;
 using Project_Runners.Runner.EventHandlers;
-using Project_Runners.Runner.Models.Enums;
 using Project_Runners.Runner.Services;
 
 namespace Project_Runners.Runner.MessageBrokers

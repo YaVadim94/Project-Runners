@@ -12,6 +12,9 @@ namespace Project_Runners.Data
         {
         }
 
+        /// <summary> Раннеры </summary>
+        public DbSet<Runner> Runners { get; set; }
+        
         /// <summary> Результаты прохождения кейсов </summary>
         public DbSet<CaseResult> CaseResults { get; set; }
 
