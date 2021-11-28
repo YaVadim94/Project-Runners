@@ -4,6 +4,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Project_Runners.Application.CaseResults.Models.Commands;
 using Project_runners.Common.Models;
+using Project_runners.Common.Models.Contracts;
 
 namespace Project_Runners.Web.Controllers
 {

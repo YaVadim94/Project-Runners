@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Project_runners.Common;
 using Project_runners.Common.Models;
+using Project_runners.Common.Models.Dto;
 using Project_Runners.Runner.Extensions;
 using Project_Runners.Runner.Services;
 using RabbitMQ.Client;

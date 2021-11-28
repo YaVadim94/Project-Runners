@@ -1,4 +1,4 @@
-﻿namespace Project_runners.Common.Models
+﻿namespace Project_runners.Common.Models.Dto
 {
     /// <summary>
     /// Дто кейса

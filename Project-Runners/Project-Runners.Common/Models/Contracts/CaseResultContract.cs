@@ -1,6 +1,6 @@
 ﻿using Project_runners.Common.Enums;
 
-namespace Project_runners.Common.Models
+namespace Project_runners.Common.Models.Contracts
 {
     /// <summary>
     /// Дто результата прогона теста

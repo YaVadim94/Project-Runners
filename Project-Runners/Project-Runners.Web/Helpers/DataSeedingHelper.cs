@@ -16,10 +16,14 @@ namespace Project_Runners.Web.Helpers
     {
         public static void SeedDataBase(IApplicationBuilder app)
         {
-            using var serviceScope = app.ApplicationServices.CreateScope();
-            var context = serviceScope.ServiceProvider.GetService<DataContext>();
-            SeedData(context);
-            SeedByRunners(context);
+            using (var serviceScope = app.ApplicationServices.CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetRequiredService<DataContext>();
+                SeedData(context);
+                SeedByRunners(context);
+            
+                context.SaveChanges();
+            }
         }
 
         private static void SeedByRunners(DataContext context)
@@ -35,6 +39,14 @@ namespace Project_Runners.Web.Helpers
         
         private static void SeedData(DataContext context)
         {
+            if (!context.Runs.Any())
+            {
+                Console.WriteLine("--> Seeding by runs...");
+                context.Runs.Add(new Run{Id = 1, Name = "SuperStar", Status = RunStatus.Successed});
+                context.Runs.Add(new Run{Id = 2, Name = "Onion", Status = RunStatus.Failed});
+                context.Runs.Add(new Run{Id = 3, Name = "Beautiful", Status = RunStatus.InProgress});
+            }
+            
             if (!context.Cases.Any())
             {
                 Console.WriteLine("--> Seeding by cases...");
@@ -84,8 +96,6 @@ namespace Project_Runners.Web.Helpers
                 context.RunCases.Add(new RunCase{RunId = 3, CaseId = 14});
                 context.RunCases.Add(new RunCase{RunId = 3, CaseId = 15});
             }
-            
-            context.SaveChanges();
         }
     }
 }
