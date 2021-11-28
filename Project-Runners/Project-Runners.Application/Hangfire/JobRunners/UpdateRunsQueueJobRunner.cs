@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using MediatR;
+using Project_Runners.Application.Hangfire.Attributes;
 using Project_Runners.Application.Runs.Models.Commands;
 using Project_runners.Common.Hangfire;
 
@@ -17,6 +18,10 @@ namespace Project_Runners.Application.Hangfire.JobRunners
             _mediator = mediator;
         }
         
+        /// <summary>
+        /// Каждую минуту
+        /// </summary>
+        [Frequency("* * * * *")]
         public override async Task Execute()
         {
             var command = new UpdateRunsQueueCommand();

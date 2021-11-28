@@ -29,7 +29,7 @@ namespace Project_Runners.Application.RabbitMQ
         /// <summary>
         /// Опубликовать сообщение
         /// </summary>
-        public void Publish(object messageDto, string routingKey = "")
+        public void Publish(object messageDto, string routingKey)
         {
             if (!_connection.IsOpen && TryToCreateConnection())
                 return;
@@ -39,7 +39,7 @@ namespace Project_Runners.Application.RabbitMQ
 
             _channel.BasicPublish(
                 exchange: CommonConstants.DIRECT_EXCHANGE,
-                routingKey: CommonConstants.DIRECT_QUEUE,
+                routingKey: routingKey,
                 body: body);
         }
 

@@ -8,6 +8,6 @@
         /// <summary>
         /// Опубликовать сообщение
         /// </summary>
-        void Publish(object messageDto, string routingKey = "");
+        void Publish(object messageDto, string routingKey);
     }
 }

@@ -10,6 +10,7 @@ using Project_Runners.Application.Extensions;
 using Project_Runners.Application.RabbitMQ;
 using Project_Runners.Application.Runs.Models;
 using Project_Runners.Application.Runs.Models.Commands;
+using Project_runners.Common;
 using Project_runners.Common.Enums;
 using Project_runners.Common.Models;
 using Project_runners.Common.Models.Dto;
@@ -99,7 +100,7 @@ namespace Project_Runners.Application.Runs.CommandHandlers
                 var dto = _mapper.Map<CaseForRunningDto>(caseToSend);
                 dto.RunId = runId;
                 
-                _messageBusService.Publish(dto);
+                _messageBusService.Publish(dto, CommonConstants.DIRECT_QUEUE);
             }
         }
     }

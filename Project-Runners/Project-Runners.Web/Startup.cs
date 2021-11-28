@@ -51,6 +51,7 @@ namespace Project_Runners.Web
                 .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
             services.AddTransient<UpdateRunsQueueJobRunner>();
+            services.AddTransient<SendRunnersStateJobRunner>();
             services.AddSingleton<IMessageBusService, MessageBusService>();
         }
 

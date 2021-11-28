@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Hangfire;
 using Hangfire.Common;
+using Project_Runners.Application.Hangfire.Attributes;
 
 namespace Project_runners.Common.Hangfire
 {
@@ -16,14 +18,23 @@ namespace Project_runners.Common.Hangfire
         /// </summary>
         public void Start()
         {
-            var methodInfo = GetType()
-                .GetMethod(nameof(Execute), BindingFlags.Instance | BindingFlags.Public);
+            var methodInfo = GetType().GetMethod(nameof(Execute), BindingFlags.Instance | BindingFlags.Public)
+                             ?? throw new ArgumentException();
+            
+            var frequencyAttribute = Attribute.GetCustomAttribute(methodInfo, typeof(FrequencyAttribute))
+                as FrequencyAttribute;
 
+            var frequency = frequencyAttribute switch
+            {
+                null => Cron.Minutely(),
+                _ => frequencyAttribute.Value
+            };
+                
             var manager = new RecurringJobManager();
             var job = new Job(GetType(), methodInfo);
             var jobId = Guid.NewGuid().ToString();
 
-            manager.AddOrUpdate(jobId, job, Cron.Minutely());
+            manager.AddOrUpdate(jobId, job, frequency);
         }
 
         /// <summary>
