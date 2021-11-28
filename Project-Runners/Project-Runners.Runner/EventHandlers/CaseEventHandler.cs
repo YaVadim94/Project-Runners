@@ -13,13 +13,13 @@ namespace Project_Runners.Runner.EventHandlers
     /// <summary>
     /// Обработчик для прогона кейсов
     /// </summary>
-    public class CaseHandler : HandlerBase
+    public class CaseEventHandler : IEventHandler
     {
         private readonly CasePlayer _player;
         private readonly StateService _stateService;
         private readonly ICaseResultsApi _caseResultsApi;
 
-        public CaseHandler(CasePlayer player, StateService stateService, IConfiguration configuration)
+        public CaseEventHandler(CasePlayer player, StateService stateService, IConfiguration configuration)
         {
             _player = player;
             _stateService = stateService;

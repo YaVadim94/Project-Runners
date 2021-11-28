@@ -50,6 +50,8 @@ namespace Project_Runners.Runner.MessageBrokers
         {
             try
             {
+                Console.WriteLine("Received a message");
+                
                 var body = args.Body.ToArray();
                 var message = Encoding.UTF8.GetString(body);
                 var dto = JsonConvert.DeserializeObject<MessageDto>(message);
@@ -61,7 +63,6 @@ namespace Project_Runners.Runner.MessageBrokers
             catch (Exception ex)
             {
                 Console.WriteLine($"Error occurs: {ex.Message}");
-                Runner.ServiceProvider.GetRequiredService<StateService>().SetState(RunnerState.Waiting);
             }
         }
         
@@ -73,7 +74,7 @@ namespace Project_Runners.Runner.MessageBrokers
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Не удалось подключиться к шине данных: {ex.Message}");
+                Console.WriteLine($"Could not connect to RabbitMQ: {ex.Message}");
                 Task.Delay(TimeSpan.FromSeconds(10)).GetAwaiter().GetResult();
             }
             finally

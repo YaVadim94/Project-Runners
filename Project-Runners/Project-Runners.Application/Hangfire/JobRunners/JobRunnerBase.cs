@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Hangfire;
 using Hangfire.Common;
 
-namespace Project_Runners.Application.Hangfire.JobRunners
+namespace Project_runners.Common.Hangfire
 {
     /// <summary>
     /// Базовый класс для запуска фоновых задач

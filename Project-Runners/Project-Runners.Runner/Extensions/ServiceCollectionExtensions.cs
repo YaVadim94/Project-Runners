@@ -1,10 +1,8 @@
-﻿using System.Linq;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Project_Runners.Runner.EventHandlers;
 using Project_Runners.Runner.MessageBrokers;
 using Project_Runners.Runner.Services;
-using Refit;
 
 namespace Project_Runners.Runner.Extensions
 {
@@ -23,10 +21,10 @@ namespace Project_Runners.Runner.Extensions
                 .AddSingleton<StateService>()
                 .AddSingleton<MessageBroker>()
                 .AddTransient<CasePlayer>()
-                .AddTransient<CaseHandler>()
+                .AddTransient<CaseEventHandler>()
                 ;
         }
-        
+
         /// <summary>
         /// Зарегистрировать конфигурации
         /// </summary>

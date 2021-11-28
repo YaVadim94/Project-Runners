@@ -1,8 +1,6 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Project_Runners.Runner.Extensions;
-using Project_Runners.Runner.Services;
 
 namespace Project_Runners.Runner
 {
@@ -21,7 +19,7 @@ namespace Project_Runners.Runner
             services.AddServices();
 
             var serviceProvider = services.BuildServiceProvider();
-            
+
             var runner = new Runner(serviceProvider);
             await runner.Start();
         }

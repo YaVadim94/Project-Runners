@@ -1,4 +1,6 @@
-﻿using Project_Runners.Runner.Models.Enums;
+﻿using System;
+using System.Text;
+using Project_Runners.Runner.Models.Enums;
 
 namespace Project_Runners.Runner.Services
 {
@@ -19,7 +21,16 @@ namespace Project_Runners.Runner.Services
 
         public void SetState(RunnerState state)
         {
+            if(RunnerState == state)
+                return;
+
+            var stringBuilder = new StringBuilder($"Runner has changed state from \"{RunnerState}\"");
+            
             RunnerState = state;
+            
+            stringBuilder.Append($" to \"{RunnerState}\"");
+            
+            Console.WriteLine(stringBuilder.ToString());
         }
     }
 }
