@@ -6,6 +6,7 @@
     public enum RunnerState
     {
         Running,
-        Waiting
+        Waiting,
+        Disconnected
     }
 }

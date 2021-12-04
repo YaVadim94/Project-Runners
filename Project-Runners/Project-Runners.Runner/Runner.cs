@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Project_Runners.Runner.MessageBrokers;
-using Project_Runners.Runner.Services;
 
 namespace Project_Runners.Runner
 {
@@ -12,7 +10,16 @@ namespace Project_Runners.Runner
     /// </summary>
     public class Runner
     {
+        /// <summary> Общий доступ к DI </summary>
         public static IServiceProvider ServiceProvider { get; set; }
+
+        /// <summary> Наименование раннера </summary>
+        public static string Name { get; }
+
+        static Runner()
+        {
+            Name = Console.ReadLine();
+        }
         
         public Runner(IServiceProvider serviceProvider)
         {

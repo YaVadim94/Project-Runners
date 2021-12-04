@@ -8,13 +8,15 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Project_Runners.Application.Extensions;
 using Project_Runners.Application.RabbitMQ;
+using Project_Runners.Application.Runners.Models.Dto;
+using Project_Runners.Application.Runners.Models.Queries;
 using Project_Runners.Application.Runs.Models;
 using Project_Runners.Application.Runs.Models.Commands;
 using Project_runners.Common;
 using Project_runners.Common.Enums;
-using Project_runners.Common.Models;
 using Project_runners.Common.Models.Dto;
 using Project_Runners.Data;
+using Project_Runners.Data.Models;
 
 namespace Project_Runners.Application.Runs.CommandHandlers
 {
@@ -26,12 +28,15 @@ namespace Project_Runners.Application.Runs.CommandHandlers
         private readonly DataContext _context;
         private readonly IMapper _mapper;
         private readonly IMessageBusService _messageBusService;
+        private readonly IMediator _mediator;
 
-        public UpdateRunQueueCommandHandler(DataContext context, IMessageBusService messageBusService, IMapper mapper)
+        public UpdateRunQueueCommandHandler(DataContext context, IMessageBusService messageBusService,
+            IMapper mapper, IMediator mediator)
         {
             _context = context;
             _messageBusService = messageBusService;
             _mapper = mapper;
+            _mediator = mediator;
         }
 
         /// <summary>
@@ -57,13 +62,14 @@ namespace Project_Runners.Application.Runs.CommandHandlers
                 case RunStatus.Failed:
                     run.Status = status;
                     await _context.SaveChangesAsync(cancellationToken);
-                    Console.WriteLine($"---> Прогон провален: {run.Name}");
+                    Console.WriteLine($"---> Run finished: {run.Name}");
                     return Unit.Value;
                 
                 case RunStatus.InProgress:
-                    Console.WriteLine($"---> Обновление очереди для прогона: {run.Name}");
-                    SendCasesToQueue(casesWithResults, run.Id);
+                    await  SendCasesToQueue(casesWithResults, run.Id);
+                    Console.WriteLine($"---> Run queue has been updated: {run.Name}");
                     return Unit.Value;
+                
                 default:
                     throw new ArgumentOutOfRangeException(nameof(status));
             }
@@ -88,12 +94,18 @@ namespace Project_Runners.Application.Runs.CommandHandlers
             };
         }
         
-        private void SendCasesToQueue(IEnumerable<CaseWithResults> casesWithResults, long runId)
+        private async Task SendCasesToQueue(IEnumerable<CaseWithResults> casesWithResults, long runId)
         {
             var casesToSend = casesWithResults
                 .Where(cwr => cwr.CaseResults.All(result => result.Status != RunStatus.Successed)
                               && cwr.CaseResults.Count() < 3)
-                .Select(cwr => cwr.Case);
+                .Select(cwr => cwr.Case)
+                .ToList();
+
+            if(!casesToSend.Any())
+                return;
+
+            var availableRunnerNames = await GetAvailableRunnerNamesQueue();
 
             foreach (var caseToSend in casesToSend)
             {
@@ -103,9 +115,22 @@ namespace Project_Runners.Application.Runs.CommandHandlers
                     Case = _mapper.Map<CaseForRunningDto>(caseToSend, opt =>
                         opt.AfterMap((s, d) => { d.RunId = runId; }))
                 };
-
-                _messageBusService.Publish(dto, CommonConstants.DIRECT_QUEUE);
+                
+                _messageBusService.Publish(dto, availableRunnerNames.Dequeue());
+                
+                if (!availableRunnerNames.Any())
+                    break;
             }
+        }
+
+        private async Task<Queue<string>> GetAvailableRunnerNamesQueue()
+        {
+            var availableRunners = await _mediator.Send(new GetAllRunnersQuery
+            {
+                Filter = r => r.State == RunnerState.Waiting
+            });
+
+            return new Queue<string>(availableRunners.Select(r => r.Name));
         }
     }
 }

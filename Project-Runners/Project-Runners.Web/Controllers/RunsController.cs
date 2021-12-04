@@ -5,7 +5,6 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Project_Runners.Application.Runs.Models.Commands;
 using Project_Runners.Application.Runs.Models.Queries;
-using Project_Runners.Data;
 using Project_Runners.Web.Models;
 
 namespace Project_Runners.Web.Controllers

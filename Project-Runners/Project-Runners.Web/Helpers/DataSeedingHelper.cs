@@ -34,7 +34,7 @@ namespace Project_Runners.Web.Helpers
             Console.WriteLine("--> Seeding by runners...");
 
             context.Runners
-                .Add(new Runner {Id = 1, Name = CommonConstants.DIRECT_QUEUE, State = RunnerState.Waiting});
+                .Add(new Runner {Id = 1, Name = "1", State = RunnerState.Waiting});
         }
         
         private static void SeedData(DataContext context)

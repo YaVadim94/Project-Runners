@@ -5,7 +5,7 @@
     /// </summary>
     public class CommonConstants
     {
-        public const string DIRECT_QUEUE = "direct-queue";
+        // public const string DIRECT_QUEUE = "direct-queue";
         public const string DIRECT_EXCHANGE = "direct-exchange";
         public const string DIRECT = "direct";
     }

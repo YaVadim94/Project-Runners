@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -30,6 +31,7 @@ namespace Project_Runners.Application.Runners.QueryHandlers
         public async Task<IEnumerable<RunnerDto>> Handle(GetAllRunnersQuery request, CancellationToken cancellationToken)
         {
             var runners = await _context.Runners
+                .Where(request.Filter)
                 .ToListAsync(cancellationToken: cancellationToken);
 
             return _mapper.Map<IEnumerable<RunnerDto>>(runners);

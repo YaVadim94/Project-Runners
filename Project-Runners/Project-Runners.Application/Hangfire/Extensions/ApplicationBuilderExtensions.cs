@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Project_Runners.Application.Hangfire.JobRunners;
 using Project_runners.Common.Hangfire;
 
 namespace Project_Runners.Application.Hangfire.Extensions

@@ -2,13 +2,11 @@
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Project_runners.Common;
 using Project_runners.Common.Models;
 using Project_runners.Common.Models.Dto;
 using Project_Runners.Runner.Extensions;
-using Project_Runners.Runner.Services;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
@@ -41,7 +39,7 @@ namespace Project_Runners.Runner.MessageBrokers
 
             consumer.Received += ConsumeBase;
 
-            _channel.BasicConsume(CommonConstants.DIRECT_QUEUE, false, consumer);
+            _channel.BasicConsume(Runner.Name, false, consumer);
 
             Console.WriteLine("Subscribed");
         }
@@ -99,16 +97,16 @@ namespace Project_Runners.Runner.MessageBrokers
             _channel = _connection.CreateModel();
 
             _channel.QueueDeclare(
-                queue: CommonConstants.DIRECT_QUEUE,
+                queue: Runner.Name,
                 durable: true,
                 exclusive: false,
                 autoDelete: true,
                 arguments: null);
 
             _channel.QueueBind(
-                queue: CommonConstants.DIRECT_QUEUE,
+                queue: Runner.Name,
                 exchange: CommonConstants.DIRECT_EXCHANGE,
-                routingKey: CommonConstants.DIRECT_QUEUE,
+                routingKey: Runner.Name,
                 arguments: null);
         }
     }

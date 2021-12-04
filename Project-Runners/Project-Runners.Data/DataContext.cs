@@ -11,6 +11,11 @@ namespace Project_Runners.Data
         public DataContext(DbContextOptions<DataContext> opt) : base(opt)
         {
         }
+        
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Runner>().HasIndex(r => r.Name).IsUnique();
+        }
 
         /// <summary> Раннеры </summary>
         public DbSet<Runner> Runners { get; set; }

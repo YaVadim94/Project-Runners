@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
 using Project_runners.Common.Enums;
-using Project_runners.Common.Models;
 using Project_runners.Common.Models.Dto;
 using Project_Runners.Runner.APIs;
 using Project_Runners.Runner.Services;

@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Project_Runners.Application.CaseResults.Models.Commands;
 using Project_Runners.Application.Extensions;
-using Project_runners.Common.Models;
 using Project_Runners.Data.Models;
 
 namespace Project_Runners.Application.CaseResults.Mapping

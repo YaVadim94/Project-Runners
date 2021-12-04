@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Project_Runners.Application.Extensions;
 using Project_Runners.Application.Runners.Models.Commands;
 using Project_Runners.Application.Runners.Models.Dto;
 using Project_runners.Common.Models.Contracts;
