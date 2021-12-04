@@ -1,0 +1,22 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "ProjectRunners.Protos";
+
+service CaseResultControllerGrpc{
+  rpc Create(CaseResultContractGrpc) returns (NoResponseCaseResultsGrpc);
+}
+
+message NoResponseCaseResultsGrpc{}
+
+message CaseResultContractGrpc{
+  int64 id = 1;
+  int64 runId = 2;
+  RunStatusGrpc status = 3;
+}
+
+enum RunStatusGrpc{
+    NotStarted = 0;
+    InProgress = 1;
+    Successed = 2;
+    Failed = 3;
+}

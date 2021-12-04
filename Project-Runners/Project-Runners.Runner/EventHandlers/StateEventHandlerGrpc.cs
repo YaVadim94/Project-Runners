@@ -1,5 +1,9 @@
 ﻿using System;
+using System.IO;
+using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
+using Google.Protobuf;
 using ProjectRunners.Common.Enums;
 using ProjectRunners.Common.Models.Contracts;
 using ProjectRunners.Common.Models.Dto;
@@ -29,7 +33,7 @@ namespace ProjectRunners.Runner.EventHandlers
         /// </summary>
         public async Task Handle(MessageDto dto)
         {
-            Console.WriteLine($"Sending state at {DateTime.Now.Second}");
+            Console.WriteLine($"---> Sending state at {DateTime.Now.Second}");
             var contract = new RunnerStateContractGrpc
             {
                 State = _stateService.RunnerState.MapToGrpc<RunnerState, RunnerStateGrpc>(),

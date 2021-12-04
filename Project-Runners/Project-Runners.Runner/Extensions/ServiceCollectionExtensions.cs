@@ -23,7 +23,7 @@ namespace ProjectRunners.Runner.Extensions
                 .AddSingleton<StateService>()
                 .AddSingleton<MessageBroker>()
                 .AddTransient<CasePlayer>()
-                .AddTransient<CaseEventHandler>()
+                .AddTransient<CaseEventHandleRest>()
                 .AddTransient<StateEventHandlerRest>()
                 .AddTransient<StateEventHandlerGrpc>()
                 .AddTransient<IRunnersApi, RunnersApi>()

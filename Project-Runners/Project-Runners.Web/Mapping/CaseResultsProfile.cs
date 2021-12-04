@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ProjectRunners.Application.CaseResults.Models.Commands;
 using ProjectRunners.Common.Models.Contracts;
+using ProjectRunners.Protos;
 
 namespace ProjectRunners.Web.Mapping
 {
@@ -12,6 +13,7 @@ namespace ProjectRunners.Web.Mapping
         public CaseResultsProfile()
         {
             CreateMap<CaseResultContract, CreateCaseResultCommand>();
+            CreateMap<CaseResultContractGrpc, CreateCaseResultCommand>();
         }
     }
 }

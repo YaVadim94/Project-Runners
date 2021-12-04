@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using ProjectRunners.Common.Models.Contracts;
@@ -20,7 +21,7 @@ namespace ProjectRunners.Runner.EventHandlers
         public StateEventHandlerRest(StateService stateService, IConfiguration configuration)
         {
             _stateService = stateService;
-            _runnersApi = RestService.For<IRunnersApi>(configuration.GetSection("Project-Runners").Value);
+            _runnersApi = RestService.For<IRunnersApi>(configuration.GetSection("ProjectRunners").Value);
         }
 
         /// <summary>

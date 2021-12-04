@@ -7,6 +7,9 @@ using ProjectRunners.Protos;
 
 namespace ProjectRunners.Web.Controllers.Grpc
 {
+    /// <summary>
+    /// Контроллер для работы с раннерами
+    /// </summary>
     public class RunnersController : RunnersControllerGrpc.RunnersControllerGrpcBase
     {
         private readonly IMapper _mapper;

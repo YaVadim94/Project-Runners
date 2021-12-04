@@ -9,6 +9,9 @@ using ProjectRunners.Web.Models;
 
 namespace ProjectRunners.Web.Controllers.Rest
 {
+    /// <summary>
+    /// Контроллер для работы с прогонами
+    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
     public class RunsController : ControllerBase

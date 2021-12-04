@@ -1,28 +1,28 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
 using ProjectRunners.Common.Enums;
 using ProjectRunners.Common.Models.Dto;
-using ProjectRunners.Runner.APIs.Rest;
+using ProjectRunners.Protos;
+using ProjectRunners.Runner.APIs.Grpc;
+using ProjectRunners.Runner.Extensions;
 using ProjectRunners.Runner.Services;
-using Refit;
 
 namespace ProjectRunners.Runner.EventHandlers
 {
     /// <summary>
     /// Обработчик для прогона кейсов
     /// </summary>
-    public class CaseEventHandler : IEventHandler
+    public class CaseEventHandlerGrpc : IEventHandler
     {
         private readonly CasePlayer _player;
         private readonly StateService _stateService;
         private readonly ICaseResultsApi _caseResultsApi;
 
-        public CaseEventHandler(CasePlayer player, StateService stateService, IConfiguration configuration)
+        public CaseEventHandlerGrpc(CasePlayer player, StateService stateService, ICaseResultsApi caseResultsApi)
         {
             _player = player;
             _stateService = stateService;
-            _caseResultsApi = RestService.For<ICaseResultsApi>(configuration.GetSection("ProjectRunners").Value);
+            _caseResultsApi = caseResultsApi;
         }
 
         public async Task Handle(MessageDto dto)
@@ -37,7 +37,14 @@ namespace ProjectRunners.Runner.EventHandlers
             
             var result = await _player.Play(dto.Case);
 
-            await _caseResultsApi.Create(result);
+            var contract = new CaseResultContractGrpc
+            {
+                Id = result.Id,
+                RunId = result.RunId,
+                Status = result.Status.MapToGrpc<RunStatus, RunStatusGrpc>()
+            };
+            
+            await _caseResultsApi.Create(contract);
             
             _stateService.SetState(RunnerState.Waiting);
         }

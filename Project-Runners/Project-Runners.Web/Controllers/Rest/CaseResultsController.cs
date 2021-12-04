@@ -7,6 +7,9 @@ using ProjectRunners.Common.Models.Contracts;
 
 namespace ProjectRunners.Web.Controllers.Rest
 {
+    /// <summary>
+    /// Контроллер для работы с результатами тестов
+    /// </summary>
     [ApiController]
     [Route("api/case-results")]
     public class CaseResultsController : ControllerBase

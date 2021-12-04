@@ -19,6 +19,4 @@ message RunnerStateContractGrpc{
   RunnerStateGrpc state = 2;
 }
 
-message NoResponseGrpc{
-  
-}
+message NoResponseGrpc{}
