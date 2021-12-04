@@ -12,7 +12,7 @@ namespace ProjectRunners.Runner.APIs.Rest
         /// <summary>
         /// Отправить состоние
         /// </summary>
-        [Patch("/runners/set-state")]
+        [Patch("/api/runners/set-state")]
         public Task SetState(RunnerStateContract contract);
     }
 }

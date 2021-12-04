@@ -7,7 +7,7 @@ using ProjectRunners.Protos;
 
 namespace ProjectRunners.Web.Controllers.Grpc
 {
-    public class RunnersController : RunnersControllerGrpc
+    public class RunnersController : RunnersControllerGrpc.RunnersControllerGrpcBase
     {
         private readonly IMapper _mapper;
         private readonly IMediator _mediator;
@@ -18,7 +18,7 @@ namespace ProjectRunners.Web.Controllers.Grpc
             _mediator = mediator;
         }
 
-        public async Task<NoResponseGrpc> SetState(RunnerStateContractGrpc contract, ServerCallContext context)
+        public override async Task<NoResponseGrpc> SetState(RunnerStateContractGrpc contract, ServerCallContext context)
         {
             var command = _mapper.Map<SetStateCommand>(contract);
 

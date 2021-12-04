@@ -22,7 +22,7 @@ namespace ProjectRunners.Runner.EventHandlers
         {
             _player = player;
             _stateService = stateService;
-            _caseResultsApi = RestService.For<ICaseResultsApi>(configuration.GetSection("Project-Runners.Api").Value);
+            _caseResultsApi = RestService.For<ICaseResultsApi>(configuration.GetSection("ProjectRunners").Value);
         }
 
         public async Task Handle(MessageDto dto)

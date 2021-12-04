@@ -10,17 +10,17 @@ using Refit;
 namespace ProjectRunners.Runner.EventHandlers
 {
     /// <summary>
-    /// Обработчик события на отправку состония
+    /// Обработчик события на отправку состония по rest
     /// </summary>
-    public class StateEventHandler : IEventHandler
+    public class StateEventHandlerRest : IEventHandler
     {
         private readonly StateService _stateService;
         private readonly IRunnersApi _runnersApi;
 
-        public StateEventHandler(StateService stateService, IConfiguration configuration)
+        public StateEventHandlerRest(StateService stateService, IConfiguration configuration)
         {
             _stateService = stateService;
-            _runnersApi = RestService.For<IRunnersApi>(configuration.GetSection("Project-Runners.Api").Value);
+            _runnersApi = RestService.For<IRunnersApi>(configuration.GetSection("Project-Runners").Value);
         }
 
         /// <summary>

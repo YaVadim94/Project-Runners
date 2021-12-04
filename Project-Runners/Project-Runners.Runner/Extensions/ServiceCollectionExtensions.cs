@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ProjectRunners.Common.Enums;
+using ProjectRunners.Runner.APIs.Grpc;
 using ProjectRunners.Runner.EventHandlers;
 using ProjectRunners.Runner.MessageBrokers;
 using ProjectRunners.Runner.Services;
@@ -22,7 +24,9 @@ namespace ProjectRunners.Runner.Extensions
                 .AddSingleton<MessageBroker>()
                 .AddTransient<CasePlayer>()
                 .AddTransient<CaseEventHandler>()
-                .AddTransient<StateEventHandler>()
+                .AddTransient<StateEventHandlerRest>()
+                .AddTransient<StateEventHandlerGrpc>()
+                .AddTransient<IRunnersApi, RunnersApi>()
                 ;
         }
 

@@ -26,7 +26,7 @@ namespace ProjectRunners.Runner.MessageBrokers
             IEventHandler handler = dto.Command switch
             {
                 Command.RunCase => Runner.ServiceProvider.GetRequiredService<CaseEventHandler>(),
-                Command.SendState => Runner.ServiceProvider.GetRequiredService<StateEventHandler>(),
+                Command.SendState => Runner.ServiceProvider.GetRequiredService<StateEventHandlerGrpc>(),
                 _ => throw new ArgumentOutOfRangeException(nameof(dto.Command))
             };
 
