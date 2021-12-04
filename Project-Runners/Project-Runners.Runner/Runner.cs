@@ -18,6 +18,7 @@ namespace Project_Runners.Runner
 
         static Runner()
         {
+            Console.WriteLine("Input runner name:");
             Name = Console.ReadLine();
         }
         

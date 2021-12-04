@@ -109,6 +109,9 @@ namespace Project_Runners.Application.Runs.CommandHandlers
 
             foreach (var caseToSend in casesToSend)
             {
+                if (!availableRunnerNames.Any())
+                    break;
+                
                 var dto = new MessageDto
                 {
                     Command = Command.RunCase,
@@ -117,9 +120,6 @@ namespace Project_Runners.Application.Runs.CommandHandlers
                 };
                 
                 _messageBusService.Publish(dto, availableRunnerNames.Dequeue());
-                
-                if (!availableRunnerNames.Any())
-                    break;
             }
         }
 
