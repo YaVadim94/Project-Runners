@@ -36,8 +36,9 @@ namespace Project_Runners.Runner.EventHandlers
             _stateService.SetState(RunnerState.Running);
             
             var result = await _player.Play(dto.Case);
+
             await _caseResultsApi.Create(result);
-            Task.Delay(TimeSpan.FromMinutes(2)).GetAwaiter().GetResult();
+            
             _stateService.SetState(RunnerState.Waiting);
         }
     }
