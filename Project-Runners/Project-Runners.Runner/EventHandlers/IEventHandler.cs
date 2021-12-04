@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Project_runners.Common.Models.Dto;
+using ProjectRunners.Common.Models.Dto;
 
 namespace ProjectRunners.Runner.EventHandlers
 {

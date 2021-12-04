@@ -1,6 +1,6 @@
 ﻿using ProjectRunners.Common.Enums;
 
-namespace Project_runners.Common.Models.Contracts
+namespace ProjectRunners.Common.Models.Contracts
 {
     /// <summary>
     /// Контракт состояния раннера

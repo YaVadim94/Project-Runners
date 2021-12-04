@@ -2,11 +2,11 @@
 using System.Linq;
 using AutoMapper;
 using AutoMapper.EquivalencyExpression;
-using Project_runners.Common.Models.Dto;
 using ProjectRunners.Application.Extensions;
 using ProjectRunners.Application.Runs.Models.Commands;
 using ProjectRunners.Application.Runs.Models.Dto;
 using ProjectRunners.Common.Enums;
+using ProjectRunners.Common.Models.Dto;
 using ProjectRunners.Data.Models;
 
 namespace ProjectRunners.Application.Runs.Mapping

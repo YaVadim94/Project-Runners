@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Project_runners.Common.Models.Contracts;
+using ProjectRunners.Common.Models.Contracts;
 using Refit;
 
 namespace ProjectRunners.Runner.APIs.Rest

@@ -3,7 +3,7 @@
 option csharp_namespace = "ProjectRunners.Protos";
 
 service RunnersController{
-  rpc SetState(RunnerStateContract) returns (NoResponse);
+  rpc SetState(RunnerStateContractGrpc) returns (NoResponse);
 }
 
 enum RunnerStateGrpc{
@@ -14,7 +14,7 @@ enum RunnerStateGrpc{
 
 message SetState{}
 
-message RunnerStateContract{
+message RunnerStateContractGrpc{
   int64 runnerId = 1;
   RunnerStateGrpc state = 2;
 }

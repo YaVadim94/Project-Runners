@@ -1,6 +1,6 @@
 ﻿using ProjectRunners.Common.Enums;
 
-namespace Project_runners.Common.Models.Dto
+namespace ProjectRunners.Common.Models.Dto
 {
     /// <summary>
     /// Дто для взаимодействия раннера и сервера

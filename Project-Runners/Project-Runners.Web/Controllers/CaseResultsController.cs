@@ -2,8 +2,8 @@
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Project_runners.Common.Models.Contracts;
 using ProjectRunners.Application.CaseResults.Models.Commands;
+using ProjectRunners.Common.Models.Contracts;
 
 namespace ProjectRunners.Web.Controllers
 {

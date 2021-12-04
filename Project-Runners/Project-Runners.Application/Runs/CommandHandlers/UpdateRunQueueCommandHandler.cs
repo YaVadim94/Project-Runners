@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Project_runners.Common.Models.Dto;
 using ProjectRunners.Application.Extensions;
 using ProjectRunners.Application.RabbitMQ;
 using ProjectRunners.Application.Runners.Models.Queries;
 using ProjectRunners.Application.Runs.Models;
 using ProjectRunners.Application.Runs.Models.Commands;
 using ProjectRunners.Common.Enums;
+using ProjectRunners.Common.Models.Dto;
 using ProjectRunners.Data;
 
 namespace ProjectRunners.Application.Runs.CommandHandlers

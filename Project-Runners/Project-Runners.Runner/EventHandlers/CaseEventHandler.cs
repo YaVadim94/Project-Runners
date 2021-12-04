@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
-using Project_runners.Common.Models.Dto;
 using ProjectRunners.Common.Enums;
+using ProjectRunners.Common.Models.Dto;
 using ProjectRunners.Runner.APIs.Rest;
 using ProjectRunners.Runner.Services;
 using Refit;

@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Project_runners.Common.Models.Dto;
 using ProjectRunners.Common.Enums;
+using ProjectRunners.Common.Models.Dto;
 using ProjectRunners.Runner.EventHandlers;
 using ProjectRunners.Runner.Services;
 

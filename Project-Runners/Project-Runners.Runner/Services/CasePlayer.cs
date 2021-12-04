@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Project_runners.Common.Models.Contracts;
-using Project_runners.Common.Models.Dto;
 using ProjectRunners.Common.Enums;
+using ProjectRunners.Common.Models.Contracts;
+using ProjectRunners.Common.Models.Dto;
 
 namespace ProjectRunners.Runner.Services
 {

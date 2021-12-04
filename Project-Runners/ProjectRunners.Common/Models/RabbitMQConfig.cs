@@ -1,4 +1,4 @@
-﻿namespace Project_runners.Common.Models
+﻿namespace ProjectRunners.Common.Models
 {
     /// <summary>
     /// Конфигурации для RabbitMQ

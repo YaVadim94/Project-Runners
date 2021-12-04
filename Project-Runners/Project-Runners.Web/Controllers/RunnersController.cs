@@ -5,6 +5,8 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using ProjectRunners.Application.Runners.Models.Commands;
 using ProjectRunners.Application.Runners.Models.Queries;
+using ProjectRunners.Common.Models.Contracts;
+using ProjectRunners.Protos;
 using ProjectRunners.Web.Models;
 
 namespace ProjectRunners.Web.Controllers

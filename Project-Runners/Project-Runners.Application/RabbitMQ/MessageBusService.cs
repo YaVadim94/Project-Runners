@@ -2,8 +2,8 @@
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using Project_runners.Common.Models;
 using ProjectRunners.Common;
+using ProjectRunners.Common.Models;
 using RabbitMQ.Client;
 
 namespace ProjectRunners.Application.RabbitMQ

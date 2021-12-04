@@ -3,10 +3,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Project_runners.Common.Models.Dto;
 using ProjectRunners.Application.RabbitMQ;
 using ProjectRunners.Application.Runners.Models.Commands;
 using ProjectRunners.Common.Enums;
+using ProjectRunners.Common.Models.Dto;
 using ProjectRunners.Data;
 
 namespace ProjectRunners.Application.Runners.CommandHandlers
