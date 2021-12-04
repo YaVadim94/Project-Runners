@@ -19,7 +19,7 @@
     </ItemGroup>
     
     <ItemGroup>
-        <Protobuf Include="Protos\Runners.proto" GrpcServices="Server"/>
+        <Protobuf Include="Protos\Runners.proto" GrpcServices="Server" />
     </ItemGroup>
     
 </Project>

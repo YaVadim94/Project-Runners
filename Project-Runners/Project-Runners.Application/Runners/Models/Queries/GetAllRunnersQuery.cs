@@ -12,6 +12,6 @@ namespace ProjectRunners.Application.Runners.Models.Queries
     /// </summary>
     public class GetAllRunnersQuery : IRequest<IEnumerable<RunnerDto>>
     {
-        public Expression<Func<Runner, bool>> Filter { get; set; }
+        public Expression<Func<Runner, bool>> Filter { get; set; } = runner => true;
     }
 }

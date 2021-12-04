@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using ProjectRunners.Application.CaseResults.Models.Commands;
 using ProjectRunners.Common.Models.Contracts;
 
-namespace ProjectRunners.Web.Controllers
+namespace ProjectRunners.Web.Controllers.Rest
 {
     [ApiController]
     [Route("api/case-results")]

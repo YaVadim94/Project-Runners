@@ -7,7 +7,7 @@ using ProjectRunners.Application.Runs.Models.Commands;
 using ProjectRunners.Application.Runs.Models.Queries;
 using ProjectRunners.Web.Models;
 
-namespace ProjectRunners.Web.Controllers
+namespace ProjectRunners.Web.Controllers.Rest
 {
     [ApiController]
     [Route("api/[controller]")]
