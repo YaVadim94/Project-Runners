@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using Project_Runners.Application.Runs.Models.Commands;
-using Project_Runners.Application.Runs.Models.Dto;
-using Project_Runners.Web.Models;
+using ProjectRunners.Application.Runs.Models.Commands;
+using ProjectRunners.Application.Runs.Models.Dto;
+using ProjectRunners.Web.Models;
 
-namespace Project_Runners.Web.Mapping
+namespace ProjectRunners.Web.Mapping
 {
     /// <summary>
     /// Профиль маппинга

@@ -1,6 +1,6 @@
-﻿using Project_runners.Common.Enums;
+﻿using ProjectRunners.Common.Enums;
 
-namespace Project_Runners.Application.Runners.Models.Dto
+namespace ProjectRunners.Application.Runners.Models.Dto
 {
     /// <summary>
     /// Дто раннера

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Project_runners.Common.Enums;
 using Project_runners.Common.Models.Contracts;
 using Project_runners.Common.Models.Dto;
+using ProjectRunners.Common.Enums;
 
-namespace Project_Runners.Runner.Services
+namespace ProjectRunners.Runner.Services
 {
     /// <summary>
     /// Сервис для прогона тестов

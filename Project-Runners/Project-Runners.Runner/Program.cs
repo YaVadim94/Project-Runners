@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
-using Project_Runners.Runner.Extensions;
+using ProjectRunners.Runner.Extensions;
 
-namespace Project_Runners.Runner
+namespace ProjectRunners.Runner
 {
     /// <summary>
     /// Вход в приложение

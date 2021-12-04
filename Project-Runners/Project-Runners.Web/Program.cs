@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 
-namespace Project_Runners.Web
+namespace ProjectRunners.Web
 {
     public class Program
     {

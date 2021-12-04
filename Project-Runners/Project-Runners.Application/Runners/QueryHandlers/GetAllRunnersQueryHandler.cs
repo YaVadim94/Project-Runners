@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Project_Runners.Application.Runners.Models.Dto;
-using Project_Runners.Application.Runners.Models.Queries;
-using Project_Runners.Data;
+using ProjectRunners.Application.Runners.Models.Dto;
+using ProjectRunners.Application.Runners.Models.Queries;
+using ProjectRunners.Data;
 
-namespace Project_Runners.Application.Runners.QueryHandlers
+namespace ProjectRunners.Application.Runners.QueryHandlers
 {
     /// <summary>
     /// Обрабочик запроса спска всех раннеров

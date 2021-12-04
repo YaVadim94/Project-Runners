@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Project_Runners.Data.Models;
+using ProjectRunners.Data.Models;
 
-namespace Project_Runners.Application.Runs.Models
+namespace ProjectRunners.Application.Runs.Models
 {
     /// <summary>
     /// Тест кейс с результатами прогона

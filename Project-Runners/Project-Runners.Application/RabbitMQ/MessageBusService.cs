@@ -2,11 +2,11 @@
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using Project_runners.Common;
 using Project_runners.Common.Models;
+using ProjectRunners.Common;
 using RabbitMQ.Client;
 
-namespace Project_Runners.Application.RabbitMQ
+namespace ProjectRunners.Application.RabbitMQ
 {
     /// <summary>
     /// Сервис дял работы с RabbitMQ

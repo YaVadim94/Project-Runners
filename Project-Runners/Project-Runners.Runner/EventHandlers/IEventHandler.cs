@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Project_runners.Common.Models.Dto;
 
-namespace Project_Runners.Runner.EventHandlers
+namespace ProjectRunners.Runner.EventHandlers
 {
     /// <summary>
     /// Базовый класс для обрабочки событий

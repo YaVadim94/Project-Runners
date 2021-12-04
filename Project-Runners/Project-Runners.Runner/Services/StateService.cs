@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Text;
-using Project_runners.Common.Enums;
+using ProjectRunners.Common.Enums;
 
-namespace Project_Runners.Runner.Services
+namespace ProjectRunners.Runner.Services
 {
     /// <summary>
     /// Сервис для работы с состоянием раннера

@@ -3,13 +3,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Project_Runners.Application.RabbitMQ;
-using Project_Runners.Application.Runners.Models.Commands;
-using Project_runners.Common.Enums;
 using Project_runners.Common.Models.Dto;
-using Project_Runners.Data;
+using ProjectRunners.Application.RabbitMQ;
+using ProjectRunners.Application.Runners.Models.Commands;
+using ProjectRunners.Common.Enums;
+using ProjectRunners.Data;
 
-namespace Project_Runners.Application.Runners.CommandHandlers
+namespace ProjectRunners.Application.Runners.CommandHandlers
 {
     /// <summary>
     /// Обработчик команды на отправку запроса состояния всех раннеров

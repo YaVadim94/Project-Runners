@@ -2,11 +2,11 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
-using Project_Runners.Application.Runs.Models.Commands;
-using Project_Runners.Data;
-using Project_Runners.Data.Models;
+using ProjectRunners.Application.Runs.Models.Commands;
+using ProjectRunners.Data;
+using ProjectRunners.Data.Models;
 
-namespace Project_Runners.Application.Runs.CommandHandlers
+namespace ProjectRunners.Application.Runs.CommandHandlers
 {
     /// <summary>
     /// Обработчик создания прогона

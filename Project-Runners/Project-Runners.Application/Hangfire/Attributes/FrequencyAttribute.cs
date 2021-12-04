@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Project_Runners.Application.Hangfire.Attributes
+namespace ProjectRunners.Application.Hangfire.Attributes
 {
     /// <summary>
     /// Аттрибут, указывающий на частоту выполнения задачи

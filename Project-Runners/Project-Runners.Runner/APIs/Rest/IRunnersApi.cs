@@ -2,7 +2,7 @@
 using Project_runners.Common.Models.Contracts;
 using Refit;
 
-namespace Project_Runners.Runner.APIs
+namespace ProjectRunners.Runner.APIs.Rest
 {
     /// <summary>
     /// API раннеров

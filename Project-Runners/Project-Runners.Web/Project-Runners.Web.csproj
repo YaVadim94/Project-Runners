@@ -2,11 +2,12 @@
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
-        <RootNamespace>Project_Runners.Web</RootNamespace>
+        <RootNamespace>ProjectRunners.Web</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+        <PackageReference Include="Grpc.AspNetCore" Version="2.41.0-pre1" />
         <PackageReference Include="Hangfire.MemoryStorage" Version="1.7.0" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.12" />
         <PackageReference Include="Serilog.AspNetCore" Version="4.1.1-dev-00241" />
@@ -16,5 +17,9 @@
     <ItemGroup>
       <ProjectReference Include="..\Project-Runners.Application\Project-Runners.Application.csproj" />
     </ItemGroup>
-
+    
+    <ItemGroup>
+        <Protobuf Include="Protos\Runners.proto" GrpcServices="Server"/>
+    </ItemGroup>
+    
 </Project>

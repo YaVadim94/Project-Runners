@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Project_runners.Common.Enums;
-using Project_Runners.Data.Models.Base;
+using ProjectRunners.Common.Enums;
+using ProjectRunners.Data.Models.Base;
 
-namespace Project_Runners.Data.Models
+namespace ProjectRunners.Data.Models
 {
     /// <summary>
     /// Прогон

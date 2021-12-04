@@ -5,11 +5,11 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Project_Runners.Application.Runs.Models.Dto;
-using Project_Runners.Application.Runs.Models.Queries;
-using Project_Runners.Data;
+using ProjectRunners.Application.Runs.Models.Dto;
+using ProjectRunners.Application.Runs.Models.Queries;
+using ProjectRunners.Data;
 
-namespace Project_Runners.Application.Runs.QueryHandlers
+namespace ProjectRunners.Application.Runs.QueryHandlers
 {
     /// <summary>
     /// Обработчик запроса на все прогоны

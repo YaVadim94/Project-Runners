@@ -6,19 +6,16 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Project_Runners.Application.Extensions;
-using Project_Runners.Application.RabbitMQ;
-using Project_Runners.Application.Runners.Models.Dto;
-using Project_Runners.Application.Runners.Models.Queries;
-using Project_Runners.Application.Runs.Models;
-using Project_Runners.Application.Runs.Models.Commands;
-using Project_runners.Common;
-using Project_runners.Common.Enums;
 using Project_runners.Common.Models.Dto;
-using Project_Runners.Data;
-using Project_Runners.Data.Models;
+using ProjectRunners.Application.Extensions;
+using ProjectRunners.Application.RabbitMQ;
+using ProjectRunners.Application.Runners.Models.Queries;
+using ProjectRunners.Application.Runs.Models;
+using ProjectRunners.Application.Runs.Models.Commands;
+using ProjectRunners.Common.Enums;
+using ProjectRunners.Data;
 
-namespace Project_Runners.Application.Runs.CommandHandlers
+namespace ProjectRunners.Application.Runs.CommandHandlers
 {
     /// <summary>
     /// Обработчить команды на обновление очереди прогона

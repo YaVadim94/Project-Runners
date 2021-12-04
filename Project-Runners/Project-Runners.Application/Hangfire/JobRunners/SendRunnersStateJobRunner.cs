@@ -1,10 +1,9 @@
 ﻿using System.Threading.Tasks;
 using MediatR;
-using Project_Runners.Application.Hangfire.Attributes;
-using Project_Runners.Application.Runners.Models.Commands;
-using Project_runners.Common.Hangfire;
+using ProjectRunners.Application.Hangfire.Attributes;
+using ProjectRunners.Application.Runners.Models.Commands;
 
-namespace Project_Runners.Application.Hangfire.JobRunners
+namespace ProjectRunners.Application.Hangfire.JobRunners
 {
     /// <summary>
     /// Класс, отвечающий за запуск задачи на обновление статусов всех раннеров

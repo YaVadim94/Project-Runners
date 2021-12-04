@@ -11,15 +11,15 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Project_Runners.Application.Hangfire.Extensions;
-using Project_Runners.Application.Hangfire.JobRunners;
-using Project_Runners.Application.RabbitMQ;
-using Project_Runners.Application.Runs.Mapping;
-using Project_Runners.Data;
-using Project_Runners.Web.Helpers;
+using ProjectRunners.Application.Hangfire.Extensions;
+using ProjectRunners.Application.Hangfire.JobRunners;
+using ProjectRunners.Application.RabbitMQ;
+using ProjectRunners.Application.Runs.Mapping;
+using ProjectRunners.Data;
+using ProjectRunners.Web.Helpers;
 using Serilog;
 
-namespace Project_Runners.Web
+namespace ProjectRunners.Web
 {
     public class Startup
     {

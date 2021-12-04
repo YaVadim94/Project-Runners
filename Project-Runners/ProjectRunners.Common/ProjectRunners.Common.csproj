@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
-        <RootNamespace>Project_runners.Common</RootNamespace>
+        <RootNamespace>ProjectRunners.Common</RootNamespace>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 

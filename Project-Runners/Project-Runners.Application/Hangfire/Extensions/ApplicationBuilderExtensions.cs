@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Project_runners.Common.Hangfire;
+using ProjectRunners.Application.Hangfire.JobRunners;
 
-namespace Project_Runners.Application.Hangfire.Extensions
+namespace ProjectRunners.Application.Hangfire.Extensions
 {
     /// <summary>
     /// Расширения для <see cref="IApplicationBuilder"/>

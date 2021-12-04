@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Project_Runners.Application.Runs.Models.Commands
+namespace ProjectRunners.Application.Runs.Models.Commands
 {
     /// <summary>
     /// Команда на запуск прогона

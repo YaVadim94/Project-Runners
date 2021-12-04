@@ -1,4 +1,4 @@
-﻿namespace Project_runners.Common
+﻿namespace ProjectRunners.Common
 {
     /// <summary>
     /// Общие для сервера и клиентов константы

@@ -2,14 +2,14 @@
 using System.Linq;
 using AutoMapper;
 using AutoMapper.EquivalencyExpression;
-using Project_Runners.Application.Extensions;
-using Project_Runners.Application.Runs.Models.Commands;
-using Project_Runners.Application.Runs.Models.Dto;
-using Project_runners.Common.Enums;
 using Project_runners.Common.Models.Dto;
-using Project_Runners.Data.Models;
+using ProjectRunners.Application.Extensions;
+using ProjectRunners.Application.Runs.Models.Commands;
+using ProjectRunners.Application.Runs.Models.Dto;
+using ProjectRunners.Common.Enums;
+using ProjectRunners.Data.Models;
 
-namespace Project_Runners.Application.Runs.Mapping
+namespace ProjectRunners.Application.Runs.Mapping
 {
     /// <summary>
     /// Профиль маппинга

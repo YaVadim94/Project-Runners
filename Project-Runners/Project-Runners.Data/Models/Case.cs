@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Project_Runners.Data.Models.Base;
+using ProjectRunners.Data.Models.Base;
 
-namespace Project_Runners.Data.Models
+namespace ProjectRunners.Data.Models
 {
     /// <summary>
     /// Случай (задача, которую необходимо выполнить)

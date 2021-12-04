@@ -2,12 +2,11 @@
 using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Project_runners.Common;
-using Project_runners.Common.Enums;
-using Project_Runners.Data;
-using Project_Runners.Data.Models;
+using ProjectRunners.Common.Enums;
+using ProjectRunners.Data;
+using ProjectRunners.Data.Models;
 
-namespace Project_Runners.Web.Helpers
+namespace ProjectRunners.Web.Helpers
 {
     /// <summary>
     /// Класс для сидирования БД

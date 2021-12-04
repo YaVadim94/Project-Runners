@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using Project_Runners.Application.CaseResults.Models.Commands;
-using Project_Runners.Application.Extensions;
-using Project_Runners.Data.Models;
+using ProjectRunners.Application.CaseResults.Models.Commands;
+using ProjectRunners.Application.Extensions;
+using ProjectRunners.Data.Models;
 
-namespace Project_Runners.Application.CaseResults.Mapping
+namespace ProjectRunners.Application.CaseResults.Mapping
 {
     /// <summary>
     /// Мапинг для результатов тестов

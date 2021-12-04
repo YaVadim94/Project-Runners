@@ -2,11 +2,11 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
-using Project_Runners.Application.CaseResults.Models.Commands;
-using Project_Runners.Data;
-using Project_Runners.Data.Models;
+using ProjectRunners.Application.CaseResults.Models.Commands;
+using ProjectRunners.Data;
+using ProjectRunners.Data.Models;
 
-namespace Project_Runners.Application.CaseResults.CommandHandlers
+namespace ProjectRunners.Application.CaseResults.CommandHandlers
 {
     /// <summary>
     /// Обработчик события создания результата теста

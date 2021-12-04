@@ -3,14 +3,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using Project_runners.Common;
 using Project_runners.Common.Models;
 using Project_runners.Common.Models.Dto;
-using Project_Runners.Runner.Extensions;
+using ProjectRunners.Common;
+using ProjectRunners.Runner.Extensions;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
-namespace Project_Runners.Runner.MessageBrokers
+namespace ProjectRunners.Runner.MessageBrokers
 {
     /// <summary>
     /// Базовый класс брокера для работы с RabbitMq
@@ -42,6 +42,8 @@ namespace Project_Runners.Runner.MessageBrokers
             _channel.BasicConsume(Runner.Name, false, consumer);
 
             Console.WriteLine("Subscribed");
+            
+            await Task.CompletedTask;
         }
 
         private async Task ConsumeBase(object obj, BasicDeliverEventArgs args)

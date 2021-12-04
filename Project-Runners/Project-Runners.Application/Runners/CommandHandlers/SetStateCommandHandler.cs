@@ -1,11 +1,11 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using Project_Runners.Application.Extensions;
-using Project_Runners.Application.Runners.Models.Commands;
-using Project_Runners.Data;
+using ProjectRunners.Application.Extensions;
+using ProjectRunners.Application.Runners.Models.Commands;
+using ProjectRunners.Data;
 
-namespace Project_Runners.Application.Runners.CommandHandlers
+namespace ProjectRunners.Application.Runners.CommandHandlers
 {
     /// <summary>
     /// Обработчик события обновления состояния раннера

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Project_runners.Common.Enums;
+using ProjectRunners.Common.Enums;
 
-namespace Project_Runners.Application.Runs.Models.Dto
+namespace ProjectRunners.Application.Runs.Models.Dto
 {
     /// <summary>
     /// Дто прогона

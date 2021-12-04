@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Project_runners.Common.Models.Contracts;
 using Project_runners.Common.Models.Dto;
-using Project_Runners.Runner.APIs;
-using Project_Runners.Runner.Services;
+using ProjectRunners.Runner.APIs.Rest;
+using ProjectRunners.Runner.Services;
 using Refit;
 
-namespace Project_Runners.Runner.EventHandlers
+namespace ProjectRunners.Runner.EventHandlers
 {
     /// <summary>
     /// Обработчик события на отправку состония

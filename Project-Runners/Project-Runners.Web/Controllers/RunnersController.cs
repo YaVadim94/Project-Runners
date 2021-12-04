@@ -3,12 +3,11 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Project_Runners.Application.Runners.Models.Commands;
-using Project_Runners.Application.Runners.Models.Queries;
-using Project_runners.Common.Models.Contracts;
-using Project_Runners.Web.Models;
+using ProjectRunners.Application.Runners.Models.Commands;
+using ProjectRunners.Application.Runners.Models.Queries;
+using ProjectRunners.Web.Models;
 
-namespace Project_Runners.Web.Controllers
+namespace ProjectRunners.Web.Controllers
 {
     /// <summary>
     /// Контроллер для работы с раннерами

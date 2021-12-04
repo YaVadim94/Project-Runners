@@ -1,7 +1,7 @@
-﻿using Project_runners.Common.Enums;
-using Project_Runners.Data.Models.Base;
+﻿using ProjectRunners.Common.Enums;
+using ProjectRunners.Data.Models.Base;
 
-namespace Project_Runners.Data.Models
+namespace ProjectRunners.Data.Models
 {
     /// <summary>
     /// Раннер
@@ -12,6 +12,6 @@ namespace Project_Runners.Data.Models
         public string Name { get; set; }
 
         /// <summary> Состояние </summary>
-        public RunnerState? State { get; set; }
+        public RunnerState State { get; set; } = RunnerState.Disconnected;
     }
 }

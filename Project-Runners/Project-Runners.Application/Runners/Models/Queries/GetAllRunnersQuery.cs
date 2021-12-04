@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using MediatR;
-using Project_Runners.Application.Runners.Models.Dto;
-using Project_Runners.Data.Models;
+using ProjectRunners.Application.Runners.Models.Dto;
+using ProjectRunners.Data.Models;
 
-namespace Project_Runners.Application.Runners.Models.Queries
+namespace ProjectRunners.Application.Runners.Models.Queries
 {
     /// <summary>
     /// Запрос списка всех раннеров

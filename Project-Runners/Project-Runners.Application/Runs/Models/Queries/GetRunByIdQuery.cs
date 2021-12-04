@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using Project_Runners.Application.Runs.Models.Dto;
+using ProjectRunners.Application.Runs.Models.Dto;
 
-namespace Project_Runners.Application.Runs.Models.Queries
+namespace ProjectRunners.Application.Runs.Models.Queries
 {
     /// <summary>
     /// Запрос прогона по идентифкатору

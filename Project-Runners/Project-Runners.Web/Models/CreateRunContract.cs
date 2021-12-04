@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Project_Runners.Web.Models
+namespace ProjectRunners.Web.Models
 {
     /// <summary>
     /// Контракт дял создание прогона

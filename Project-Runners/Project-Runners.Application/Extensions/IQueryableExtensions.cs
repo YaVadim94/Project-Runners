@@ -2,10 +2,10 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Project_Runners.Data;
-using Project_Runners.Data.Models.Base;
+using ProjectRunners.Data;
+using ProjectRunners.Data.Models.Base;
 
-namespace Project_Runners.Application.Extensions
+namespace ProjectRunners.Application.Extensions
 {
     /// <summary>
     /// Методы расширения для <see cref="DataContext"/>

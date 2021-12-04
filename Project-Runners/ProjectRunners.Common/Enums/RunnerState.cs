@@ -1,4 +1,4 @@
-﻿namespace Project_runners.Common.Enums
+﻿namespace ProjectRunners.Common.Enums
 {
     /// <summary>
     /// Состояние раннера

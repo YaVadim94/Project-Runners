@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
-namespace Project_Runners.Runner.Extensions
+namespace ProjectRunners.Runner.Extensions
 {
     /// <summary>
     /// Расширерия для работы с кофигурациями

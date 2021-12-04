@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Project_Runners.Data.Models;
+using ProjectRunners.Data.Models;
 
-namespace Project_Runners.Data
+namespace ProjectRunners.Data
 {
     /// <summary>
     /// Класс контекста БД

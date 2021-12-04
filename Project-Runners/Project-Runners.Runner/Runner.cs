@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
-using Project_Runners.Runner.MessageBrokers;
+using ProjectRunners.Runner.MessageBrokers;
 
-namespace Project_Runners.Runner
+namespace ProjectRunners.Runner
 {
     /// <summary>
     /// Пока не понятно, зачем этот класс

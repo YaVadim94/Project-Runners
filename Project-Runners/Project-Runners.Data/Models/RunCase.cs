@@ -1,6 +1,6 @@
-﻿using Project_Runners.Data.Models.Base;
+﻿using ProjectRunners.Data.Models.Base;
 
-namespace Project_Runners.Data.Models
+namespace ProjectRunners.Data.Models
 {
     /// <summary>
     /// Связывающая таблица для <see cref="Run"/> и <see cref="Case"/>

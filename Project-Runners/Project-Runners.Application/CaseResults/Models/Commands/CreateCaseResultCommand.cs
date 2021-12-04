@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using Project_runners.Common.Enums;
+using ProjectRunners.Common.Enums;
 
-namespace Project_Runners.Application.CaseResults.Models.Commands
+namespace ProjectRunners.Application.CaseResults.Models.Commands
 {
     /// <summary>
     /// Команда на создание результата теста

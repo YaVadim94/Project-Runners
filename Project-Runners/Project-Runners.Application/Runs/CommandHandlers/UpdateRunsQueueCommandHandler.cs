@@ -3,11 +3,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Project_Runners.Application.Runs.Models.Commands;
-using Project_runners.Common.Enums;
-using Project_Runners.Data;
+using ProjectRunners.Application.Runs.Models.Commands;
+using ProjectRunners.Common.Enums;
+using ProjectRunners.Data;
 
-namespace Project_Runners.Application.Runs.CommandHandlers
+namespace ProjectRunners.Application.Runs.CommandHandlers
 {
     /// <summary>
     /// Обработчик событий обновления состояния прогонов

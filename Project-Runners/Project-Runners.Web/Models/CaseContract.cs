@@ -1,4 +1,4 @@
-﻿namespace Project_Runners.Web.Models
+﻿namespace ProjectRunners.Web.Models
 {
     /// <summary>
     /// Дто кейса

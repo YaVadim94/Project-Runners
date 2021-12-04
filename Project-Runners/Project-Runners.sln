@@ -14,7 +14,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project-Runners.Runner", "P
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{6CB5B377-E809-4060-8FB2-4E7112ACD6C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project-Runners.Common", "Project-Runners.Common\Project-Runners.Common.csproj", "{48DF142A-18FF-4D50-AB77-04FAFCE79C7A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectRunners.Common", "ProjectRunners.Common\ProjectRunners.Common.csproj", "{48DF142A-18FF-4D50-AB77-04FAFCE79C7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using Project_Runners.Application.CaseResults.Models.Commands;
 using Project_runners.Common.Models.Contracts;
+using ProjectRunners.Application.CaseResults.Models.Commands;
 
-namespace Project_Runners.Web.Mapping
+namespace ProjectRunners.Web.Mapping
 {
     /// <summary>
     /// Мапинг для результатов тестов

@@ -2,10 +2,10 @@
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Project_Runners.Application.CaseResults.Models.Commands;
 using Project_runners.Common.Models.Contracts;
+using ProjectRunners.Application.CaseResults.Models.Commands;
 
-namespace Project_Runners.Web.Controllers
+namespace ProjectRunners.Web.Controllers
 {
     [ApiController]
     [Route("api/case-results")]

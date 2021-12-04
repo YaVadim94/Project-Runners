@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using MediatR;
 
-namespace Project_Runners.Application.Runs.Models.Commands
+namespace ProjectRunners.Application.Runs.Models.Commands
 {
     /// <summary>
     /// Комманда для создания прогона

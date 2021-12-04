@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Project_Runners.Application.Runs.Models.Commands;
-using Project_Runners.Application.Runs.Models.Queries;
-using Project_Runners.Web.Models;
+using ProjectRunners.Application.Runs.Models.Commands;
+using ProjectRunners.Application.Runs.Models.Queries;
+using ProjectRunners.Web.Models;
 
-namespace Project_Runners.Web.Controllers
+namespace ProjectRunners.Web.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

@@ -1,4 +1,4 @@
-﻿namespace Project_Runners.Application.RabbitMQ
+﻿namespace ProjectRunners.Application.RabbitMQ
 {
     /// <summary>
     /// Сервис дял работы с RabbitMQ

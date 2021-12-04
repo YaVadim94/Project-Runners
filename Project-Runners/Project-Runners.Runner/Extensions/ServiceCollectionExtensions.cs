@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Project_Runners.Runner.EventHandlers;
-using Project_Runners.Runner.MessageBrokers;
-using Project_Runners.Runner.Services;
+using ProjectRunners.Runner.EventHandlers;
+using ProjectRunners.Runner.MessageBrokers;
+using ProjectRunners.Runner.Services;
 
-namespace Project_Runners.Runner.Extensions
+namespace ProjectRunners.Runner.Extensions
 {
     /// <summary>
     /// Расширения для <see cref="IServiceCollection"/>

@@ -2,13 +2,13 @@
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
-        <RootNamespace>Project_Runners.Application</RootNamespace>
+        <RootNamespace>ProjectRunners.Application</RootNamespace>
         <Nullable>enable</Nullable>
         <LangVersion>10</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Project-Runners.Common\Project-Runners.Common.csproj" />
+      <ProjectReference Include="..\ProjectRunners.Common\ProjectRunners.Common.csproj" />
       <ProjectReference Include="..\Project-Runners.Data\Project-Runners.Data.csproj" />
     </ItemGroup>
 
