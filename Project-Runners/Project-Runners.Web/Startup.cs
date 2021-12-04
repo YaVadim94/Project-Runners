@@ -16,6 +16,7 @@ using ProjectRunners.Application.Hangfire.JobRunners;
 using ProjectRunners.Application.RabbitMQ;
 using ProjectRunners.Application.Runs.Mapping;
 using ProjectRunners.Data;
+using ProjectRunners.Web.Controllers.Grpc;
 using ProjectRunners.Web.Helpers;
 using Serilog;
 
@@ -45,6 +46,7 @@ namespace ProjectRunners.Web
             
             services.AddHangfireServer();
             services.AddMediatR(GetAssemblies().ToArray());
+            services.AddGrpc();
             
             services
                 .AddControllers()
@@ -65,7 +67,11 @@ namespace ProjectRunners.Web
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapGrpcService<RunnersController>();
+            });
 
             DataSeedingHelper.SeedDataBase(app);
             app.StartBackgroundServices();

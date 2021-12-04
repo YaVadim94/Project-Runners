@@ -2,6 +2,7 @@
 using ProjectRunners.Application.Runners.Models.Commands;
 using ProjectRunners.Application.Runners.Models.Dto;
 using ProjectRunners.Common.Models.Contracts;
+using ProjectRunners.Protos;
 using ProjectRunners.Web.Models;
 
 namespace ProjectRunners.Web.Mapping
@@ -15,6 +16,7 @@ namespace ProjectRunners.Web.Mapping
         {
             CreateMap<RunnerStateContract, SetStateCommand>();
             CreateMap<RunnerDto, RunnerContract>();
+            CreateMap<RunnerStateContractGrpc, SetStateCommand>();
         }
     }
 }
