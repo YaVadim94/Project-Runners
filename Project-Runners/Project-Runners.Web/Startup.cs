@@ -54,6 +54,7 @@ namespace ProjectRunners.Web
 
             services.AddTransient<UpdateRunsQueueJobRunner>();
             services.AddTransient<SendRunnersStateJobRunner>();
+            services.AddTransient<IdentifyInactiveJobRunner>();
             services.AddSingleton<IMessageBusService, MessageBusService>();
         }
 

@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ProjectRunners.Data;
-using ProjectRunners.Data.Models.Base;
+using ProjectRunners.Data.Models.Bases;
 
 namespace ProjectRunners.Application.Extensions
 {

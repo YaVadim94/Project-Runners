@@ -1,4 +1,5 @@
-﻿using ProjectRunners.Common.Enums;
+﻿using System;
+using ProjectRunners.Common.Enums;
 
 namespace ProjectRunners.Web.Models
 {
@@ -15,5 +16,8 @@ namespace ProjectRunners.Web.Models
 
         /// <summary> Состояние </summary>
         public RunnerState State { get; set; }
+        
+        /// <summary> Дата последнего изменения </summary>
+        public DateTimeOffset ChangeDate { get; set; }
     }
 }

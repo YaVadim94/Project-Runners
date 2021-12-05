@@ -1,4 +1,4 @@
-﻿namespace ProjectRunners.Data.Models.Base
+﻿namespace ProjectRunners.Data.Models.Bases
 {
     /// <summary>
     /// Базовая сущность с наименованием

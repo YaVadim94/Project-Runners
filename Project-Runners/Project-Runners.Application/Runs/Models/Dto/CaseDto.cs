@@ -1,4 +1,6 @@
-﻿namespace ProjectRunners.Application.Runs.Models.Dto
+﻿using System;
+
+namespace ProjectRunners.Application.Runs.Models.Dto
 {
     /// <summary>
     /// Дто кейса

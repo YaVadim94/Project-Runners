@@ -1,4 +1,6 @@
-﻿namespace ProjectRunners.Web.Models
+﻿using System;
+
+namespace ProjectRunners.Web.Models
 {
     /// <summary>
     /// Дто кейса

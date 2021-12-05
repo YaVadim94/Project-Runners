@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ProjectRunners.Common.Enums;
-using ProjectRunners.Data.Models.Base;
+using ProjectRunners.Data.Models.Bases;
 
 namespace ProjectRunners.Data.Models
 {
