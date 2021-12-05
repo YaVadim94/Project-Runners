@@ -15,10 +15,12 @@ using ProjectRunners.Application.Hangfire.Extensions;
 using ProjectRunners.Application.Hangfire.JobRunners;
 using ProjectRunners.Application.RabbitMQ;
 using ProjectRunners.Application.Runs.Mapping;
+using ProjectRunners.Application.Services;
 using ProjectRunners.Data;
 using ProjectRunners.Web.Controllers.Grpc;
 using ProjectRunners.Web.Helpers;
 using Serilog;
+using StackExchange.Redis;
 
 namespace ProjectRunners.Web
 {
@@ -56,6 +58,9 @@ namespace ProjectRunners.Web
             services.AddTransient<SendRunnersStateJobRunner>();
             services.AddTransient<IdentifyInactiveJobRunner>();
             services.AddSingleton<IMessageBusService, MessageBusService>();
+            services.AddSingleton<IConnectionMultiplexer>(x =>
+                ConnectionMultiplexer.Connect(Configuration.GetValue<string>("Redis")));
+            services.AddSingleton<ICacheService, RedisCacheService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

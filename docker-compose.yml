@@ -11,3 +11,10 @@ services:
             - '5672:5672'
             # HTTP management UI
             - '15672:15672'
+            
+    redis:
+        image: "redis:alpine"
+        container_name: "redis"
+        command: redis-server
+        ports:
+            - "6379:6379"
