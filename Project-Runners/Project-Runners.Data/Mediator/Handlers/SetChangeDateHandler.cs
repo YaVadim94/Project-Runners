@@ -27,7 +27,7 @@ namespace ProjectRunners.Data.Mediator.Handlers
             var trackedEntities = _context.ChangeTracker.Entries<EntityBase>();
 
             foreach (var entityEntry in trackedEntities)
-                entityEntry.Entity.ChangeDate = DateTimeOffset.UtcNow;
+                entityEntry.Entity.ChangeDate = DateTimeOffset.Now;
 
             return Unit.Task;
         }
