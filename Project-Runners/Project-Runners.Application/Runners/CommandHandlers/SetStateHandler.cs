@@ -10,11 +10,11 @@ namespace ProjectRunners.Application.Runners.CommandHandlers
     /// <summary>
     /// Обработчик события обновления состояния раннера
     /// </summary>
-    public class SetStateCommandHandler : IRequestHandler<SetStateCommand>
+    public class SetStateHandler : IRequestHandler<SetStateCommand>
     {
         private readonly DataContext _context;
 
-        public SetStateCommandHandler(DataContext context)
+        public SetStateHandler(DataContext context)
         {
             _context = context;
         }

@@ -14,12 +14,12 @@ namespace ProjectRunners.Application.Runners.QueryHandlers
     /// <summary>
     /// Обрабочик запроса спска всех раннеров
     /// </summary>
-    public class GetAllRunnersQueryHandler : IRequestHandler<GetAllRunnersQuery, IEnumerable<RunnerDto>>
+    public class GetAllRunnersHandler : IRequestHandler<GetAllRunnersQuery, IEnumerable<RunnerDto>>
     {
         private readonly DataContext _context;
         private readonly IMapper _mapper;
         
-        public GetAllRunnersQueryHandler(DataContext context, IMapper mapper)
+        public GetAllRunnersHandler(DataContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

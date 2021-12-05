@@ -14,12 +14,12 @@ namespace ProjectRunners.Application.Runners.CommandHandlers
     /// <summary>
     /// Обработчик команды на отправку запроса состояния всех раннеров
     /// </summary>
-    public class SendRequestForStateUpdatingCommandHandler : IRequestHandler<SendRequestForStateUpdatingCommand>
+    public class SendRequestForStateUpdatingHandler : IRequestHandler<SendRequestForStateUpdatingCommand>
     {
         private readonly DataContext _context;
         private readonly IMessageBusService _messageBusService;
 
-        public SendRequestForStateUpdatingCommandHandler(DataContext context, IMessageBusService messageBusService)
+        public SendRequestForStateUpdatingHandler(DataContext context, IMessageBusService messageBusService)
         {
             _context = context;
             _messageBusService = messageBusService;

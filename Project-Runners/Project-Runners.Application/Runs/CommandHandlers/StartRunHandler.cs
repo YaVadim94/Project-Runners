@@ -13,12 +13,12 @@ namespace ProjectRunners.Application.Runs.CommandHandlers
     /// <summary>
     /// Обработчик события запуска прогонов
     /// </summary>
-    public class StartRunCommandHandler : IRequestHandler<StartRunCommand>
+    public class StartRunHandler : IRequestHandler<StartRunCommand>
     {
         private readonly DataContext _context;
         private readonly IMediator _mediator;
 
-        public StartRunCommandHandler(DataContext context, IMediator mediator)
+        public StartRunHandler(DataContext context, IMediator mediator)
         {
             _context = context;
             _mediator = mediator;

@@ -20,14 +20,14 @@ namespace ProjectRunners.Application.Runs.CommandHandlers
     /// <summary>
     /// Обработчить команды на обновление очереди прогона
     /// </summary>
-    public class UpdateRunQueueCommandHandler : IRequestHandler<UpdateRunQueueCommand>
+    public class UpdateRunQueueHandler : IRequestHandler<UpdateRunQueueCommand>
     {
         private readonly DataContext _context;
         private readonly IMapper _mapper;
         private readonly IMessageBusService _messageBusService;
         private readonly IMediator _mediator;
 
-        public UpdateRunQueueCommandHandler(DataContext context, IMessageBusService messageBusService,
+        public UpdateRunQueueHandler(DataContext context, IMessageBusService messageBusService,
             IMapper mapper, IMediator mediator)
         {
             _context = context;

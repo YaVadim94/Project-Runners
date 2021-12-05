@@ -12,12 +12,12 @@ namespace ProjectRunners.Application.Runs.CommandHandlers
     /// <summary>
     /// Обработчик событий обновления состояния прогонов
     /// </summary>
-    public class UpdateRunsQueueCommandHandler : IRequestHandler<UpdateRunsQueueCommand>
+    public class UpdateRunsQueueHandler : IRequestHandler<UpdateRunsQueueCommand>
     {
         private readonly DataContext _context;
         private readonly IMediator _mediator;
 
-        public UpdateRunsQueueCommandHandler(DataContext context, IMediator mediator)
+        public UpdateRunsQueueHandler(DataContext context, IMediator mediator)
         {
             _context = context;
             _mediator = mediator;

@@ -11,12 +11,12 @@ namespace ProjectRunners.Application.CaseResults.CommandHandlers
     /// <summary>
     /// Обработчик события создания результата теста
     /// </summary>
-    public class CreateCaseResultCommandHandler : IRequestHandler<CreateCaseResultCommand>
+    public class CreateCaseResultHandler : IRequestHandler<CreateCaseResultCommand>
     {
         private readonly DataContext _context;
         private readonly IMapper _mapper;
 
-        public CreateCaseResultCommandHandler(DataContext context, IMapper mapper)
+        public CreateCaseResultHandler(DataContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
