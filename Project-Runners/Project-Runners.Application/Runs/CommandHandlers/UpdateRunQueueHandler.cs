@@ -27,6 +27,8 @@ namespace ProjectRunners.Application.Runs.CommandHandlers
         private readonly IMessageBusService _messageBusService;
         private readonly IMediator _mediator;
 
+        private const int MAX_CASE_RUNNING_COUNT = 3;
+        
         public UpdateRunQueueHandler(DataContext context, IMessageBusService messageBusService,
             IMapper mapper, IMediator mediator)
         {
@@ -77,11 +79,11 @@ namespace ProjectRunners.Application.Runs.CommandHandlers
             var runFailed = casesWithResults
                 .All(cwr => cwr.CaseResults.Any()
                     && cwr.CaseResults.All(result => result.Status == RunStatus.Failed)
-                    && cwr.CaseResults.Count() >= 3);
+                    && cwr.CaseResults.Count() >= MAX_CASE_RUNNING_COUNT);
 
             var runSucceeded = casesWithResults
                 .All(cwr => cwr.CaseResults.Any(result => result.Status == RunStatus.Successed)
-                    && cwr.CaseResults.Count() <= 3);
+                    && cwr.CaseResults.Count() <= MAX_CASE_RUNNING_COUNT);
 
             return casesWithResults switch
             {
@@ -95,7 +97,7 @@ namespace ProjectRunners.Application.Runs.CommandHandlers
         {
             var casesToSend = casesWithResults
                 .Where(cwr => cwr.CaseResults.All(result => result.Status != RunStatus.Successed)
-                              && cwr.CaseResults.Count() < 3)
+                              && cwr.CaseResults.Count() < MAX_CASE_RUNNING_COUNT)
                 .Select(cwr => cwr.Case)
                 .ToList();
 
