@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Grpc.Net.Client;
 using Microsoft.Extensions.Configuration;
-using ProjectRunners.Protos;
+using ProjectRunners.Common.Protos;
 
 namespace ProjectRunners.Runner.APIs.Grpc
 {

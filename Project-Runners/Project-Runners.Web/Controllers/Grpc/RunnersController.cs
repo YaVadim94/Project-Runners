@@ -3,7 +3,7 @@ using AutoMapper;
 using Grpc.Core;
 using MediatR;
 using ProjectRunners.Application.Runners.Models.Commands;
-using ProjectRunners.Protos;
+using ProjectRunners.Common.Protos;
 
 namespace ProjectRunners.Web.Controllers.Grpc
 {

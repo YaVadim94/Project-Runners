@@ -1,6 +1,6 @@
 ﻿syntax = "proto3";
 
-option csharp_namespace = "ProjectRunners.Protos";
+option csharp_namespace = "ProjectRunners.Common.Protos";
 
 service RunnersControllerGrpc{
   rpc SetState(RunnerStateContractGrpc) returns (NoResponseGrpc);
@@ -11,8 +11,6 @@ enum RunnerStateGrpc{
     Waiting = 1;
     Disconnected = 2;
 }
-
-message SetState{}
 
 message RunnerStateContractGrpc{
   int64 runnerId = 1;

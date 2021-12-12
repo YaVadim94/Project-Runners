@@ -2,18 +2,18 @@
 using System.Threading.Tasks;
 using Grpc.Net.Client;
 using Microsoft.Extensions.Configuration;
-using ProjectRunners.Protos;
+using ProjectRunners.Common.Protos;
 
 namespace ProjectRunners.Runner.APIs.Grpc
 {
     /// <summary>
     /// API результатов тестов
     /// </summary>
-    public class CaseResultsesApi : ICaseResultsApi
+    public class CaseResultsApi : ICaseResultsApi
     {
         private readonly IConfiguration _configuration;
 
-        public CaseResultsesApi(IConfiguration configuration)
+        public CaseResultsApi(IConfiguration configuration)
         {
             _configuration = configuration;
         }

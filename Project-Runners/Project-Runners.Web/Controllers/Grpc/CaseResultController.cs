@@ -3,8 +3,7 @@ using AutoMapper;
 using Grpc.Core;
 using MediatR;
 using ProjectRunners.Application.CaseResults.Models.Commands;
-using ProjectRunners.Protos;
-using ProjectRunners.Web.Controllers.Rest;
+using ProjectRunners.Common.Protos;
 
 namespace ProjectRunners.Web.Controllers.Grpc
 {
@@ -13,8 +12,8 @@ namespace ProjectRunners.Web.Controllers.Grpc
     /// </summary>
     public class CaseResultController : CaseResultControllerGrpc.CaseResultControllerGrpcBase
     {
-        private readonly IMediator _mediator;
         private readonly IMapper _mapper;
+        private readonly IMediator _mediator;
 
         public CaseResultController(IMediator mediator, IMapper mapper)
         {
@@ -31,7 +30,7 @@ namespace ProjectRunners.Web.Controllers.Grpc
             var command = _mapper.Map<CreateCaseResultCommand>(contract);
 
             await _mediator.Send(command);
-            
+
             return new NoResponseCaseResultsGrpc();
         }
     }

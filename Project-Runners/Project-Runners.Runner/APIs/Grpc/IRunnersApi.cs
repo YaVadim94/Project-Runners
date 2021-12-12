@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using ProjectRunners.Protos;
+using ProjectRunners.Common.Protos;
 
 namespace ProjectRunners.Runner.APIs.Grpc
 {

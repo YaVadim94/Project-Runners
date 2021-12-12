@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Protobuf Include="Protos\CaseResults.proto">
+        <Generator>MSBuild:Compile</Generator>
+      </Protobuf>
+      <Protobuf Include="Protos\Runners.proto">
+        <Generator>MSBuild:Compile</Generator>
+      </Protobuf>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Google.Protobuf" Version="3.19.1" />
+      <PackageReference Include="Grpc.Net.Client" Version="2.41.0" />
+      <PackageReference Include="Grpc.Tools" Version="2.43.0-pre1">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+    </ItemGroup>
+
+</Project>

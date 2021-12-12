@@ -1,13 +1,8 @@
 ﻿using System;
-using System.IO;
-using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
-using Google.Protobuf;
 using ProjectRunners.Common.Enums;
-using ProjectRunners.Common.Models.Contracts;
 using ProjectRunners.Common.Models.Dto;
-using ProjectRunners.Protos;
+using ProjectRunners.Common.Protos;
 using ProjectRunners.Runner.APIs.Grpc;
 using ProjectRunners.Runner.Extensions;
 using ProjectRunners.Runner.Services;
@@ -19,8 +14,8 @@ namespace ProjectRunners.Runner.EventHandlers
     /// </summary>
     public class StateEventHandlerGrpc : IEventHandler
     {
-        private readonly StateService _stateService;
         private readonly IRunnersApi _runnersApi;
+        private readonly StateService _stateService;
 
         public StateEventHandlerGrpc(StateService stateService, IRunnersApi runnersApi)
         {
@@ -39,7 +34,7 @@ namespace ProjectRunners.Runner.EventHandlers
                 State = _stateService.RunnerState.MapToGrpc<RunnerState, RunnerStateGrpc>(),
                 RunnerId = int.Parse(Runner.Name)
             };
-            
+
             await _runnersApi.SetState(contract);
         }
     }
