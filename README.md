@@ -1,6 +1,4 @@
 # Project-Runners
-This repository is created for practicing RabbitMQ.
-
 
 На сервере перидически появляются прогоны.
 Прогоны включают в себя несколько задач, которые необходимо выполнить клиентам.
