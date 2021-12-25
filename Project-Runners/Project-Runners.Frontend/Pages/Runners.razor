@@ -1,0 +1,8 @@
+﻿@page "/runners"
+@using AntDesign.TableModels
+
+<Table TItem="Runner" DataSource="@DataSource">
+    <Column @bind-Field="@context.Id" Title="Id"></Column>
+    <Column @bind-Field="@context.Name" Title="Name"></Column>
+    <Column @bind-Field="@context.State" Title="State"></Column>
+</Table>
