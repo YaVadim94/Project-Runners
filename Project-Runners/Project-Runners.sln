@@ -22,6 +22,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{1E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project-Runners.Frontend", "Project-Runners.Frontend\Project-Runners.Frontend.csproj", "{09264A90-8D80-40F6-8322-2816F0862EC1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectRunners.Common.MappingExtensions", "ProjectRunners.Common.MappingExtensions\ProjectRunners.Common.MappingExtensions.csproj", "{C6E85D14-C3FC-4FF2-8636-918C78445A34}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +58,10 @@ Global
 		{09264A90-8D80-40F6-8322-2816F0862EC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09264A90-8D80-40F6-8322-2816F0862EC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09264A90-8D80-40F6-8322-2816F0862EC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6E85D14-C3FC-4FF2-8636-918C78445A34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6E85D14-C3FC-4FF2-8636-918C78445A34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6E85D14-C3FC-4FF2-8636-918C78445A34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6E85D14-C3FC-4FF2-8636-918C78445A34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{AECF64AF-EBD2-4AD7-8B41-BF9C361B72E9} = {658EF8C4-A975-447E-B3E7-82B90FDDD165}
@@ -66,5 +72,6 @@ Global
 		{CA6CE397-43EF-4263-9B6D-87805FEBEB32} = {6CB5B377-E809-4060-8FB2-4E7112ACD6C3}
 		{1E3784CC-3439-44FA-BB98-C5140919231F} = {658EF8C4-A975-447E-B3E7-82B90FDDD165}
 		{09264A90-8D80-40F6-8322-2816F0862EC1} = {1E3784CC-3439-44FA-BB98-C5140919231F}
+		{C6E85D14-C3FC-4FF2-8636-918C78445A34} = {6CB5B377-E809-4060-8FB2-4E7112ACD6C3}
 	EndGlobalSection
 EndGlobal

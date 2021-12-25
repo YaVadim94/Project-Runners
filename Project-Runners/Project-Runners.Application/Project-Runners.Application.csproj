@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\ProjectRunners.Common.MappingExtensions\ProjectRunners.Common.MappingExtensions.csproj" />
       <ProjectReference Include="..\ProjectRunners.Common\ProjectRunners.Common.csproj" />
       <ProjectReference Include="..\Project-Runners.Data\Project-Runners.Data.csproj" />
     </ItemGroup>

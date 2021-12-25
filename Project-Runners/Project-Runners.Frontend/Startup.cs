@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper.EquivalencyExpression;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Project_Runners.Frontend.Data;
+using Project_Runners.Frontend.ViewServices;
 
 namespace Project_Runners.Frontend
 {
@@ -27,7 +29,8 @@ namespace Project_Runners.Frontend
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddAntDesign();
-            services.AddSingleton<WeatherForecastService>();
+            services.AddTransient<IRunnersService, RunnersService>();
+            services.AddAutoMapper(opt => opt.AddCollectionMappers(), GetType().Assembly);
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Project_Runners.Frontend.Models;
+using Project_Runners.Frontend.ViewServices;
 using ProjectRunners.Common.Enums;
 
 namespace Project_Runners.Frontend.Pages
@@ -10,17 +13,17 @@ namespace Project_Runners.Frontend.Pages
     /// </summary>
     public partial class Runners : ComponentBase
     {
-        public Runners()
-        {
-            DataSource = new List<Runner>
-            {
-                new () {Id = 1, Name = "First", State = RunnerState.Running},
-                new () {Id = 2, Name = "Second", State = RunnerState.Waiting},
-                new () {Id = 3, Name = "Third", State = RunnerState.Disconnected}
-            };
-        }
-
         /// <summary> Раннеры </summary>
         private ICollection<Runner> DataSource { get; set; }
+
+        [Inject] public IRunnersService RunnersService { get; set; }
+
+        /// <summary>
+        /// Действия при загрузке страници
+        /// </summary>
+        protected override async Task OnInitializedAsync()
+        {
+            DataSource = (await RunnersService.GetAll()).ToList();
+        }
     }
 }
