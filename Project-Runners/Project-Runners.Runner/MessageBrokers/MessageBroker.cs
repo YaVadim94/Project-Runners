@@ -40,7 +40,7 @@ namespace ProjectRunners.Runner.MessageBrokers
             try
             {
                 await handler.Handle(dto);
-                Task.Delay(1000).GetAwaiter().GetResult();
+                await Task.Delay(1000);
             }
             catch (Exception ex)
             {
