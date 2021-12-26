@@ -4,7 +4,7 @@ option csharp_namespace = "ProjectRunners.Common.Protos";
 
 service RunnersControllerGrpc{
   rpc SetState(RunnerStateContractGrpc) returns (NoResponseGrpc);
-  rpc HandleScreenshot(ScreenshotContract) returns (NoResponseGrpc);
+  rpc SendScreenshot(ScreenshotContract) returns (NoResponseGrpc);
 }
 
 enum RunnerStateGrpc{

@@ -38,7 +38,7 @@ namespace ProjectRunners.Runner.APIs.Grpc
             }
         }
 
-        public async Task<NoResponseGrpc> HandleScreenshot(ScreenshotContract contract)
+        public async Task<NoResponseGrpc> SendScreenshot(ScreenshotContract contract)
         {
             var channel = GrpcChannel.ForAddress(_configuration.GetSection("ProjectRunners").Value);
             
@@ -46,7 +46,7 @@ namespace ProjectRunners.Runner.APIs.Grpc
             
             try
             {
-                return await client.HandleScreenshotAsync(contract);
+                return await client.SendScreenshotAsync(contract);
             }
             catch (Exception ex)
             {

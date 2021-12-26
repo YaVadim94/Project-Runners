@@ -21,6 +21,9 @@ namespace ProjectRunners.Web.Controllers.Grpc
             _mediator = mediator;
         }
 
+        /// <summary>
+        /// Выставить состояние раннера
+        /// </summary>
         public override async Task<NoResponseGrpc> SetState(RunnerStateContractGrpc contract, ServerCallContext context)
         {
             var command = _mapper.Map<SetStateCommand>(contract);
@@ -29,5 +32,6 @@ namespace ProjectRunners.Web.Controllers.Grpc
 
             return new NoResponseGrpc();
         }
+        
     }
 }

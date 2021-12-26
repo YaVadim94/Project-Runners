@@ -33,7 +33,7 @@ namespace ProjectRunners.Runner.EventHandlers
                 Payload = await ByteString.FromStreamAsync(stream)
             };
             
-            await _runnersApi.HandleScreenshot(contract);
+            await _runnersApi.SendScreenshot(contract);
         }
     }
 }

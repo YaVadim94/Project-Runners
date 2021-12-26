@@ -16,6 +16,6 @@ namespace ProjectRunners.Runner.APIs.Grpc
         /// <summary>
         /// Отправить скриншот
         /// </summary>
-        Task<NoResponseGrpc> HandleScreenshot(ScreenshotContract contract);
+        Task<NoResponseGrpc> SendScreenshot(ScreenshotContract contract);
     }
 }
