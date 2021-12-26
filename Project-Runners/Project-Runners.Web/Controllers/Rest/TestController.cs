@@ -30,5 +30,11 @@ namespace ProjectRunners.Web.Controllers.Rest
 
             return NoContent();
         }
+
+        [HttpGet("connection")]
+        public IActionResult TestConnection()
+        {
+            return Ok("All is alright");
+        }
     }
 }

@@ -7,6 +7,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project-Runners.Web", "Project-Runners.Web\Project-Runners.Web.csproj", "{1D8F17C7-2697-47ED-B725-5012757AA3F8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web application", "Web application", "{658EF8C4-A975-447E-B3E7-82B90FDDD165}"
+ProjectSection(SolutionItems) = preProject
+	Dockerfile = Dockerfile
+	.dockerignore = .dockerignore
+EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Runner", "Runner", "{85972C32-BFD6-4453-9844-0E0920024A36}"
 EndProject
