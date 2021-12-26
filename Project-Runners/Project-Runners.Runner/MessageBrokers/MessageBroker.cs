@@ -27,6 +27,7 @@ namespace ProjectRunners.Runner.MessageBrokers
             {
                 Command.RunCase => Runner.ServiceProvider.GetRequiredService<CaseEventHandleRest>(),
                 Command.SendState => Runner.ServiceProvider.GetRequiredService<StateEventHandlerGrpc>(),
+                Command.Screenshot => Runner.ServiceProvider.GetRequiredService<ScreenshotHandler>(),
                 _ => throw new ArgumentOutOfRangeException(nameof(dto.Command))
             };
 

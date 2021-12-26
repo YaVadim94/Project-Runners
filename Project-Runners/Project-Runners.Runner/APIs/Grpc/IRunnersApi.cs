@@ -12,5 +12,10 @@ namespace ProjectRunners.Runner.APIs.Grpc
         /// Отправить состояние
         /// </summary>
         Task<NoResponseGrpc> SetState(RunnerStateContractGrpc contract);
+
+        /// <summary>
+        /// Отправить скриншот
+        /// </summary>
+        Task<NoResponseGrpc> HandleScreenshot(ScreenshotContract contract);
     }
 }

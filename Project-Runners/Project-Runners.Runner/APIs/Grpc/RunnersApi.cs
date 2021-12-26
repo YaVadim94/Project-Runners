@@ -37,5 +37,22 @@ namespace ProjectRunners.Runner.APIs.Grpc
                 throw;
             }
         }
+
+        public async Task<NoResponseGrpc> HandleScreenshot(ScreenshotContract contract)
+        {
+            var channel = GrpcChannel.ForAddress(_configuration.GetSection("ProjectRunners").Value);
+            
+            var client = new RunnersControllerGrpc.RunnersControllerGrpcClient(channel);
+            
+            try
+            {
+                return await client.HandleScreenshotAsync(contract);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"---> Could not call Grpc server {ex.Message}");
+                throw;
+            }
+        }
     }
 }

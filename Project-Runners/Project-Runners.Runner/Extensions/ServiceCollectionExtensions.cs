@@ -26,6 +26,7 @@ namespace ProjectRunners.Runner.Extensions
                 .AddTransient<CaseEventHandleRest>()
                 .AddTransient<StateEventHandlerRest>()
                 .AddTransient<StateEventHandlerGrpc>()
+                .AddTransient<ScreenshotHandler>()
                 .AddTransient<IRunnersApi, RunnersApi>()
                 ;
         }

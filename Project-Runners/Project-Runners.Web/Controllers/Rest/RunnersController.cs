@@ -48,8 +48,8 @@ namespace ProjectRunners.Web.Controllers.Rest
             return NoContent();
         }
 
-        [HttpGet("{id:long}")]
-        public async Task<IActionResult> GetScreen(long id)
+        [HttpGet("{id:long}/screenshot")]
+        public async Task<IActionResult> GetScreenshot(long id)
         {
             var command = new GetScreenshotCommand {Id = id};
 
