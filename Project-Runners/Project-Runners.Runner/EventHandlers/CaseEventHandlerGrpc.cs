@@ -27,6 +27,12 @@ namespace ProjectRunners.Runner.EventHandlers
 
         public async Task Handle(MessageDto dto)
         {
+            if (dto.AddedData is not CaseForRunningDto testCase)
+            {
+                Console.WriteLine("Received incorrect message");
+                return;
+            }
+            
             if (_stateService.RunnerState == RunnerState.Running)
             {
                 Console.WriteLine($"Could not run case. Runner has state: {_stateService.RunnerState}");
@@ -35,7 +41,7 @@ namespace ProjectRunners.Runner.EventHandlers
 
             _stateService.SetState(RunnerState.Running);
 
-            var result = await _player.Play(dto.Case);
+            var result = await _player.Play(testCase);
 
             var contract = new CaseResultContractGrpc
             {

@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using ProjectRunners.Common;
 using ProjectRunners.Common.Models;
+using ProjectRunners.Common.Models.Dto;
 using RabbitMQ.Client;
 
 namespace ProjectRunners.Application.RabbitMQ
@@ -29,7 +30,7 @@ namespace ProjectRunners.Application.RabbitMQ
         /// <summary>
         /// Опубликовать сообщение
         /// </summary>
-        public void Publish(object messageDto, string routingKey)
+        public void Publish(MessageDto messageDto, string routingKey)
         {
             if (!_connection.IsOpen && TryToCreateConnection())
                 return;

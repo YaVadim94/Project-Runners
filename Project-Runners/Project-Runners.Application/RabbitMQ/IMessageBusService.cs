@@ -1,4 +1,6 @@
-﻿namespace ProjectRunners.Application.RabbitMQ
+﻿using ProjectRunners.Common.Models.Dto;
+
+namespace ProjectRunners.Application.RabbitMQ
 {
     /// <summary>
     /// Сервис дял работы с RabbitMQ
@@ -8,6 +10,6 @@
         /// <summary>
         /// Опубликовать сообщение
         /// </summary>
-        void Publish(object messageDto, string routingKey);
+        void Publish(MessageDto messageDto, string routingKey);
     }
 }

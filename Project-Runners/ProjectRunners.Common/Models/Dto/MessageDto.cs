@@ -10,7 +10,7 @@ namespace ProjectRunners.Common.Models.Dto
         /// <summary> Команда раннеру </summary>
         public Command? Command { get; set; }
         
-        /// <summary> Кейс для прогона </summary>
-        public CaseForRunningDto Case { get; set; }
+        /// <summary> Данные сообщения </summary>
+        public object AddedData { get; set; }
     }
 }

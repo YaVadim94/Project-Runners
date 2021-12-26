@@ -114,7 +114,7 @@ namespace ProjectRunners.Application.Runs.CommandHandlers
                 var dto = new MessageDto
                 {
                     Command = Command.RunCase,
-                    Case = _mapper.Map<CaseForRunningDto>(caseToSend, opt =>
+                    AddedData = _mapper.Map<CaseForRunningDto>(caseToSend, opt =>
                         opt.AfterMap((s, d) => { d.RunId = runId; }))
                 };
                 

@@ -46,6 +46,16 @@ namespace ProjectRunners.Web.Controllers.Rest
             await _mediator.Send(command);
             
             return NoContent();
-        } 
+        }
+
+        [HttpGet("{id:long}")]
+        public async Task<IActionResult> GetScreen(long id)
+        {
+            var command = new GetScreenshotCommand {Id = id};
+
+            await _mediator.Send(command);
+
+            return NoContent();
+        }
     }
 }

@@ -6,6 +6,7 @@
     public enum Command
     {
         RunCase,
-        SendState
+        SendState,
+        Screenshot
     }
 }
