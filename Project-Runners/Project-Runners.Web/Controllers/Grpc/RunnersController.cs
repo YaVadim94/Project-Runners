@@ -32,6 +32,14 @@ namespace ProjectRunners.Web.Controllers.Grpc
 
             return new NoResponseGrpc();
         }
-        
+
+        public override async Task<NoResponseGrpc> SendScreenshot(ScreenshotContract request, ServerCallContext context)
+        {
+            var command = _mapper.Map<SendScreenShotCommand>(request);
+
+            await _mediator.Send(command);
+            
+            return new NoResponseGrpc();
+        }
     }
 }
