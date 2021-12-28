@@ -42,7 +42,7 @@ namespace ProjectRunners.Web
             services.AddAutoMapper(opt => opt.AddCollectionMappers(), GetAssemblies());
             services.AddHangfire(opt =>
             {
-                opt.UseSerilogLogProvider();
+                // opt.UseSerilogLogProvider();
                 opt.UseMemoryStorage();
             });
             

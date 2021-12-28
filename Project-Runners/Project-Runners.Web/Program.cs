@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 
@@ -13,6 +14,13 @@ namespace ProjectRunners.Web
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    //Возможно, выстрелит в ногу, сделано, чтобы работали grpc
+                    webBuilder.ConfigureKestrel(opt =>
+                        opt.ListenAnyIP(80, options => options.Protocols = HttpProtocols.Http2));
+                    
+                    webBuilder.UseStartup<Startup>();
+                });
     }
 }
