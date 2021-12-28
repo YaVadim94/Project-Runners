@@ -8,7 +8,7 @@ services:
             context: .
             dockerfile: Dockerfile
         ports:
-            - "5000:5000"
+            - "5000:80"
 
     rabbitmq3:
         container_name: "rabbitmq"
