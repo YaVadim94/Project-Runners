@@ -32,7 +32,7 @@ namespace ProjectRunners.Runner.EventHandlers
             var contract = new RunnerStateContractGrpc
             {
                 State = _stateService.RunnerState.MapToGrpc<RunnerState, RunnerStateGrpc>(),
-                RunnerId = int.Parse(Runner.Name)
+                RunnerId = Runner.Id
             };
 
             await _runnersApi.SetState(contract);

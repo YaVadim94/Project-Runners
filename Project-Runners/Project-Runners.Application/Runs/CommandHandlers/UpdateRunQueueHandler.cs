@@ -7,11 +7,12 @@ using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using ProjectRunners.Application.Extensions;
-using ProjectRunners.Application.RabbitMQ;
 using ProjectRunners.Application.Runners.Models.Queries;
 using ProjectRunners.Application.Runs.Models;
 using ProjectRunners.Application.Runs.Models.Commands;
 using ProjectRunners.Common.Enums;
+using ProjectRunners.Common.MessageBroker;
+using ProjectRunners.Common.MessageBroker.Publishing;
 using ProjectRunners.Common.Models.Dto;
 using ProjectRunners.Data;
 
@@ -24,16 +25,16 @@ namespace ProjectRunners.Application.Runs.CommandHandlers
     {
         private readonly DataContext _context;
         private readonly IMapper _mapper;
-        private readonly IMessageBusService _messageBusService;
+        private readonly IMessagePublishService _messagePublishService;
         private readonly IMediator _mediator;
 
         private const int MAX_CASE_RUNNING_COUNT = 3;
         
-        public UpdateRunQueueHandler(DataContext context, IMessageBusService messageBusService,
+        public UpdateRunQueueHandler(DataContext context, IMessagePublishService messagePublishService,
             IMapper mapper, IMediator mediator)
         {
             _context = context;
-            _messageBusService = messageBusService;
+            _messagePublishService = messagePublishService;
             _mapper = mapper;
             _mediator = mediator;
         }
@@ -104,11 +105,11 @@ namespace ProjectRunners.Application.Runs.CommandHandlers
             if(!casesToSend.Any())
                 return;
 
-            var availableRunnerNames = await GetAvailableRunnerNamesQueue();
+            var routingKeys = await GetAvailableRunnerRoutingKeys();
 
             foreach (var caseToSend in casesToSend)
             {
-                if (!availableRunnerNames.Any())
+                if (!routingKeys.Any())
                     break;
                 
                 var dto = new MessageDto
@@ -118,18 +119,18 @@ namespace ProjectRunners.Application.Runs.CommandHandlers
                         opt.AfterMap((s, d) => { d.RunId = runId; }))
                 };
                 
-                _messageBusService.Publish(dto, availableRunnerNames.Dequeue());
+                _messagePublishService.Publish(dto, routingKeys.Dequeue());
             }
         }
 
-        private async Task<Queue<string>> GetAvailableRunnerNamesQueue()
+        private async Task<Queue<string>> GetAvailableRunnerRoutingKeys()
         {
             var availableRunners = await _mediator.Send(new GetAllRunnersQuery
             {
                 Filter = r => r.State == RunnerState.Waiting
             });
 
-            return new Queue<string>(availableRunners.Select(r => r.Name));
+            return new Queue<string>(availableRunners.Select(r => $"Runner_{r.Id}"));
         }
     }
 }

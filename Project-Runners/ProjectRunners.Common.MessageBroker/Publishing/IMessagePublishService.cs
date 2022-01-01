@@ -1,11 +1,11 @@
 ﻿using ProjectRunners.Common.Models.Dto;
 
-namespace ProjectRunners.Application.RabbitMQ
+namespace ProjectRunners.Common.MessageBroker.Publishing
 {
     /// <summary>
     /// Сервис дял работы с RabbitMQ
     /// </summary>
-    public interface IMessageBusService
+    public interface IMessagePublishService
     {
         /// <summary>
         /// Опубликовать сообщение

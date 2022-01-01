@@ -3,14 +3,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using ProjectRunners.Common;
-using ProjectRunners.Common.Models;
+using ProjectRunners.Common.MessageBroker.Extensions;
+using ProjectRunners.Common.MessageBroker.Models;
 using ProjectRunners.Common.Models.Dto;
-using ProjectRunners.Runner.Extensions;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
-namespace ProjectRunners.Runner.MessageBrokers
+namespace ProjectRunners.Common.MessageBroker.Consuming
 {
     /// <summary>
     /// Базовый класс брокера для работы с RabbitMq
@@ -20,11 +19,16 @@ namespace ProjectRunners.Runner.MessageBrokers
         private readonly RabbitMQConfig _config;
         private IModel _channel;
         private IConnection _connection;
-
+        
+        /// <summary>
+        /// Наименование очереди для потребления сообщений
+        /// </summary>
+        protected abstract string QueueName { get; }
+        
         protected MessageBrokerBase(IConfiguration configuration)
         {
             _config = configuration.GetSection("RabbitMQ").Get<RabbitMQConfig>();
-
+            
             OpenConnection();
         }
 
@@ -39,7 +43,7 @@ namespace ProjectRunners.Runner.MessageBrokers
 
             consumer.Received += ConsumeBase;
 
-            _channel.BasicConsume(Runner.Name, false, consumer);
+            _channel.BasicConsume(QueueName, autoAck: false, consumer);
 
             Console.WriteLine("Subscribed");
             
@@ -99,16 +103,16 @@ namespace ProjectRunners.Runner.MessageBrokers
             _channel = _connection.CreateModel();
 
             _channel.QueueDeclare(
-                queue: Runner.Name,
+                queue: QueueName,
                 durable: true,
                 exclusive: false,
                 autoDelete: true,
                 arguments: null);
 
             _channel.QueueBind(
-                queue: Runner.Name,
+                queue: QueueName,
                 exchange: CommonConstants.DIRECT_EXCHANGE,
-                routingKey: Runner.Name,
+                routingKey: QueueName,
                 arguments: null);
         }
     }

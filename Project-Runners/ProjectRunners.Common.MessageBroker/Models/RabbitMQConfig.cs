@@ -1,4 +1,4 @@
-﻿namespace ProjectRunners.Common.Models
+﻿namespace ProjectRunners.Common.MessageBroker.Models
 {
     /// <summary>
     /// Конфигурации для RabbitMQ
@@ -16,5 +16,8 @@
 
         /// <summary> Пароль админки </summary>
         public string Password { get; set; }
+
+        public override string ToString() => 
+            $"host={HostName}:{Port.ToString()};username={UserName};password={Password}";
     }
 }

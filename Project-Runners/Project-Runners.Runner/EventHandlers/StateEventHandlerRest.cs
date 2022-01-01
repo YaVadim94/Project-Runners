@@ -33,7 +33,7 @@ namespace ProjectRunners.Runner.EventHandlers
             var contract = new RunnerStateContract
             {
                 State = _stateService.RunnerState,
-                RunnerId = int.Parse(Runner.Name)
+                RunnerId = Runner.Id
             };
             
             await _runnersApi.SetState(contract);

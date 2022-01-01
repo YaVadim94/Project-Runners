@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using ProjectRunners.Application.RabbitMQ;
 using ProjectRunners.Application.Runners.Models.Commands;
 using ProjectRunners.Common.Enums;
+using ProjectRunners.Common.MessageBroker;
+using ProjectRunners.Common.MessageBroker.Publishing;
 using ProjectRunners.Common.Models.Dto;
 using ProjectRunners.Data;
 
@@ -17,12 +19,12 @@ namespace ProjectRunners.Application.Runners.CommandHandlers
     public class SendRequestForStateUpdatingHandler : IRequestHandler<SendRequestForStateUpdatingCommand>
     {
         private readonly DataContext _context;
-        private readonly IMessageBusService _messageBusService;
+        private readonly IMessagePublishService _messagePublishService;
 
-        public SendRequestForStateUpdatingHandler(DataContext context, IMessageBusService messageBusService)
+        public SendRequestForStateUpdatingHandler(DataContext context, IMessagePublishService messagePublishService)
         {
             _context = context;
-            _messageBusService = messageBusService;
+            _messagePublishService = messagePublishService;
         }
 
         /// <summary>
@@ -38,7 +40,7 @@ namespace ProjectRunners.Application.Runners.CommandHandlers
             
             runners.ForEach(runner =>
             {
-                _messageBusService.Publish(message, runner.Name);
+                _messagePublishService.Publish(message, $"runner_{runner.Id}");
             });
             
             return Unit.Value;

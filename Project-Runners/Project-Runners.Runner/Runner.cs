@@ -13,13 +13,12 @@ namespace ProjectRunners.Runner
         /// <summary> Общий доступ к DI </summary>
         public static IServiceProvider ServiceProvider { get; set; }
 
-        /// <summary> Наименование раннера </summary>
-        public static string Name { get; }
+        /// <summary> Идентификатор раннера </summary>
+        public static long Id { get; }
 
         static Runner()
         {
-            Console.WriteLine("Input runner name:");
-            Name = Console.ReadLine();
+            Id = GetRunnerId();
         }
         
         public Runner(IServiceProvider serviceProvider)
@@ -35,6 +34,19 @@ namespace ProjectRunners.Runner
 
             while (true)
                 await Task.Delay(1000);
+        }
+
+        private static long GetRunnerId()
+        {
+            while (true)
+            {
+                Console.WriteLine("Input runner id:");
+                
+                if (long.TryParse(Console.ReadLine(), out var id))
+                    return id;
+
+                Console.WriteLine("Runner id must be numeric");
+            }
         }
     }
 }

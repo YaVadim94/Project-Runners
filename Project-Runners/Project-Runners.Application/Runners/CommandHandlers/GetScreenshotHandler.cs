@@ -2,9 +2,10 @@
 using System.Threading.Tasks;
 using MediatR;
 using ProjectRunners.Application.Extensions;
-using ProjectRunners.Application.RabbitMQ;
 using ProjectRunners.Application.Runners.Models.Commands;
 using ProjectRunners.Common.Enums;
+using ProjectRunners.Common.MessageBroker;
+using ProjectRunners.Common.MessageBroker.Publishing;
 using ProjectRunners.Common.Models.Dto;
 using ProjectRunners.Data;
 
@@ -16,11 +17,11 @@ namespace ProjectRunners.Application.Runners.CommandHandlers
     public class GetScreenshotHandler : IRequestHandler<GetScreenshotCommand>
     {
         private readonly DataContext _context;
-        private readonly IMessageBusService _messageBusService;
+        private readonly IMessagePublishService _messagePublishService;
 
-        public GetScreenshotHandler(IMessageBusService messageBusService, DataContext context)
+        public GetScreenshotHandler(IMessagePublishService messagePublishService, DataContext context)
         {
-            _messageBusService = messageBusService;
+            _messagePublishService = messagePublishService;
             _context = context;
         }
 
@@ -33,7 +34,7 @@ namespace ProjectRunners.Application.Runners.CommandHandlers
 
             var dto = new MessageDto {Command = Command.Screenshot};
 
-            _messageBusService.Publish(dto, runner.Name);
+            _messagePublishService.Publish(dto, runner.Name);
             
             return Unit.Value;
         }

@@ -9,6 +9,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\ProjectRunners.Common.MappingExtensions\ProjectRunners.Common.MappingExtensions.csproj" />
+      <ProjectReference Include="..\ProjectRunners.Common.MessageBroker\ProjectRunners.Common.MessageBroker.csproj" />
       <ProjectReference Include="..\ProjectRunners.Common\ProjectRunners.Common.csproj" />
       <ProjectReference Include="..\Project-Runners.Data\Project-Runners.Data.csproj" />
     </ItemGroup>
@@ -24,6 +25,7 @@
 
     <ItemGroup>
       <Folder Include="CaseResults\Models" />
+      <Folder Include="RabbitMQ" />
     </ItemGroup>
 
 </Project>

@@ -13,9 +13,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ProjectRunners.Application.Hangfire.Extensions;
 using ProjectRunners.Application.Hangfire.JobRunners;
-using ProjectRunners.Application.RabbitMQ;
 using ProjectRunners.Application.Runs.Mapping;
 using ProjectRunners.Application.Services;
+using ProjectRunners.Common.MessageBroker;
+using ProjectRunners.Common.MessageBroker.Publishing;
 using ProjectRunners.Data;
 using ProjectRunners.Web.Controllers.Grpc;
 using ProjectRunners.Web.Helpers;
@@ -57,7 +58,7 @@ namespace ProjectRunners.Web
             services.AddTransient<UpdateRunsQueueJobRunner>();
             services.AddTransient<SendRunnersStateJobRunner>();
             services.AddTransient<IdentifyInactiveJobRunner>();
-            services.AddSingleton<IMessageBusService, MessageBusService>();
+            services.AddSingleton<IMessagePublishService, MessagePublishService>();
             services.AddSingleton<IConnectionMultiplexer>(x =>
                 ConnectionMultiplexer.Connect(Configuration.GetValue<string>("Redis")));
             services.AddSingleton<ICacheService, RedisCacheService>();

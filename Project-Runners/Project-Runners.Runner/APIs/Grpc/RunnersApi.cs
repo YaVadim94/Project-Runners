@@ -24,11 +24,11 @@ namespace ProjectRunners.Runner.APIs.Grpc
         public async Task<NoResponseGrpc> SetState(RunnerStateContractGrpc contract)
         {
             var channel = GrpcChannel.ForAddress(_configuration.GetSection("ProjectRunners").Value);
-
-            var client = new RunnersControllerGrpc.RunnersControllerGrpcClient(channel);
-
+            
             try
             {
+                var client = new RunnersControllerGrpc.RunnersControllerGrpcClient(channel);
+                
                 return await client.SetStateAsync(contract);
             }
             catch (Exception ex)

@@ -28,6 +28,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project-Runners.Frontend", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectRunners.Common.MappingExtensions", "ProjectRunners.Common.MappingExtensions\ProjectRunners.Common.MappingExtensions.csproj", "{C6E85D14-C3FC-4FF2-8636-918C78445A34}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project-Runners.Hub", "Project-Runners.Hub\Project-Runners.Hub.csproj", "{1D851CC4-523D-4C89-BB0D-48A1A8E99AFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectRunners.Common.MessageBroker", "ProjectRunners.Common.MessageBroker\ProjectRunners.Common.MessageBroker.csproj", "{BEBB8DA2-28FE-4ED8-936C-D9C6160248DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,6 +70,14 @@ Global
 		{C6E85D14-C3FC-4FF2-8636-918C78445A34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6E85D14-C3FC-4FF2-8636-918C78445A34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6E85D14-C3FC-4FF2-8636-918C78445A34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D851CC4-523D-4C89-BB0D-48A1A8E99AFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D851CC4-523D-4C89-BB0D-48A1A8E99AFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D851CC4-523D-4C89-BB0D-48A1A8E99AFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D851CC4-523D-4C89-BB0D-48A1A8E99AFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEBB8DA2-28FE-4ED8-936C-D9C6160248DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEBB8DA2-28FE-4ED8-936C-D9C6160248DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEBB8DA2-28FE-4ED8-936C-D9C6160248DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEBB8DA2-28FE-4ED8-936C-D9C6160248DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{AECF64AF-EBD2-4AD7-8B41-BF9C361B72E9} = {658EF8C4-A975-447E-B3E7-82B90FDDD165}
@@ -77,5 +89,7 @@ Global
 		{1E3784CC-3439-44FA-BB98-C5140919231F} = {658EF8C4-A975-447E-B3E7-82B90FDDD165}
 		{09264A90-8D80-40F6-8322-2816F0862EC1} = {1E3784CC-3439-44FA-BB98-C5140919231F}
 		{C6E85D14-C3FC-4FF2-8636-918C78445A34} = {6CB5B377-E809-4060-8FB2-4E7112ACD6C3}
+		{1D851CC4-523D-4C89-BB0D-48A1A8E99AFC} = {658EF8C4-A975-447E-B3E7-82B90FDDD165}
+		{BEBB8DA2-28FE-4ED8-936C-D9C6160248DA} = {6CB5B377-E809-4060-8FB2-4E7112ACD6C3}
 	EndGlobalSection
 EndGlobal

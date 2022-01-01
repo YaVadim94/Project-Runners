@@ -2,24 +2,24 @@
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using ProjectRunners.Common;
-using ProjectRunners.Common.Models;
+using ProjectRunners.Common.MessageBroker.Extensions;
+using ProjectRunners.Common.MessageBroker.Models;
 using ProjectRunners.Common.Models.Dto;
 using RabbitMQ.Client;
 
-namespace ProjectRunners.Application.RabbitMQ
+namespace ProjectRunners.Common.MessageBroker.Publishing
 {
     /// <summary>
     /// Сервис дял работы с RabbitMQ
     /// </summary>
-    public class MessageBusService : IMessageBusService
+    public class MessagePublishService : IMessagePublishService
     {
         private readonly RabbitMQConfig _config;
         
         private IConnection _connection;
         private IModel _channel;
 
-        public MessageBusService(IConfiguration configuration)
+        public MessagePublishService(IConfiguration configuration)
         {
             _config = configuration.GetSection("RabbitMQ").Get<RabbitMQConfig>();
 

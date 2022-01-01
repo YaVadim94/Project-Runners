@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ProjectRunners.Common.Enums;
+using ProjectRunners.Common.MessageBroker;
+using ProjectRunners.Common.MessageBroker.Consuming;
 using ProjectRunners.Common.Models.Dto;
 using ProjectRunners.Runner.EventHandlers;
 using ProjectRunners.Runner.Services;
@@ -17,6 +19,8 @@ namespace ProjectRunners.Runner.MessageBrokers
         public MessageBroker(IConfiguration configuration) : base(configuration)
         {
         }
+
+        protected override string QueueName => $"runner_{Runner.Id}";
 
         /// <summary>
         /// Обработать сообщение

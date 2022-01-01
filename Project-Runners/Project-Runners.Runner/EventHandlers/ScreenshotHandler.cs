@@ -1,4 +1,5 @@
-﻿using System.Buffers.Text;
+﻿using System;
+using System.Buffers.Text;
 using System.IO;
 using System.Threading.Tasks;
 using Google.Protobuf;
@@ -25,7 +26,7 @@ namespace ProjectRunners.Runner.EventHandlers
         /// </summary>
         public async Task Handle(MessageDto dto)
         {
-            var stream = File.OpenRead(Path.Combine("Pictures", "It is boring.jpg"));
+            var stream = File.OpenRead(Path.Combine("Pictures", GetPictureName()));
 
             var contract = new ScreenshotContract
             {
@@ -35,5 +36,16 @@ namespace ProjectRunners.Runner.EventHandlers
             
             await _runnersApi.SendScreenshot(contract);
         }
+
+        private string GetPictureName() =>
+            (DateTime.Now.Ticks % 5) switch
+            {
+                0 => "It is boring.jpg",
+                1 => "Manutd.jpg",
+                2 => "Matrix.jpg",
+                3 => "Python interview.jpg",
+                4 => "Timbaland.jpeg",
+                _ => throw new ArgumentOutOfRangeException("Could not return picture name")
+            };
     }
 }
