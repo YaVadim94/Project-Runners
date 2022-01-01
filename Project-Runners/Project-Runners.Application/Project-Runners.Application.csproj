@@ -25,7 +25,6 @@
 
     <ItemGroup>
       <Folder Include="CaseResults\Models" />
-      <Folder Include="RabbitMQ" />
     </ItemGroup>
 
 </Project>

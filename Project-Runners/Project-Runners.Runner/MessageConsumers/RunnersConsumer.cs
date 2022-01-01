@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ProjectRunners.Common;
 using ProjectRunners.Common.Enums;
 using ProjectRunners.Common.MessageBroker;
 using ProjectRunners.Common.MessageBroker.Consuming;
@@ -21,6 +22,7 @@ namespace ProjectRunners.Runner.MessageBrokers
         }
 
         protected override string QueueName => $"runner_{Runner.Id}";
+        protected override string ExchangeName => CommonConstants.RUNNERS_EXCHANGE;
 
         /// <summary>
         /// Обработать сообщение

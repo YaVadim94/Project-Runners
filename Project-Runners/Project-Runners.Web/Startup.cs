@@ -59,7 +59,7 @@ namespace ProjectRunners.Web
             services.AddTransient<SendRunnersStateJobRunner>();
             services.AddTransient<IdentifyInactiveJobRunner>();
             services.AddSingleton<IMessagePublishService, MessagePublishService>();
-            services.AddSingleton<IConnectionMultiplexer>(x =>
+            services.AddSingleton<IConnectionMultiplexer>(_ =>
                 ConnectionMultiplexer.Connect(Configuration.GetValue<string>("Redis")));
             services.AddSingleton<ICacheService, RedisCacheService>();
         }

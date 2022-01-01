@@ -10,7 +10,7 @@ using RabbitMQ.Client;
 namespace ProjectRunners.Common.MessageBroker.Publishing
 {
     /// <summary>
-    /// Сервис дял работы с RabbitMQ
+    /// Сервис для работы с RabbitMQ
     /// </summary>
     public class MessagePublishService : IMessagePublishService
     {
@@ -39,7 +39,7 @@ namespace ProjectRunners.Common.MessageBroker.Publishing
             var body = Encoding.UTF8.GetBytes(json);
 
             _channel.BasicPublish(
-                exchange: CommonConstants.DIRECT_EXCHANGE,
+                exchange: CommonConstants.RUNNERS_EXCHANGE,
                 routingKey: routingKey,
                 body: body);
         }
@@ -58,7 +58,7 @@ namespace ProjectRunners.Common.MessageBroker.Publishing
             _channel = _connection.CreateModel();
 
             _channel.ExchangeDeclare(
-                exchange: CommonConstants.DIRECT_EXCHANGE,
+                exchange: CommonConstants.RUNNERS_EXCHANGE,
                 type: CommonConstants.DIRECT,
                 durable: true,
                 autoDelete: false,

@@ -20,15 +20,16 @@ namespace ProjectRunners.Common.MessageBroker.Consuming
         private IModel _channel;
         private IConnection _connection;
         
-        /// <summary>
-        /// Наименование очереди для потребления сообщений
-        /// </summary>
+        /// <summary> Наименование очереди для потребления сообщений </summary>
         protected abstract string QueueName { get; }
-        
+
+        /// <summary> Наименование эксченжа для потребления сообщений </summary>
+        protected abstract string ExchangeName { get; }
+
         protected MessageBrokerBase(IConfiguration configuration)
         {
             _config = configuration.GetSection("RabbitMQ").Get<RabbitMQConfig>();
-            
+
             OpenConnection();
         }
 
@@ -111,7 +112,7 @@ namespace ProjectRunners.Common.MessageBroker.Consuming
 
             _channel.QueueBind(
                 queue: QueueName,
-                exchange: CommonConstants.DIRECT_EXCHANGE,
+                exchange: ExchangeName,
                 routingKey: QueueName,
                 arguments: null);
         }
