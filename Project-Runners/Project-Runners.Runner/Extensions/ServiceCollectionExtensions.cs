@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using ProjectRunners.Common.MessageBroker.Models;
 using ProjectRunners.Runner.APIs.Grpc;
 using ProjectRunners.Runner.EventHandlers;
-using ProjectRunners.Runner.MessageBrokers;
+using ProjectRunners.Runner.MessageConsumers;
 using ProjectRunners.Runner.Services;
 
 namespace ProjectRunners.Runner.Extensions

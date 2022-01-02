@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Project_Runners.Hub.Extensions;
+using Project_Runners.Hub.HostedServices;
 using Project_Runners.Hub.Hubs;
 
 namespace Project_Runners.Hub
@@ -21,6 +23,8 @@ namespace Project_Runners.Hub
         {
             services.AddSignalR();
             services.AddHealthChecks();
+            services.AddMessageConsumer(Configuration);
+            services.AddHostedService<RabbitMqListener>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

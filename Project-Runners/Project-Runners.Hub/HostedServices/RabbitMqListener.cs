@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
+using Project_Runners.Hub.Consumers;
 
 namespace Project_Runners.Hub.HostedServices
 {
@@ -9,14 +10,21 @@ namespace Project_Runners.Hub.HostedServices
     /// </summary>
     public class RabbitMqListener : IHostedService
     {
-        public Task StartAsync(CancellationToken cancellationToken)
+        private readonly MainConsumer _mainConsumer;
+
+        public RabbitMqListener(MainConsumer mainConsumer)
         {
-            throw new System.NotImplementedException();
+            _mainConsumer = mainConsumer;
         }
 
-        public Task StopAsync(CancellationToken cancellationToken)
+        public async Task StartAsync(CancellationToken cancellationToken)
         {
-            throw new System.NotImplementedException();
+            await _mainConsumer.Subscribe();
+        }
+
+        public async Task StopAsync(CancellationToken cancellationToken)
+        {
+            await _mainConsumer.Unsubscribe();
         }
     }
 }

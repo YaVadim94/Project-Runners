@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
-using ProjectRunners.Runner.MessageBrokers;
+using ProjectRunners.Runner.MessageConsumers;
 
 namespace ProjectRunners.Runner
 {

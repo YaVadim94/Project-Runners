@@ -9,12 +9,12 @@ using ProjectRunners.Common.Models.Dto;
 using ProjectRunners.Runner.EventHandlers;
 using ProjectRunners.Runner.Services;
 
-namespace ProjectRunners.Runner.MessageBrokers
+namespace ProjectRunners.Runner.MessageConsumers
 {
     /// <summary>
     /// Брокер для работы с RabbitMq
     /// </summary>
-    public class MessageConsumer : MessageConsumerBase
+    public class MessageConsumer : MessageConsumerBase<RunnerCommandDto>
     {
         public MessageConsumer(RabbitMQConfig configuration) : base(configuration)
         {

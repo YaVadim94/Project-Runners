@@ -12,7 +12,7 @@ namespace ProjectRunners.Common.MessageBroker.Consuming
     /// <summary>
     /// Базовый класс брокера для работы с RabbitMq
     /// </summary>
-    public abstract class MessageConsumerBase
+    public abstract class MessageConsumerBase<T>
     {
         private readonly RabbitMQConfig _config;
         private IModel _channel;
@@ -34,8 +34,11 @@ namespace ProjectRunners.Common.MessageBroker.Consuming
         /// <summary>
         /// Обработать сообщение
         /// </summary>
-        protected abstract Task Consume(RunnerCommandDto runnerCommand);
+        protected abstract Task Consume(T dto);
 
+        /// <summary>
+        /// Подписаться на получение сообщений и открыть канал
+        /// </summary>
         public async Task Subscribe()
         {
             var consumer = new AsyncEventingBasicConsumer(_channel);
@@ -45,7 +48,20 @@ namespace ProjectRunners.Common.MessageBroker.Consuming
             _channel.BasicConsume(QueueName, false, consumer);
 
             Console.WriteLine("Subscribed");
+            
+            await Task.CompletedTask;
+        }
 
+        /// <summary>
+        /// Отписаться от получения сообщений и закрыть канал
+        /// </summary>
+        public async Task Unsubscribe()
+        {
+            if (_channel.IsClosed)
+                return;
+            
+            _channel.Close();
+            
             await Task.CompletedTask;
         }
 
@@ -57,7 +73,7 @@ namespace ProjectRunners.Common.MessageBroker.Consuming
 
                 var body = args.Body.ToArray();
                 var message = Encoding.UTF8.GetString(body);
-                var dto = JsonConvert.DeserializeObject<RunnerCommandDto>(message);
+                var dto = JsonConvert.DeserializeObject<T>(message);
 
                 await Consume(dto);
 
@@ -101,6 +117,13 @@ namespace ProjectRunners.Common.MessageBroker.Consuming
             _connection = factory.CreateConnection();
             _channel = _connection.CreateModel();
 
+            _channel.ExchangeDeclare(
+                ExchangeName,
+                CommonConstants.DIRECT,
+                true,
+                false,
+                null);
+            
             _channel.QueueDeclare(
                 QueueName,
                 true,
