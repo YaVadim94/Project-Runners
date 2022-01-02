@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
-namespace ProjectRunners.Common.MessageBroker.Extensions
+namespace ProjectRunners.Runner.Extensions
 {
     /// <summary>
     /// Расширерия для работы с кофигурациями
@@ -16,6 +16,5 @@ namespace ProjectRunners.Common.MessageBroker.Extensions
             
             return JsonConvert.DeserializeObject<T>(tempJson);
         }
-            
     }
 }

@@ -1,8 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ProjectRunners.Common.MessageBroker.Models;
+using ProjectRunners.Common.MessageBroker.Publishing;
 using ProjectRunners.Common.MessageBroker.Publising;
 
-namespace ProjectRunners.Common.MessageBroker.Extensions
+namespace ProjectRunners.Web.Extensions
 {
     /// <summary>
     /// Расширения для <see cref="IServiceCollection"/>
@@ -13,7 +15,9 @@ namespace ProjectRunners.Common.MessageBroker.Extensions
         /// Зарегистрировать отправителя </summary>
         public static IServiceCollection AddMessagePublisher(this IServiceCollection services, IConfiguration config)
         {
-            var publisher = new MessagePublisher(config);
+            var rabbitConfig = config.GetSection("RabbitMQ").Get<RabbitMQConfig>();
+            
+            var publisher = new MessagePublisher(rabbitConfig);
 
             services.AddSingleton<IMessagePublisher>(publisher);
             

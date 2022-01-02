@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Text;
-using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using ProjectRunners.Common.MessageBroker.Extensions;
 using ProjectRunners.Common.MessageBroker.Models;
+using ProjectRunners.Common.MessageBroker.Publising;
 using RabbitMQ.Client;
 
-namespace ProjectRunners.Common.MessageBroker.Publising
+namespace ProjectRunners.Common.MessageBroker.Publishing
 {
     /// <summary>
     /// Отправитель сообщений по шине
@@ -17,13 +16,13 @@ namespace ProjectRunners.Common.MessageBroker.Publising
         private IModel _channel;
         private IConnection _connection;
 
-        public MessagePublisher(IConfiguration configuration)
+        public MessagePublisher(RabbitMQConfig config)
         {
-            _config = configuration.GetSection("RabbitMQ").Get<RabbitMQConfig>();
+            _config = config;
 
             TryToCreateConnection();
         }
-        
+
         /// <summary>
         /// Опубликовать сообщение
         /// </summary>
@@ -31,23 +30,23 @@ namespace ProjectRunners.Common.MessageBroker.Publising
         {
             if (!_connection.IsOpen && TryToCreateConnection())
                 return;
-                
+
             _channel.ExchangeDeclare(
-                exchange: address.Exchange,
-                type: CommonConstants.DIRECT,
-                durable: true,
-                autoDelete: false,
-                arguments: null);
-            
+                address.Exchange,
+                CommonConstants.DIRECT,
+                true,
+                false,
+                null);
+
             var json = JsonConvert.SerializeObject(messageDto);
             var body = Encoding.UTF8.GetBytes(json);
 
             _channel.BasicPublish(
-                exchange: address.Exchange,
-                routingKey: address.Queue,
+                address.Exchange,
+                address.Queue,
                 body: body);
         }
-        
+
         private bool TryToCreateConnection()
         {
             var factory = new ConnectionFactory
@@ -60,10 +59,10 @@ namespace ProjectRunners.Common.MessageBroker.Publising
 
             _connection = factory.CreateConnection();
             _channel = _connection.CreateModel();
-            
-            if(!_connection.IsOpen)
+
+            if (!_connection.IsOpen)
                 Console.WriteLine("Не удалось подключиться к шине данных");
-            
+
             return _connection.IsOpen;
         }
     }

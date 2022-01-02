@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ProjectRunners.Common.Enums;
+using ProjectRunners.Common.MessageBroker.Models;
 using ProjectRunners.Runner.APIs.Grpc;
 using ProjectRunners.Runner.EventHandlers;
 using ProjectRunners.Runner.MessageBrokers;
@@ -16,12 +17,11 @@ namespace ProjectRunners.Runner.Extensions
         /// <summary>
         /// Зарегистировать сервисы приложения
         /// </summary>
-        public static void AddServices(this IServiceCollection services)
+        public static IServiceCollection AddServices(this IServiceCollection services, IConfiguration configuration)
         {
             services
-                .AddConfiguration()
+                .AddSingleton(configuration)
                 .AddSingleton<StateService>()
-                .AddSingleton<MessageConsumer>()
                 .AddTransient<CasePlayer>()
                 .AddTransient<CaseEventHandleRest>()
                 .AddTransient<StateEventHandlerRest>()
@@ -29,18 +29,18 @@ namespace ProjectRunners.Runner.Extensions
                 .AddTransient<ScreenshotHandler>()
                 .AddTransient<IRunnersApi, RunnersApi>()
                 ;
+
+            return services;
         }
 
-        /// <summary>
-        /// Зарегистрировать конфигурации
-        /// </summary>
-        public static IServiceCollection AddConfiguration(this IServiceCollection services)
+        public static IServiceCollection AddMessageBroker(this IServiceCollection services,
+            IConfiguration configuration)
         {
-            var config = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
-                .Build();
+            var config = configuration.GetSection("RabbitMQ").Get<RabbitMQConfig>();
 
-            services.AddSingleton<IConfiguration>(config);
+            var consumer = new MessageConsumer(config);
+
+            services.AddSingleton(consumer);
 
             return services;
         }

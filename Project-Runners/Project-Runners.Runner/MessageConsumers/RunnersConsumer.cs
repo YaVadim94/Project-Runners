@@ -6,6 +6,7 @@ using ProjectRunners.Common;
 using ProjectRunners.Common.Enums;
 using ProjectRunners.Common.MessageBroker;
 using ProjectRunners.Common.MessageBroker.Consuming;
+using ProjectRunners.Common.MessageBroker.Models;
 using ProjectRunners.Common.Models.Dto;
 using ProjectRunners.Runner.EventHandlers;
 using ProjectRunners.Runner.Services;
@@ -17,7 +18,7 @@ namespace ProjectRunners.Runner.MessageBrokers
     /// </summary>
     public class MessageConsumer : MessageConsumerBase
     {
-        public MessageConsumer(IConfiguration configuration) : base(configuration)
+        public MessageConsumer(RabbitMQConfig configuration) : base(configuration)
         {
         }
 

@@ -21,6 +21,7 @@ using ProjectRunners.Common.MessageBroker;
 using ProjectRunners.Common.MessageBroker.Extensions;
 using ProjectRunners.Data;
 using ProjectRunners.Web.Controllers.Grpc;
+using ProjectRunners.Web.Extensions;
 using ProjectRunners.Web.Helpers;
 using Serilog;
 using StackExchange.Redis;

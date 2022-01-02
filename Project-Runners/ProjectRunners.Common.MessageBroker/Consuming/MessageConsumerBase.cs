@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using ProjectRunners.Common.MessageBroker.Extensions;
 using ProjectRunners.Common.MessageBroker.Models;
 using ProjectRunners.Common.Models.Dto;
 using RabbitMQ.Client;
@@ -19,19 +17,19 @@ namespace ProjectRunners.Common.MessageBroker.Consuming
         private readonly RabbitMQConfig _config;
         private IModel _channel;
         private IConnection _connection;
-        
+
+        protected MessageConsumerBase(RabbitMQConfig config)
+        {
+            _config = config;
+
+            OpenConnection();
+        }
+
         /// <summary> Наименование очереди для потребления сообщений </summary>
         protected abstract string QueueName { get; }
 
         /// <summary> Наименование эксченжа для потребления сообщений </summary>
         protected abstract string ExchangeName { get; }
-
-        protected MessageConsumerBase(IConfiguration configuration)
-        {
-            _config = configuration.GetSection("RabbitMQ").Get<RabbitMQConfig>();
-
-            OpenConnection();
-        }
 
         /// <summary>
         /// Обработать сообщение
@@ -44,10 +42,10 @@ namespace ProjectRunners.Common.MessageBroker.Consuming
 
             consumer.Received += ConsumeBase;
 
-            _channel.BasicConsume(QueueName, autoAck: false, consumer);
+            _channel.BasicConsume(QueueName, false, consumer);
 
             Console.WriteLine("Subscribed");
-            
+
             await Task.CompletedTask;
         }
 
@@ -56,21 +54,21 @@ namespace ProjectRunners.Common.MessageBroker.Consuming
             try
             {
                 Console.WriteLine("Received a message");
-                
+
                 var body = args.Body.ToArray();
                 var message = Encoding.UTF8.GetString(body);
                 var dto = JsonConvert.DeserializeObject<RunnerCommandDto>(message);
 
                 await Consume(dto);
-                
-                _channel.BasicAck(deliveryTag: args.DeliveryTag, multiple: false);
+
+                _channel.BasicAck(args.DeliveryTag, false);
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error occurs: {ex.Message}");
             }
         }
-        
+
         private void OpenConnection()
         {
             try
@@ -104,17 +102,17 @@ namespace ProjectRunners.Common.MessageBroker.Consuming
             _channel = _connection.CreateModel();
 
             _channel.QueueDeclare(
-                queue: QueueName,
-                durable: true,
-                exclusive: false,
-                autoDelete: true,
-                arguments: null);
+                QueueName,
+                true,
+                false,
+                true,
+                null);
 
             _channel.QueueBind(
-                queue: QueueName,
-                exchange: ExchangeName,
-                routingKey: QueueName,
-                arguments: null);
+                QueueName,
+                ExchangeName,
+                QueueName,
+                null);
         }
     }
 }
