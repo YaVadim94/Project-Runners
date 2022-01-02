@@ -18,7 +18,7 @@ namespace ProjectRunners.Web
                 {
                     //Возможно, выстрелит в ногу, сделано, чтобы работали grpc
                     webBuilder.ConfigureKestrel(opt =>
-                        opt.ListenAnyIP(80, options => options.Protocols = HttpProtocols.Http2));
+                        opt.ListenAnyIP(5000, options => options.Protocols = HttpProtocols.Http2));
                     
                     webBuilder.UseStartup<Startup>();
                 });
