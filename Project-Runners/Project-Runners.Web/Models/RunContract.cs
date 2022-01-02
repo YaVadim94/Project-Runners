@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using ProjectRunners.Common.Enums;
 
 namespace ProjectRunners.Web.Models

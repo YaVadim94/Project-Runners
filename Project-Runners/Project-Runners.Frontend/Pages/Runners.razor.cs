@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Project_Runners.Frontend.Models;
 using Project_Runners.Frontend.ViewServices;
-using ProjectRunners.Common.Enums;
 
 namespace Project_Runners.Frontend.Pages
 {

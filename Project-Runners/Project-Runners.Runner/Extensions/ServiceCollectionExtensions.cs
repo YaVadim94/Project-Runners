@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ProjectRunners.Common.Enums;
 using ProjectRunners.Common.MessageBroker.Models;
 using ProjectRunners.Runner.APIs.Grpc;
 using ProjectRunners.Runner.EventHandlers;

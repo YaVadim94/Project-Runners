@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Hangfire;
 using MediatR;
 using ProjectRunners.Application.Hangfire.Attributes;
 using ProjectRunners.Application.Runners.Models.Commands;

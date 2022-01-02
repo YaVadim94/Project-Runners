@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
@@ -7,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using ProjectRunners.Application.Runners.Models.Commands;
 using ProjectRunners.Application.Services.Publishing;
 using ProjectRunners.Common.Enums;
-using ProjectRunners.Common.MessageBroker;
 using ProjectRunners.Common.Models.Dto;
 using ProjectRunners.Data;
 

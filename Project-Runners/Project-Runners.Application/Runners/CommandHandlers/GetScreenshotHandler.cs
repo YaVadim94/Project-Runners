@@ -1,11 +1,9 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using ProjectRunners.Application.Extensions;
 using ProjectRunners.Application.Runners.Models.Commands;
 using ProjectRunners.Application.Services.Publishing;
 using ProjectRunners.Common.Enums;
-using ProjectRunners.Common.MessageBroker;
 using ProjectRunners.Common.Models.Dto;
 using ProjectRunners.Data;
 

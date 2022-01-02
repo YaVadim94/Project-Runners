@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Google.Protobuf;
 using ProjectRunners.Application.Extensions;
 using ProjectRunners.Application.Runners.Models.Commands;
 using ProjectRunners.Application.Runners.Models.Dto;

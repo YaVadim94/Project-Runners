@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ProjectRunners.Common;
 using ProjectRunners.Common.Enums;
-using ProjectRunners.Common.MessageBroker;
 using ProjectRunners.Common.MessageBroker.Consuming;
 using ProjectRunners.Common.MessageBroker.Models;
 using ProjectRunners.Common.Models.Dto;

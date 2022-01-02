@@ -1,5 +1,4 @@
-﻿using ProjectRunners.Common.MessageBroker.Models;
-using ProjectRunners.Common.Models.Dto;
+﻿using ProjectRunners.Common.Models.Dto;
 
 namespace ProjectRunners.Application.Services.Publishing
 {

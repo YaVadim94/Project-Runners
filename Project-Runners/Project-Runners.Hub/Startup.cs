@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Project_Runners.Hub.Extensions;
 using Project_Runners.Hub.Hubs;
 
 namespace Project_Runners.Hub
