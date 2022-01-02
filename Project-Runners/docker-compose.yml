@@ -1,12 +1,13 @@
 version: "3.8"
 services:
     backend:
-        container_name: "backend"
+        container_name: "webapi"
         depends_on:
             - "rabbitmq3"
         build:
             context: .
             dockerfile: Dockerfile
+        image: "webapi"
         ports:
             - "5000:80"
         networks:
