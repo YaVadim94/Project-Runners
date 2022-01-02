@@ -8,6 +8,6 @@ namespace ProjectRunners.Runner.EventHandlers
     /// </summary>
     public interface IEventHandler
     {
-        public Task Handle(MessageDto dto);
+        public Task Handle(RunnerCommandDto dto);
     }
 }

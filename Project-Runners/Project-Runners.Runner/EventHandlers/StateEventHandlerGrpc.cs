@@ -26,7 +26,7 @@ namespace ProjectRunners.Runner.EventHandlers
         /// <summary>
         /// Отправить состояние
         /// </summary>
-        public async Task Handle(MessageDto dto)
+        public async Task Handle(RunnerCommandDto dto)
         {
             Console.WriteLine($"---> Sending state at {DateTime.Now.Second}");
             var contract = new RunnerStateContractGrpc

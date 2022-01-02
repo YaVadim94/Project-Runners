@@ -5,12 +5,12 @@ namespace ProjectRunners.Common.Models.Dto
     /// <summary>
     /// Дто для взаимодействия раннера и сервера
     /// </summary>
-    public class MessageDto
+    public class RunnerCommandDto
     {
         /// <summary> Команда раннеру </summary>
         public Command? Command { get; set; }
         
         /// <summary> Данные сообщения </summary>
-        public object AddedData { get; set; }
+        public CaseForRunningDto Case { get; set; }
     }
 }

@@ -15,8 +15,10 @@ using ProjectRunners.Application.Hangfire.Extensions;
 using ProjectRunners.Application.Hangfire.JobRunners;
 using ProjectRunners.Application.Runs.Mapping;
 using ProjectRunners.Application.Services;
+using ProjectRunners.Application.Services.Caching;
+using ProjectRunners.Application.Services.Publishing;
 using ProjectRunners.Common.MessageBroker;
-using ProjectRunners.Common.MessageBroker.Publishing;
+using ProjectRunners.Common.MessageBroker.Extensions;
 using ProjectRunners.Data;
 using ProjectRunners.Web.Controllers.Grpc;
 using ProjectRunners.Web.Helpers;
@@ -55,10 +57,12 @@ namespace ProjectRunners.Web
                 .AddControllers()
                 .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
+            services.AddMessagePublisher(Configuration);
+            
             services.AddTransient<UpdateRunsQueueJobRunner>();
             services.AddTransient<SendRunnersStateJobRunner>();
             services.AddTransient<IdentifyInactiveJobRunner>();
-            services.AddSingleton<IMessagePublishService, MessagePublishService>();
+            services.AddTransient<IRunnersPublishService, RunnersPublishService>();
             services.AddSingleton<IConnectionMultiplexer>(_ =>
                 ConnectionMultiplexer.Connect(Configuration.GetValue<string>("Redis")));
             services.AddSingleton<ICacheService, RedisCacheService>();

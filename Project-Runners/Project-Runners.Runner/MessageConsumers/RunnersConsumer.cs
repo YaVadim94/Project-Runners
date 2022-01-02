@@ -15,9 +15,9 @@ namespace ProjectRunners.Runner.MessageBrokers
     /// <summary>
     /// Брокер для работы с RabbitMq
     /// </summary>
-    public class MessageBroker : MessageBrokerBase
+    public class MessageConsumer : MessageConsumerBase
     {
-        public MessageBroker(IConfiguration configuration) : base(configuration)
+        public MessageConsumer(IConfiguration configuration) : base(configuration)
         {
         }
 
@@ -27,7 +27,7 @@ namespace ProjectRunners.Runner.MessageBrokers
         /// <summary>
         /// Обработать сообщение
         /// </summary>
-        protected override Task Consume(MessageDto dto)
+        protected override Task Consume(RunnerCommandDto dto)
         {
             IEventHandler handler = dto.Command switch
             {
@@ -42,7 +42,7 @@ namespace ProjectRunners.Runner.MessageBrokers
             return Task.CompletedTask;
         }
 
-        private static async Task HandleMessage(IEventHandler handler, MessageDto dto)
+        private static async Task HandleMessage(IEventHandler handler, RunnerCommandDto dto)
         {
             try
             {

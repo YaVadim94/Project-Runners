@@ -7,7 +7,7 @@ namespace ProjectRunners.Application.Runners.Models.Commands
     /// </summary>
     public class GetScreenshotCommand : IRequest
     {
-        /// <summary> Идентификатор </summary>
-        public long Id { get; set; }
+        /// <summary> Идентификатор раннера </summary>
+        public long RunnerId { get; set; }
     }
 }

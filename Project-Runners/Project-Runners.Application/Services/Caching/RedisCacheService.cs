@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using StackExchange.Redis;
 
-namespace ProjectRunners.Application.Services
+namespace ProjectRunners.Application.Services.Caching
 {
     /// <summary>
     /// Сервис для работы с кешем через Redis
@@ -16,7 +16,7 @@ namespace ProjectRunners.Application.Services
         }
 
         /// <summary>
-        /// Получить значени по ключу
+        /// Получить значение по ключу
         /// </summary>
         public async Task<string> GetValue(string key)
         {

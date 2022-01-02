@@ -31,7 +31,7 @@ namespace Project_Runners.Hub
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();

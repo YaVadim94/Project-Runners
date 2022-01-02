@@ -25,14 +25,8 @@ namespace ProjectRunners.Runner.EventHandlers
             _caseResultsApi = RestService.For<ICaseResultsApi>(configuration.GetSection("ProjectRunners").Value);
         }
 
-        public async Task Handle(MessageDto dto)
+        public async Task Handle(RunnerCommandDto dto)
         {
-            if (dto.AddedData is not CaseForRunningDto testCase)
-            {
-                Console.WriteLine("Received incorrect message");
-                return;
-            }
-            
             if (_stateService.RunnerState == RunnerState.Running)
             {
                 Console.WriteLine($"Could not run case. Runner has state: {_stateService.RunnerState}");
@@ -41,7 +35,7 @@ namespace ProjectRunners.Runner.EventHandlers
             
             _stateService.SetState(RunnerState.Running);
             
-            var result = await _player.Play(testCase);
+            var result = await _player.Play(dto.Case);
 
             await _caseResultsApi.Create(result);
             

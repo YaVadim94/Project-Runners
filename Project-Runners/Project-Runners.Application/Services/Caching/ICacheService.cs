@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace ProjectRunners.Application.Services
+namespace ProjectRunners.Application.Services.Caching
 {
     /// <summary>
     /// Сервис для работы с кешем

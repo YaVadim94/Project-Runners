@@ -24,7 +24,7 @@ namespace ProjectRunners.Runner.EventHandlers
         /// <summary>
         /// Отправить скиншот рабочего стола
         /// </summary>
-        public async Task Handle(MessageDto dto)
+        public async Task Handle(RunnerCommandDto dto)
         {
             var stream = File.OpenRead(Path.Combine("Pictures", GetPictureName()));
 

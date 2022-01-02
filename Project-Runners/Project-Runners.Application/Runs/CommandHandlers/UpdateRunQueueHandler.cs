@@ -10,9 +10,9 @@ using ProjectRunners.Application.Extensions;
 using ProjectRunners.Application.Runners.Models.Queries;
 using ProjectRunners.Application.Runs.Models;
 using ProjectRunners.Application.Runs.Models.Commands;
+using ProjectRunners.Application.Services.Publishing;
 using ProjectRunners.Common.Enums;
 using ProjectRunners.Common.MessageBroker;
-using ProjectRunners.Common.MessageBroker.Publishing;
 using ProjectRunners.Common.Models.Dto;
 using ProjectRunners.Data;
 
@@ -25,18 +25,18 @@ namespace ProjectRunners.Application.Runs.CommandHandlers
     {
         private readonly DataContext _context;
         private readonly IMapper _mapper;
-        private readonly IMessagePublishService _messagePublishService;
+        private readonly IRunnersPublishService _runnersPublishService;
         private readonly IMediator _mediator;
 
         private const int MAX_CASE_RUNNING_COUNT = 3;
         
-        public UpdateRunQueueHandler(DataContext context, IMessagePublishService messagePublishService,
-            IMapper mapper, IMediator mediator)
+        public UpdateRunQueueHandler(DataContext context, IMapper mapper, IMediator mediator,
+            IRunnersPublishService runnersPublishService)
         {
             _context = context;
-            _messagePublishService = messagePublishService;
             _mapper = mapper;
             _mediator = mediator;
+            _runnersPublishService = runnersPublishService;
         }
 
         /// <summary>
@@ -112,25 +112,25 @@ namespace ProjectRunners.Application.Runs.CommandHandlers
                 if (!routingKeys.Any())
                     break;
                 
-                var dto = new MessageDto
+                var dto = new RunnerCommandDto
                 {
                     Command = Command.RunCase,
-                    AddedData = _mapper.Map<CaseForRunningDto>(caseToSend, opt =>
+                    Case = _mapper.Map<CaseForRunningDto>(caseToSend, opt =>
                         opt.AfterMap((s, d) => { d.RunId = runId; }))
                 };
                 
-                _messagePublishService.Publish(dto, routingKeys.Dequeue());
+                _runnersPublishService.Publish(dto, routingKeys.Dequeue());
             }
         }
 
-        private async Task<Queue<string>> GetAvailableRunnerRoutingKeys()
+        private async Task<Queue<long>> GetAvailableRunnerRoutingKeys()
         {
             var availableRunners = await _mediator.Send(new GetAllRunnersQuery
             {
                 Filter = r => r.State == RunnerState.Waiting
             });
 
-            return new Queue<string>(availableRunners.Select(r => $"Runner_{r.Id}"));
+            return new Queue<long>(availableRunners.Select(r => r.Id));
         }
     }
 }

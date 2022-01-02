@@ -12,8 +12,13 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\ProjectRunners.Common.MessageBroker\ProjectRunners.Common.MessageBroker.csproj" />
       <ProjectReference Include="..\ProjectRunners.Common.Proto\ProjectRunners.Common.Proto.csproj" />
       <ProjectReference Include="..\ProjectRunners.Common\ProjectRunners.Common.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Consumers" />
     </ItemGroup>
 
 </Project>

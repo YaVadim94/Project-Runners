@@ -21,7 +21,7 @@ namespace ProjectRunners.Runner.Extensions
             services
                 .AddConfiguration()
                 .AddSingleton<StateService>()
-                .AddSingleton<MessageBroker>()
+                .AddSingleton<MessageConsumer>()
                 .AddTransient<CasePlayer>()
                 .AddTransient<CaseEventHandleRest>()
                 .AddTransient<StateEventHandlerRest>()

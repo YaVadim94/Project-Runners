@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using ProjectRunners.Application.Runners.Models.Commands;
+using ProjectRunners.Application.Services.Publishing;
 using ProjectRunners.Common.Enums;
 using ProjectRunners.Common.MessageBroker;
-using ProjectRunners.Common.MessageBroker.Publishing;
 using ProjectRunners.Common.Models.Dto;
 using ProjectRunners.Data;
 
@@ -19,12 +19,12 @@ namespace ProjectRunners.Application.Runners.CommandHandlers
     public class SendRequestForStateUpdatingHandler : IRequestHandler<SendRequestForStateUpdatingCommand>
     {
         private readonly DataContext _context;
-        private readonly IMessagePublishService _messagePublishService;
+        private readonly IRunnersPublishService _runnersPublishService;
 
-        public SendRequestForStateUpdatingHandler(DataContext context, IMessagePublishService messagePublishService)
+        public SendRequestForStateUpdatingHandler(DataContext context, IRunnersPublishService runnersPublishService)
         {
             _context = context;
-            _messagePublishService = messagePublishService;
+            _runnersPublishService = runnersPublishService;
         }
 
         /// <summary>
@@ -36,11 +36,11 @@ namespace ProjectRunners.Application.Runners.CommandHandlers
             
             var runners = await _context.Runners.ToListAsync(cancellationToken);
 
-            var message = new MessageDto {Command = Command.SendState};
+            var message = new RunnerCommandDto {Command = Command.SendState};
             
             runners.ForEach(runner =>
             {
-                _messagePublishService.Publish(message, $"runner_{runner.Id}");
+                _runnersPublishService.Publish(message, runner.Id);
             });
             
             return Unit.Value;

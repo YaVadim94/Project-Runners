@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 using MediatR;
 using ProjectRunners.Application.Extensions;
 using ProjectRunners.Application.Runners.Models.Commands;
+using ProjectRunners.Application.Services.Publishing;
 using ProjectRunners.Common.Enums;
 using ProjectRunners.Common.MessageBroker;
-using ProjectRunners.Common.MessageBroker.Publishing;
 using ProjectRunners.Common.Models.Dto;
 using ProjectRunners.Data;
 
@@ -17,12 +17,13 @@ namespace ProjectRunners.Application.Runners.CommandHandlers
     public class GetScreenshotHandler : IRequestHandler<GetScreenshotCommand>
     {
         private readonly DataContext _context;
-        private readonly IMessagePublishService _messagePublishService;
+        private readonly IRunnersPublishService _runnersPublishService;
 
-        public GetScreenshotHandler(IMessagePublishService messagePublishService, DataContext context)
+
+        public GetScreenshotHandler(DataContext context, IRunnersPublishService runnersPublishService)
         {
-            _messagePublishService = messagePublishService;
             _context = context;
+            _runnersPublishService = runnersPublishService;
         }
 
         /// <summary>
@@ -30,11 +31,9 @@ namespace ProjectRunners.Application.Runners.CommandHandlers
         /// </summary>
         public async Task<Unit> Handle(GetScreenshotCommand request, CancellationToken cancellationToken)
         {
-            var runner = await _context.Runners.GetById(request.Id);
+            var dto = new RunnerCommandDto {Command = Command.Screenshot};
 
-            var dto = new MessageDto {Command = Command.Screenshot};
-
-            _messagePublishService.Publish(dto, runner.Name);
+            _runnersPublishService.Publish(dto, request.RunnerId);
             
             return Unit.Value;
         }

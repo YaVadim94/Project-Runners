@@ -51,7 +51,7 @@ namespace ProjectRunners.Web.Controllers.Rest
         [HttpGet("{id:long}/screenshot")]
         public async Task<IActionResult> GetScreenshot(long id)
         {
-            var command = new GetScreenshotCommand {Id = id};
+            var command = new GetScreenshotCommand {RunnerId = id};
 
             await _mediator.Send(command);
 

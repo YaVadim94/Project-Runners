@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ProjectRunners.Application.Services;
+using ProjectRunners.Application.Services.Caching;
 
 namespace ProjectRunners.Web.Controllers.Rest
 {

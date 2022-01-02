@@ -14,7 +14,7 @@ namespace ProjectRunners.Common.MessageBroker.Consuming
     /// <summary>
     /// Базовый класс брокера для работы с RabbitMq
     /// </summary>
-    public abstract class MessageBrokerBase
+    public abstract class MessageConsumerBase
     {
         private readonly RabbitMQConfig _config;
         private IModel _channel;
@@ -26,7 +26,7 @@ namespace ProjectRunners.Common.MessageBroker.Consuming
         /// <summary> Наименование эксченжа для потребления сообщений </summary>
         protected abstract string ExchangeName { get; }
 
-        protected MessageBrokerBase(IConfiguration configuration)
+        protected MessageConsumerBase(IConfiguration configuration)
         {
             _config = configuration.GetSection("RabbitMQ").Get<RabbitMQConfig>();
 
@@ -36,7 +36,7 @@ namespace ProjectRunners.Common.MessageBroker.Consuming
         /// <summary>
         /// Обработать сообщение
         /// </summary>
-        protected abstract Task Consume(MessageDto message);
+        protected abstract Task Consume(RunnerCommandDto runnerCommand);
 
         public async Task Subscribe()
         {
@@ -59,7 +59,7 @@ namespace ProjectRunners.Common.MessageBroker.Consuming
                 
                 var body = args.Body.ToArray();
                 var message = Encoding.UTF8.GetString(body);
-                var dto = JsonConvert.DeserializeObject<MessageDto>(message);
+                var dto = JsonConvert.DeserializeObject<RunnerCommandDto>(message);
 
                 await Consume(dto);
                 
