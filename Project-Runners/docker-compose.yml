@@ -4,12 +4,26 @@ services:
         container_name: "webapi"
         depends_on:
             - "rabbitmq3"
+            - "hub"
         build:
             context: .
-            dockerfile: Dockerfile
+            dockerfile: Dockerfile.WebApi
         image: "webapi"
         ports:
             - "5000:5000"
+        networks:
+            test:
+            
+    hub:
+        container_name: "hub"
+        depends_on:
+            - "rabbitmq3"
+        build:
+            context: .
+            dockerfile: Dockerfile.Hub
+        image: "hub"
+        ports:
+            - "6000:6000"
         networks:
             test:
 
