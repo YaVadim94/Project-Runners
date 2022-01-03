@@ -11,8 +11,10 @@ namespace ProjectRunners.Runner.Services
     /// </summary>
     public class CasePlayer
     {
-        public Task<CaseResultContract> Play(CaseForRunningDto dto)
+        public async Task<CaseResultContract> Play(CaseForRunningDto dto)
         {
+            await Task.Delay(TimeSpan.FromSeconds(30));
+            
             var caseResult = new CaseResultContract
             {
                 Id = dto.Id,
@@ -22,7 +24,7 @@ namespace ProjectRunners.Runner.Services
             
             Console.WriteLine($"Run: {caseResult.RunId}, Case: {caseResult.Id}, Status: {caseResult.Status}");
 
-            return Task.FromResult(caseResult);
+            return caseResult;
         }
         
         private RunStatus CalculateStatus()

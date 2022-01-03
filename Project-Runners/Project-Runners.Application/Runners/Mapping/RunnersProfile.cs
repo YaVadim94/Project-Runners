@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using ProjectRunners.Application.Extensions;
 using ProjectRunners.Application.Runners.Models.Dto;
+using ProjectRunners.Common.Models.Dto;
 using ProjectRunners.Data.Models;
 
 namespace ProjectRunners.Application.Runners.Mapping
@@ -12,6 +14,9 @@ namespace ProjectRunners.Application.Runners.Mapping
         public RunnersProfile()
         {
             CreateMap<Runner, RunnerDto>();
-        }   
+            
+            CreateMap<Runner, RunnerPublishDto>()
+                .IgnoreMember(d => d.Screenshot);
+        }
     }
 }

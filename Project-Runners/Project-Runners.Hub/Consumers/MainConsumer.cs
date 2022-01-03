@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
 using Project_Runners.Hub.Hubs;
 using ProjectRunners.Common;
@@ -25,6 +26,8 @@ namespace Project_Runners.Hub.Consumers
 
         protected override async Task Consume(RunnerPublishDto dto)
         {
+            Console.WriteLine($"Sending message for runnerId={dto.Id}");
+            
             await _hubContext.Clients.All.SendAsync($"{nameof(Consume)}", dto);
         }
     }
