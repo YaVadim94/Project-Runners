@@ -11,7 +11,7 @@ namespace ProjectRunners.Application.Runners.CommandHandlers
     public class SendScreenshotHandler : IRequestHandler<SendScreenShotCommand>
     {
         /// <summary>
-        /// Отправить скирн на фронт
+        /// Отправить скрин на фронт
         /// </summary>
         public Task<Unit> Handle(SendScreenShotCommand request, CancellationToken cancellationToken)
         {
