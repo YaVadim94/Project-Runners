@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AntDesign.TableModels;
@@ -25,6 +26,7 @@ namespace Project_Runners.Frontend.Pages
         [Inject] public IConfiguration Configuration { get; set; }
         [Inject] public IRunnersService RunnersService { get; set; }
         [Inject] public IMapper Mapper { get; set; }
+        
 
         /// <summary>
         /// Действия при загрузке страници
@@ -54,13 +56,27 @@ namespace Project_Runners.Frontend.Pages
             StateHasChanged();
         }
 
-        private async Task OnRowExpand(RowData<Runner> runner)
+        private async Task ShowScreenshot(RowData arg)
         {
-            if(runner.Data.State == RunnerState.Disconnected)
+            arg.Expanded = !arg.Expanded;
+            
+            var runner = (arg as RowData<Runner>)?.Data;
+            
+            if(runner == null)
                 return;
             
-            await RunnersService.RequestForScreenshot(runner.Data.Id.GetValueOrDefault());
+            if (arg.Expanded)
+            {
+                if (runner.State == RunnerState.Disconnected)
+                {
+                    arg.Expanded = false;
+                    return;
+                }
+                
+                await RunnersService.RequestForScreenshot(runner.Id.GetValueOrDefault());
+            }
+            else
+                runner.Screenshot = null;
         }
-            
     }
 }

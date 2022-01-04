@@ -1,12 +1,26 @@
 ﻿@page "/runners"
 
-<Table TItem="Runner" DataSource="@RunnerList" OnExpand="OnRowExpand">
+<Table TItem="Runner" DataSource="@RunnerList" ExpandIconColumnIndex="int.MaxValue">
     <RowTemplate>
         <Column Field="@context.Id" Title="Id"></Column>
         <Column Field="@context.Name" Title="Name"></Column>
         <Column Field="@context.State" Title="State"></Column>
+        <ActionColumn Title="Actions">
+            <CellRender Context="cellData">
+                <Button Type="@ButtonType.Primary"
+                        OnClick="() => ShowScreenshot(cellData.RowData)">
+                    @(cellData.RowData.Expanded ? "Collapse" : "Screenshot")
+                </Button>
+            </CellRender>
+        </ActionColumn>
     </RowTemplate>
-    <ExpandTemplate Context="rowData">
-        <Image Src=@("data:image/png;base64, " + rowData.Data.Screenshot) />
+    <ExpandTemplate>
+        <div class="mx-auto" style="width: 400px">
+            <Image
+                Height="300px"
+                Src=@("data:image/png;base64, " + context.Data.Screenshot)
+                PreviewSrc=@("data:image/png;base64, " + context.Data.Screenshot)>
+            </Image>
+        </div>
     </ExpandTemplate>
 </Table>
