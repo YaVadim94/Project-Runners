@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using AntDesign.TableModels;
 using AutoMapper;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
@@ -52,6 +53,16 @@ namespace Project_Runners.Frontend.Pages
                 return;
 
             Mapper.Map(dto, runner);
+            StateHasChanged();
+        }
+
+        private async Task OnRowExpand(RowData<Runner> runner)
+        {
+            await Task.CompletedTask;
+            
+            if(string.IsNullOrEmpty(runner.Data.Screenshot))
+                return;
+            
             StateHasChanged();
         }
     }

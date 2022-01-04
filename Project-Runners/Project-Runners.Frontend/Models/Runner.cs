@@ -15,5 +15,8 @@ namespace Project_Runners.Frontend.Models
 
         /// <summary> Состояние </summary>
         public RunnerState State { get; set; }
+
+        /// <summary> Скриншот в формате Base64 </summary>
+        public string Screenshot { get; set; }
     }
 }
