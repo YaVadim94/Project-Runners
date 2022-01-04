@@ -28,7 +28,7 @@ namespace Project_Runners.Hub.Consumers
         {
             Console.WriteLine($"Sending message for runnerId={dto.Id}");
             
-            await _hubContext.Clients.All.SendAsync($"{nameof(Consume)}", dto);
+            await _hubContext.Clients.All.SendAsync(CommonConstants.RUNNER_UPDATE, dto);
         }
     }
 }

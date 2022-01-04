@@ -23,7 +23,7 @@ services:
             dockerfile: Dockerfile.Hub
         image: "hub"
         ports:
-            - "6000:6000"
+            - "6000:80"
         networks:
             test:
 

@@ -1,6 +1,6 @@
 ﻿@page "/runners"
 
-<Table TItem="Runner" DataSource="@DataSource">
+<Table TItem="Runner" DataSource="@RunnerList" >
     <Column @bind-Field="@context.Id" Title="Id"></Column>
     <Column @bind-Field="@context.Name" Title="Name"></Column>
     <Column @bind-Field="@context.State" Title="State"></Column>

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Project_Runners.Frontend.Models;
+using ProjectRunners.Common.Models.Dto;
 using ProjectRunners.Web.Models;
 
 namespace Project_Runners.Frontend.MappingProfiles
@@ -12,6 +13,8 @@ namespace Project_Runners.Frontend.MappingProfiles
         public RunnersProfile()
         {
             CreateMap<RunnerContract, Runner>();
+
+            CreateMap<RunnerPublishDto, Runner>();
         }
     }
 }

@@ -9,5 +9,6 @@
         public const string DIRECT = "direct";
         public const string HUB_QUEUE = "hub-queue";
         public const string HUB_EXCHANGE = "hub-exchange";
+        public const string RUNNER_UPDATE = "RunnerUpdate";
     }
 }

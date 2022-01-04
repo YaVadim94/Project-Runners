@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.Extensions.Configuration;
 using Project_Runners.Frontend.Api;
 using Project_Runners.Frontend.Models;
-using Refit;
 
 namespace Project_Runners.Frontend.ViewServices
 {
@@ -13,12 +11,13 @@ namespace Project_Runners.Frontend.ViewServices
     /// </summary>
     public class RunnersService : IRunnersService
     {
-        private readonly IRunnersApi _runnersApi;
         private readonly IMapper _mapper;
-        public RunnersService(IConfiguration configuration, IMapper mapper)
+        private readonly IRunnersApi _runnersApi;
+
+        public RunnersService(IMapper mapper, IRunnersApi runnersApi)
         {
             _mapper = mapper;
-            _runnersApi = RestService.For<IRunnersApi>(configuration.GetSection("ProjectRunners.Api").Value);
+            _runnersApi = runnersApi;
         }
 
         public async Task<IEnumerable<Runner>> GetAll()
