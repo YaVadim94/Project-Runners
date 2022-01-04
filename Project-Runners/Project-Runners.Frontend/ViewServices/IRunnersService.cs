@@ -9,6 +9,14 @@ namespace Project_Runners.Frontend.ViewServices
     /// </summary>
     public interface IRunnersService
     {
+        /// <summary>
+        /// Получить список раннеров
+        /// </summary>
         Task<IEnumerable<Runner>> GetAll();
+
+        /// <summary>
+        /// Запросить скриншот раннера
+        /// </summary>
+        Task RequestForScreenshot(long runnerId);
     }
 }

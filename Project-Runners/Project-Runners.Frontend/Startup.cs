@@ -9,7 +9,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Project_Runners.Frontend.Api;
 using Project_Runners.Frontend.ViewServices;
-using Refit;
 
 namespace Project_Runners.Frontend
 {

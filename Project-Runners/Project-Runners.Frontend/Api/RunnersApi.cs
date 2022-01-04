@@ -13,7 +13,16 @@ namespace Project_Runners.Frontend.Api
 
         protected override string ControllerUrl => "/api/runners";
 
+        /// <summary>
+        /// Получить список раннеров
+        /// </summary>
         public async Task<IEnumerable<RunnerContract>> GetAll() =>
             await GetAsync<IEnumerable<RunnerContract>>(string.Empty);
+
+        /// <summary>
+        /// Запросить скриншот раннера
+        /// </summary>
+        public async Task RequestForScreenshot(long runnerId) =>
+            await GetAsync($"{runnerId}/screenshot");
     }
 }

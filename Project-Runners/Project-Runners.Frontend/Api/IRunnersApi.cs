@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using ProjectRunners.Web.Models;
-using Refit;
 
 namespace Project_Runners.Frontend.Api
 {
@@ -13,7 +12,11 @@ namespace Project_Runners.Frontend.Api
         /// <summary>
         /// Получить список раннеров
         /// </summary>
-        [Get("/api/runners")]
         Task<IEnumerable<RunnerContract>> GetAll();
+        
+        /// <summary>
+        /// Запросить скриншот раннера
+        /// </summary>
+        Task RequestForScreenshot(long runnerId);
     }
 }

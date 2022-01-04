@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using AntDesign.TableModels;
 using AutoMapper;
@@ -58,12 +56,11 @@ namespace Project_Runners.Frontend.Pages
 
         private async Task OnRowExpand(RowData<Runner> runner)
         {
-            await Task.CompletedTask;
-            
-            if(string.IsNullOrEmpty(runner.Data.Screenshot))
+            if(runner.Data.State == RunnerState.Disconnected)
                 return;
             
-            StateHasChanged();
+            await RunnersService.RequestForScreenshot(runner.Data.Id.GetValueOrDefault());
         }
+            
     }
 }

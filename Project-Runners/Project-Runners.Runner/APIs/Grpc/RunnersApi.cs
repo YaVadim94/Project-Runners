@@ -41,7 +41,7 @@ namespace ProjectRunners.Runner.APIs.Grpc
         public async Task<NoResponseGrpc> SendScreenshot(ScreenshotContract contract)
         {
             var channel = GrpcChannel.ForAddress(_configuration.GetSection("ProjectRunners").Value);
-            
+
             var client = new RunnersControllerGrpc.RunnersControllerGrpcClient(channel);
             
             try
@@ -50,7 +50,7 @@ namespace ProjectRunners.Runner.APIs.Grpc
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"---> Could not call Grpc server {ex.Message}");
+                Console.WriteLine($"---> Could not call Grpc server: {ex.Message}");
                 throw;
             }
         }

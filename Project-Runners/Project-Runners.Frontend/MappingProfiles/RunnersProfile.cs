@@ -14,7 +14,8 @@ namespace Project_Runners.Frontend.MappingProfiles
         {
             CreateMap<RunnerContract, Runner>();
 
-            CreateMap<RunnerPublishDto, Runner>();
+            CreateMap<RunnerPublishDto, Runner>()
+                .ForMember(d => d.Screenshot, opt => opt.Condition(dto => !string.IsNullOrEmpty(dto.Screenshot)));
         }
     }
 }

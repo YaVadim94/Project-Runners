@@ -26,5 +26,11 @@ namespace Project_Runners.Frontend.ViewServices
 
             return _mapper.Map<IEnumerable<Runner>>(contracts);
         }
+
+        /// <summary>
+        /// Запросить скриншот
+        /// </summary>
+        public async Task RequestForScreenshot(long runnerId) =>
+            await _runnersApi.RequestForScreenshot(runnerId);
     }
 }

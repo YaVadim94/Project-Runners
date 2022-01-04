@@ -3,7 +3,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using ProjectRunners.Common.MessageBroker.Models;
-using ProjectRunners.Common.Models.Dto;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 

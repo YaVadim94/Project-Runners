@@ -32,6 +32,15 @@ namespace Project_Runners.Frontend.Api
             var responseJson = await response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<T>(responseJson);
         }
+        
+        /// <summary>
+        /// Отправить GET-запрос
+        /// </summary>
+        protected async Task GetAsync(string methodUrl)
+        {
+            var response = await _apiClient.GetAsync(GetRelativeUrl(methodUrl));
+            response.EnsureSuccessStatusCode();
+        }
 
         /// <summary>
         /// Отправить POST-запрос
