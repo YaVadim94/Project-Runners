@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Project_Runners.Frontend.Models;
 using Project_Runners.Frontend.ViewServices;
 using ProjectRunners.Common;
+using ProjectRunners.Common.Enums;
 using ProjectRunners.Common.Models.Dto;
 
 namespace Project_Runners.Frontend.Pages
@@ -51,6 +52,7 @@ namespace Project_Runners.Frontend.Pages
                 return;
 
             Mapper.Map(dto, runner);
+            StateHasChanged();
         }
     }
 }
