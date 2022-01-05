@@ -8,12 +8,12 @@ namespace ProjectRunners.Application.Hangfire.Attributes
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     public class FrequencyAttribute : Attribute
     {
-        /// <summary> Значение Cron </summary>
-        public string Value { get; }
-        
         public FrequencyAttribute(string value)
         {
             Value = value;
         }
+
+        /// <summary> Значение Cron </summary>
+        public string Value { get; }
     }
 }

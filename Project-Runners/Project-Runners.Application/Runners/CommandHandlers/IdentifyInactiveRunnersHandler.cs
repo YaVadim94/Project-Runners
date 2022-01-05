@@ -30,11 +30,11 @@ namespace ProjectRunners.Application.Runners.CommandHandlers
             var inactiveRunners = await _context.Runners
                 .Where(r => r.ChangeDate < DateTimeOffset.Now.AddMinutes(-2))
                 .ToListAsync(cancellationToken);
-            
+
             inactiveRunners.ForEach(ir => ir.State = RunnerState.Disconnected);
 
             await _context.SaveChangesAsync(cancellationToken);
-            
+
             return Unit.Value;
         }
     }

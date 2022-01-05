@@ -19,7 +19,7 @@ namespace ProjectRunners.Application.Hangfire.JobRunners
         {
             var methodInfo = GetType().GetMethod(nameof(Execute), BindingFlags.Instance | BindingFlags.Public)
                              ?? throw new ArgumentException();
-            
+
             var frequencyAttribute = Attribute.GetCustomAttribute(methodInfo, typeof(FrequencyAttribute))
                 as FrequencyAttribute;
 
@@ -28,7 +28,7 @@ namespace ProjectRunners.Application.Hangfire.JobRunners
                 null => Cron.Minutely(),
                 _ => frequencyAttribute.Value
             };
-                
+
             var manager = new RecurringJobManager();
             var job = new Job(GetType(), methodInfo);
             var jobId = Guid.NewGuid().ToString();

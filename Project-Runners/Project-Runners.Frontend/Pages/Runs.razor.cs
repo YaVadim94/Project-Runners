@@ -1,7 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using AntDesign.TableModels;
 using Microsoft.AspNetCore.Components;
 using Project_Runners.Frontend.Models;
+using Project_Runners.Frontend.ViewServices;
 
 namespace Project_Runners.Frontend.Pages
 {
@@ -12,26 +16,18 @@ namespace Project_Runners.Frontend.Pages
     {
         private ICollection<Run> _runList;
 
+        [Inject] public IRunsService RunsService { get; set; }
+        [Inject] public NavigationManager NavigationManager { get; set; }
+        
         protected override async Task OnInitializedAsync()
         {
-            _runList = new List<Run>
-            {
-                new Run
-                {
-                    Id = 1,
-                    Name = "First",
-                    TestCases = new List<TestCase>
-                    {
-                        new TestCase
-                        {
-                            Id = 1,
-                            Name = "First"
-                        }
-                    }
-                }
-            };
-
-            await Task.CompletedTask;
+            _runList = (await RunsService.GetAll()).ToList();
         }
+
+        private Dictionary<string, object> OpenRunPage(RowData<Run> row) => new()
+        {
+            ["id"] = row.Data.Id.ToString(),
+            ["onclick"] = new Action(() => NavigationManager.NavigateTo($"{Routes.RUNPAGE}/{row.Data.Id}"))
+        };
     }
 }

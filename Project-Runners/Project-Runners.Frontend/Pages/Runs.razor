@@ -2,7 +2,7 @@
 
 <h1>Runs</h1>
 
-<Table Title="Runs" TItem="Run" DataSource="@_runList">
+<Table TItem="Run" DataSource="@_runList" OnRow="OpenRunPage">
     <Column Title="Id" Field="@context.Id"></Column>
     <Column Title="Name" Field="@context.Name"></Column>
     <Column Title="Test case count" Field="@(context.TestCases?.Count ?? 0)"></Column>

@@ -10,7 +10,7 @@ namespace ProjectRunners.Application.CaseResults.Models.Commands
     {
         /// <summary> Идентификатор </summary>
         public long Id { get; set; }
-        
+
         /// <summary> Идентификатор прогона </summary>
         public long RunId { get; set; }
 

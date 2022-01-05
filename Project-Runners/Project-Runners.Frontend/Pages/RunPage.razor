@@ -1,0 +1,25 @@
+﻿@page "/run/{id:long}"
+
+<h1>@_run?.Name</h1>
+
+<Divider/>
+
+<div>
+    <Row>
+        <Col Span="16">
+            <AntList DataSource="@_run?.TestCases" TItem="TestCase" Bordered>
+                <ListItem>
+                    <ListItemMeta Description="@context?.Name">
+                        <TitleTemplate>
+                            <span Class="btn btn-link">@context?.Name</span>
+                        </TitleTemplate>
+                    </ListItemMeta>
+                </ListItem>
+            </AntList>
+        </Col>
+
+        <Col Span="8">
+            There is nothing here
+        </Col>
+    </Row>
+</div>

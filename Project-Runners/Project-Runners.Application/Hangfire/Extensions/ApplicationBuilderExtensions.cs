@@ -19,11 +19,11 @@ namespace ProjectRunners.Application.Hangfire.Extensions
 
             foreach (var jobRunnerType in jobRunnerTypes)
             {
-                var jobRunner = app.ApplicationServices.GetRequiredService(jobRunnerType) as JobRunnerBase; 
+                var jobRunner = app.ApplicationServices.GetRequiredService(jobRunnerType) as JobRunnerBase;
 
                 jobRunner?.Start();
             }
-            
+
             return app;
         }
     }

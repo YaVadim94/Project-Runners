@@ -28,10 +28,10 @@ namespace ProjectRunners.Application.CaseResults.CommandHandlers
         public async Task<Unit> Handle(CreateCaseResultCommand request, CancellationToken cancellationToken)
         {
             var caseResult = _mapper.Map<CaseResult>(request);
-            
+
             await _context.CaseResults.AddAsync(caseResult, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
-            
+
             return Unit.Value;
         }
     }

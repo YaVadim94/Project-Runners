@@ -12,7 +12,7 @@ namespace ProjectRunners.Application.Extensions
     /// </summary>
     public static class IQueryableExtensions
     {
-        public static async Task<T> GetById<T>(this IQueryable<T> query, long id) where T : EntityBase => 
+        public static async Task<T> GetById<T>(this IQueryable<T> query, long id) where T : EntityBase =>
             await query.SingleOrDefaultAsync(r => r.Id == id) ?? throw new ArgumentException(nameof(T));
     }
 }

@@ -32,7 +32,7 @@ namespace ProjectRunners.Application.Runners.CommandHandlers
             var dto = new RunnerCommandDto {Command = Command.Screenshot};
 
             _runnersPublishService.Publish(dto, request.RunnerId);
-            
+
             return Unit.Value;
         }
     }

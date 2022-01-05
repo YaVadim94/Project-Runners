@@ -1,12 +1,14 @@
 using System;
 using System.Net;
 using System.Net.Http;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Project_Runners.Frontend.Api;
+using Project_Runners.Frontend.Extensions;
 using Project_Runners.Frontend.ViewServices;
 
 namespace Project_Runners.Frontend
@@ -25,14 +27,13 @@ namespace Project_Runners.Frontend
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddAntDesign();
-            services.AddTransient<IRunnersService, RunnersService>();
             services.AddAutoMapper(GetType().Assembly);
-            services.AddHttpClient<IRunnersApi, RunnersApi>(client =>
-            {
-                client.BaseAddress = new Uri(Configuration.GetSection("ProjectRunners.Api").Value);
-                client.DefaultRequestVersion = HttpVersion.Version20;
-                client.DefaultVersionPolicy = HttpVersionPolicy.RequestVersionExact;
-            });
+            
+            services.AddHttpClient<IRunsApi, RunsApi>(client => client.ConfigureAsHttp2(Configuration));
+            services.AddHttpClient<IRunnersApi, RunnersApi>(client => client.ConfigureAsHttp2(Configuration));
+            
+            services.AddTransient<IRunnersService, RunnersService>();
+            services.AddTransient<IRunsService, RunsService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

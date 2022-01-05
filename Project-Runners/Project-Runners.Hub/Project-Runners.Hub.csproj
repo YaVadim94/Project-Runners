@@ -7,14 +7,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ProjectRunners.Common.MessageBroker\ProjectRunners.Common.MessageBroker.csproj" />
-      <ProjectReference Include="..\ProjectRunners.Common.Proto\ProjectRunners.Common.Proto.csproj" />
-      <ProjectReference Include="..\ProjectRunners.Common\ProjectRunners.Common.csproj" />
+        <ProjectReference Include="..\ProjectRunners.Common.MessageBroker\ProjectRunners.Common.MessageBroker.csproj"/>
+        <ProjectReference Include="..\ProjectRunners.Common.Proto\ProjectRunners.Common.Proto.csproj"/>
+        <ProjectReference Include="..\ProjectRunners.Common\ProjectRunners.Common.csproj"/>
     </ItemGroup>
 
 </Project>

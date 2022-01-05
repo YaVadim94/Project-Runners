@@ -16,7 +16,7 @@ namespace ProjectRunners.Application.Hangfire.JobRunners
         {
             _mediator = mediator;
         }
-        
+
         /// <summary>
         /// Каждую минуту
         /// </summary>
@@ -24,7 +24,7 @@ namespace ProjectRunners.Application.Hangfire.JobRunners
         public override async Task Execute()
         {
             var command = new UpdateRunsQueueCommand();
-            
+
             await _mediator.Send(command);
         }
     }
