@@ -15,14 +15,12 @@ namespace ProjectRunners.Web.Helpers
     {
         public static void SeedDataBase(IApplicationBuilder app)
         {
-            using (var serviceScope = app.ApplicationServices.CreateScope())
-            {
-                var context = serviceScope.ServiceProvider.GetRequiredService<DataContext>();
-                SeedData(context);
-                SeedByRunners(context);
+            using var serviceScope = app.ApplicationServices.CreateScope();
+            var context = serviceScope.ServiceProvider.GetRequiredService<DataContext>();
+            SeedData(context);
+            SeedByRunners(context);
 
-                context.SaveChanges();
-            }
+            context.SaveChanges();
         }
 
         private static void SeedByRunners(DataContext context)
@@ -33,11 +31,11 @@ namespace ProjectRunners.Web.Helpers
             Console.WriteLine("--> Seeding by runners...");
 
             context.Runners.Add(new Runner
-                {Id = 1, Name = "1", State = RunnerState.Waiting, ChangeDate = DateTimeOffset.Now});
+                {Id = 1, Name = "1", State = RunnerState.Disconnected, ChangeDate = DateTimeOffset.Now});
             context.Runners.Add(new Runner
-                {Id = 2, Name = "2", State = RunnerState.Waiting, ChangeDate = DateTimeOffset.Now});
+                {Id = 2, Name = "2", State = RunnerState.Disconnected, ChangeDate = DateTimeOffset.Now});
             context.Runners.Add(new Runner
-                {Id = 3, Name = "3", State = RunnerState.Waiting, ChangeDate = DateTimeOffset.Now});
+                {Id = 3, Name = "3", State = RunnerState.Disconnected, ChangeDate = DateTimeOffset.Now});
         }
 
         private static void SeedData(DataContext context)

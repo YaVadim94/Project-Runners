@@ -29,7 +29,7 @@ namespace ProjectRunners.Runner.EventHandlers
 
             var contract = new ScreenshotContract
             {
-                RunnerId = 1,
+                RunnerId = Runner.Id,
                 Payload = await ByteString.FromStreamAsync(stream)
             };
             

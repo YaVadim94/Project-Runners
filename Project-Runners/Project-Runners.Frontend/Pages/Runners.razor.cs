@@ -62,7 +62,7 @@ namespace Project_Runners.Frontend.Pages
             
             var runner = (arg as RowData<Runner>)?.Data;
             
-            if(runner == null)
+            if(runner is null)
                 return;
             
             if (arg.Expanded)
