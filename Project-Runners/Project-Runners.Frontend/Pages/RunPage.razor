@@ -7,7 +7,8 @@
 <div>
     <Row>
         <Col Span="16">
-            <AntList DataSource="@_run?.TestCases" TItem="TestCase" Bordered>
+            <h3>Test cases</h3>
+            <AntList DataSource="@_run?.TestCases" TItem="TestCase">
                 <ListItem>
                     <ListItemMeta Description="@context?.Name">
                         <TitleTemplate>
@@ -18,7 +19,11 @@
             </AntList>
         </Col>
 
-        <Col Span="8">
+        <Col Span="1">
+            <Divider Type="DirectionVHType.Vertical" Style="height: 100%"></Divider>
+        </Col>
+
+        <Col Span="7">
             There is nothing here
         </Col>
     </Row>
