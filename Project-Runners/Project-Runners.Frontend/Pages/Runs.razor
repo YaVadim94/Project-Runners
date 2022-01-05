@@ -1,0 +1,9 @@
+﻿@page "/runs"
+
+<h1>Runs</h1>
+
+<Table Title="Runs" TItem="Run" DataSource="@_runList">
+    <Column Title="Id" Field="@context.Id"></Column>
+    <Column Title="Name" Field="@context.Name"></Column>
+    <Column Title="Test case count" Field="@(context.TestCases?.Count ?? 0)"></Column>
+</Table>

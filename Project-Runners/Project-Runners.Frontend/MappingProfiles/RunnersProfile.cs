@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Project_Runners.Frontend.Models;
+using ProjectRunners.Common.Models.Contracts;
 using ProjectRunners.Common.Models.Dto;
-using ProjectRunners.Web.Models;
 
 namespace Project_Runners.Frontend.MappingProfiles
 {

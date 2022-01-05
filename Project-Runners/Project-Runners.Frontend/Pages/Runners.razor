@@ -1,5 +1,7 @@
 ﻿@page "/runners"
 
+<h1>Runners</h1>
+
 <Table TItem="Runner" DataSource="@RunnerList" ExpandIconColumnIndex="int.MaxValue">
     <RowTemplate>
         <Column Field="@context.Id" Title="Id"></Column>

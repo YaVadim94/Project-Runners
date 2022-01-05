@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using ProjectRunners.Web.Models;
+using ProjectRunners.Common.Models.Contracts;
 
 namespace Project_Runners.Frontend.Api
 {

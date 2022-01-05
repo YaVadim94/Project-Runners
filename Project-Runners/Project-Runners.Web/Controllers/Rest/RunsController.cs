@@ -5,7 +5,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using ProjectRunners.Application.Runs.Models.Commands;
 using ProjectRunners.Application.Runs.Models.Queries;
-using ProjectRunners.Web.Models;
+using ProjectRunners.Common.Models.Contracts;
 
 namespace ProjectRunners.Web.Controllers.Rest
 {

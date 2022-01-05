@@ -19,6 +19,10 @@
       <ProjectReference Include="..\Project-Runners.Application\Project-Runners.Application.csproj" />
       <ProjectReference Include="..\ProjectRunners.Common.Proto\ProjectRunners.Common.Proto.csproj" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Models" />
+    </ItemGroup>
     
     
 </Project>

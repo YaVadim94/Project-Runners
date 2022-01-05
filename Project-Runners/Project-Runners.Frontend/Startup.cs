@@ -1,7 +1,6 @@
 using System;
 using System.Net;
 using System.Net.Http;
-using AutoMapper.EquivalencyExpression;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -20,14 +19,14 @@ namespace Project_Runners.Frontend
         }
 
         public IConfiguration Configuration { get; }
-        
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddAntDesign();
             services.AddTransient<IRunnersService, RunnersService>();
-            services.AddAutoMapper(opt => opt.AddCollectionMappers(), GetType().Assembly);
+            services.AddAutoMapper(GetType().Assembly);
             services.AddHttpClient<IRunnersApi, RunnersApi>(client =>
             {
                 client.BaseAddress = new Uri(Configuration.GetSection("ProjectRunners.Api").Value);
@@ -35,7 +34,7 @@ namespace Project_Runners.Frontend
                 client.DefaultVersionPolicy = HttpVersionPolicy.RequestVersionExact;
             });
         }
-        
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

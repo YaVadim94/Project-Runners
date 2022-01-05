@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using ProjectRunners.Application.Runs.Models.Commands;
 using ProjectRunners.Application.Runs.Models.Dto;
-using ProjectRunners.Web.Models;
+using ProjectRunners.Common.Models.Contracts;
 
 namespace ProjectRunners.Web.Mapping
 {
