@@ -80,5 +80,17 @@ namespace ProjectRunners.Web.Controllers.Rest
 
             return NoContent();
         }
+
+        [HttpGet("{id:long}/test-cases/{pageSize:int}/{pageNumber:int}")]
+        public async Task<IActionResult> GetTestCases(long id, int pageSize, int pageNumber)
+        {
+            var query = new GetTestCasesQuery(id, pageSize, pageNumber);
+
+            var dto = await _mediator.Send(query);
+
+            var contracts = _mapper.Map<IEnumerable<CaseContract>>(dto);
+
+            return Ok(contracts);
+        }
     }
 }
