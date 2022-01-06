@@ -18,5 +18,10 @@ namespace Project_Runners.Frontend.Api
         /// Получить прогон по идентификатору
         /// </summary>
         Task<RunContract> GetById(long id);
+
+        /// <summary>
+        /// Получить тесты прогона
+        /// </summary>
+        Task<IEnumerable<CaseContract>> GetTestCases(long runId, int pageSize, int pageNumber);
     }
 }

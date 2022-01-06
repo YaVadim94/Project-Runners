@@ -27,5 +27,11 @@ namespace Project_Runners.Frontend.Api
         /// </summary>
         public async Task<RunContract> GetById(long id) =>
             await GetAsync<RunContract>($"{id}");
+
+        /// <summary>
+        /// Получить тесты прогона
+        /// </summary>
+        public async Task<IEnumerable<CaseContract>> GetTestCases(long runId, int pageSize, int pageNumber) =>
+            await GetAsync<IEnumerable<CaseContract>>($"{runId}/test-cases/{pageSize}/{pageNumber}");
     }
 }

@@ -40,5 +40,15 @@ namespace Project_Runners.Frontend.ViewServices
 
             return _mapper.Map<Run>(contract);
         }
+
+        /// <summary>
+        /// Получить тесты прогона
+        /// </summary>
+        public async Task<IEnumerable<TestCase>> GetTestCases(long runId, int pageSize, int pageNumber)
+        {
+            var contracts = await _runsApi.GetTestCases(runId, pageSize, pageNumber);
+
+            return _mapper.Map<IEnumerable<TestCase>>(contracts);
+        }
     }
 }

@@ -19,5 +19,10 @@ namespace Project_Runners.Frontend.ViewServices
         /// Получить прогон по идентификатору
         /// </summary>
         Task<Run> GetById(long id);
+
+        /// <summary>
+        /// Получить тесты прогона
+        /// </summary>
+        Task<IEnumerable<TestCase>> GetTestCases(long runId, int pageSize, int pageNumber);
     }
 }
