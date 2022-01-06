@@ -8,6 +8,9 @@ namespace ProjectRunners.Data.Models
     /// </summary>
     public class Case : NamedEntityBase
     {
+        /// <summary> Описание </summary>
+        public string Description { get; set; }
+        
         /// <summary> Прогоны </summary>
         public ICollection<RunCase> Runs { get; set; }
 

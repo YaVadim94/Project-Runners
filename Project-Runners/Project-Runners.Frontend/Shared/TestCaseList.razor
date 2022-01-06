@@ -1,0 +1,17 @@
+﻿<AntList DataSource="@_testCases" TItem="TestCase">
+    <ChildContent>
+        <ListItem>
+            <ListItemMeta Description="@(context?.Description ?? "There is no description")">
+                <TitleTemplate>
+                    <h5>@context?.Name</h5>
+                </TitleTemplate>
+            </ListItemMeta>
+        </ListItem>
+    </ChildContent>
+    <LoadMore>
+                    
+        <div>
+            <Button>Load more</Button>
+        </div>
+    </LoadMore>
+</AntList>

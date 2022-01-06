@@ -12,8 +12,7 @@ namespace Project_Runners.Frontend.MappingProfiles
     {
         public RunsProfile()
         {
-            CreateMap<RunContract, Run>()
-                .MapMember(d => d.TestCases, s => s.Cases);
+            CreateMap<RunContract, Run>();
 
             CreateMap<CaseContract, TestCase>();
         }

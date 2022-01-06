@@ -11,7 +11,7 @@ namespace Project_Runners.Frontend.Pages
     public partial class RunPage : ComponentBase
     {
         private Run _run;
-
+        
         [Parameter] public long Id { get; set; }
 
         [Inject] public IRunsService RunsService { get; set; }

@@ -17,7 +17,7 @@ namespace ProjectRunners.Common.Models.Contracts
         /// <summary> Статус </summary>
         public RunStatus Status { get; set; }
 
-        /// <summary> Кейсы прогона </summary>
-        public IEnumerable<CaseContract> Cases { get; set; }
+        /// <summary> Количество тестов в прогоне </summary>
+        public int TestCaseCount { get; set; }
     }
 }

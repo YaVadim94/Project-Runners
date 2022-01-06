@@ -13,7 +13,7 @@ namespace Project_Runners.Frontend.Models
         /// <summary> Наименование </summary>
         public string Name { get; set; }
 
-        /// <summary> Тeсты </summary>
-        public ICollection<TestCase> TestCases { get; set; }
+        /// <summary> Количество тестов </summary>
+        public int TestCaseCount { get; set; }
     }
 }

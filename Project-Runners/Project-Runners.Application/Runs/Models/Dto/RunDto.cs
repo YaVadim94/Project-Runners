@@ -17,7 +17,7 @@ namespace ProjectRunners.Application.Runs.Models.Dto
         /// <summary> Статус </summary>
         public RunStatus Status { get; set; }
 
-        /// <summary> Кейсы прогона </summary>
-        public IEnumerable<CaseDto> Cases { get; set; }
+        /// <summary> Количество тестов в прогоне </summary>
+        public int TestCaseCount { get; set; }
     }
 }

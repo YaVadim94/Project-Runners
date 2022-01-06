@@ -19,7 +19,7 @@ namespace ProjectRunners.Application.Runs.Mapping
         public RunsProfile()
         {
             CreateMap<Run, RunDto>()
-                .MapMember(d => d.Cases, s => s.Cases.Select(c => c.Case));
+                .MapMember(d => d.TestCaseCount, s => s.Cases.Count);
 
             CreateMap<Case, CaseDto>();
 
