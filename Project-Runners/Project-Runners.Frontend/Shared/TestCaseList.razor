@@ -9,9 +9,11 @@
         </ListItem>
     </ChildContent>
     <LoadMore>
-                    
-        <div>
-            <Button>Load more</Button>
-        </div>
+        @if (_loading is false && _testCases?.Count != MaxTestCaseCount)
+        {
+            <div class="float-right mt-1">
+                <Button Class="btn btn-primary" OnClick="LoadMore">Load more</Button>
+            </div>   
+        }
     </LoadMore>
 </AntList>

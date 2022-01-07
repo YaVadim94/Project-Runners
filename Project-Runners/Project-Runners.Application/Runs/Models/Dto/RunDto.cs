@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ProjectRunners.Common.Enums;
 
 namespace ProjectRunners.Application.Runs.Models.Dto
@@ -19,5 +20,14 @@ namespace ProjectRunners.Application.Runs.Models.Dto
 
         /// <summary> Количество тестов в прогоне </summary>
         public int TestCaseCount { get; set; }
+        
+        /// <summary> Дата создания </summary>
+        public DateTimeOffset CreationDate { get; set; }
+
+        /// <summary> Дата запуска </summary>
+        public DateTimeOffset StartDate { get; set; }
+
+        /// <summary> Дата завершения </summary>
+        public DateTimeOffset EndDate { get; set; }
     }
 }

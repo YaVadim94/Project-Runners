@@ -57,7 +57,7 @@ namespace ProjectRunners.Application.Runs.CommandHandlers
 
             switch (status)
             {
-                case RunStatus.Successed:
+                case RunStatus.Succeeded:
                 case RunStatus.Failed:
                     run.Status = status;
                     await _context.SaveChangesAsync(cancellationToken);
@@ -82,13 +82,13 @@ namespace ProjectRunners.Application.Runs.CommandHandlers
                     && cwr.CaseResults.Count() >= MAX_CASE_RUNNING_COUNT);
 
             var runSucceeded = casesWithResults
-                .All(cwr => cwr.CaseResults.Any(result => result.Status == RunStatus.Successed)
+                .All(cwr => cwr.CaseResults.Any(result => result.Status == RunStatus.Succeeded)
                     && cwr.CaseResults.Count() <= MAX_CASE_RUNNING_COUNT);
 
             return casesWithResults switch
             {
                 { } when runFailed => RunStatus.Failed,
-                { } when runSucceeded => RunStatus.Successed,
+                { } when runSucceeded => RunStatus.Succeeded,
                 _ => RunStatus.InProgress
             };
         }
@@ -96,7 +96,7 @@ namespace ProjectRunners.Application.Runs.CommandHandlers
         private async Task SendCasesToQueue(IEnumerable<CaseWithResults> casesWithResults, long runId)
         {
             var casesToSend = casesWithResults
-                .Where(cwr => cwr.CaseResults.All(result => result.Status != RunStatus.Successed)
+                .Where(cwr => cwr.CaseResults.All(result => result.Status != RunStatus.Succeeded)
                               && cwr.CaseResults.Count() < MAX_CASE_RUNNING_COUNT)
                 .Select(cwr => cwr.Case)
                 .ToList();

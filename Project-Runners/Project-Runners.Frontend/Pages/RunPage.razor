@@ -1,14 +1,45 @@
 ﻿@page "/run/{id:long}"
+@using ProjectRunners.Common
+@using ProjectRunners.Common.Enums
 
-<h1>@_run?.Name</h1>
+<div class="row">
+    <div class="col-2">
+        <h1>@_run?.Name</h1>
+    </div>
+    @if (_run?.Status is not null)
+    {
+        <div class="col-1 ml-0">
+            @switch (_run.Status)
+            {
+                case RunStatus.NotStarted:
+                    <Tag Color="default">@_run.Status.GetDescription()</Tag>
+                    break;
+                case RunStatus.InProgress:
+                    <Tag Color="processing">@_run.Status.GetDescription()</Tag>
+                    break;
+                case RunStatus.Succeeded:
+                    <Tag Color="success">@_run.Status.GetDescription()</Tag>
+                    break;
+                case RunStatus.Failed:
+                    <Tag Color="error">@_run.Status.GetDescription()</Tag>
+                    break;
+                default:
+                    <Tag Color="default">@_run.Status.GetDescription()</Tag>
+                    break;
+            }   
+ 
+        </div>
+    }
+
+</div>
 
 <Divider/>
 
-<div>
+<div class="mb-3">
     <Row>
         <Col Span="16">
             <h3>Test cases</h3>
-            <TestCaseList RunId="@Id"></TestCaseList>
+            <TestCaseList RunId="@Id" MaxTestCaseCount="@(_run?.TestCaseCount ?? 0)"></TestCaseList>
         </Col>
 
         <Col Span="1">
@@ -16,7 +47,26 @@
         </Col>
 
         <Col Span="7">
-            There is nothing here
+            <div class="container">
+                <div class="row">
+                    <h5>Test case count: @_run?.TestCaseCount</h5>
+                </div>
+                <div class="row">
+                    <h5>Creation date: @_run?.CreationDate.ToString("G")</h5>
+                </div>
+                @if (_run?.Status is not RunStatus.NotStarted)
+                {
+                    <div class="row">
+                        <h5>Start date: @_run?.StartDate.ToString("G")</h5>
+                    </div>
+                }
+                @if (_run?.Status is RunStatus.Succeeded or RunStatus.Failed)
+                {
+                    <div class="row">
+                        <h5>End date: @_run?.CreationDate.ToString("G")</h5>
+                    </div>
+                }
+            </div>
         </Col>
     </Row>
 </div>

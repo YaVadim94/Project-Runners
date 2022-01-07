@@ -43,9 +43,9 @@ namespace ProjectRunners.Web.Helpers
             if (!context.Runs.Any())
             {
                 Console.WriteLine("--> Seeding by runs...");
-                context.Runs.Add(new Run {Id = 1, Name = "SuperStar", Status = RunStatus.Successed});
-                context.Runs.Add(new Run {Id = 2, Name = "Onion", Status = RunStatus.Failed});
-                context.Runs.Add(new Run {Id = 3, Name = "Beautiful", Status = RunStatus.InProgress});
+                context.Runs.Add(new Run {Id = 1, Name = "SuperStar", Status = RunStatus.Succeeded, CreationDate = DateTimeOffset.Now, StartDate = DateTimeOffset.Now, EndDate = DateTimeOffset.Now});
+                context.Runs.Add(new Run {Id = 2, Name = "Onion", Status = RunStatus.Failed, CreationDate = DateTimeOffset.Now, StartDate = DateTimeOffset.Now, EndDate = DateTimeOffset.Now});
+                context.Runs.Add(new Run {Id = 3, Name = "Beautiful", Status = RunStatus.InProgress, CreationDate = DateTimeOffset.Now, StartDate = DateTimeOffset.Now, EndDate = DateTimeOffset.Now});
             }
 
             if (!context.Cases.Any())

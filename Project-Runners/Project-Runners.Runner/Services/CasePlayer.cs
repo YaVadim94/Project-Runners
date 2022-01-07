@@ -32,7 +32,7 @@ namespace ProjectRunners.Runner.Services
             var value = DateTime.Now.Ticks % 10;
             return value switch
             {
-                >= 5 => RunStatus.Successed,
+                >= 5 => RunStatus.Succeeded,
                 _ => RunStatus.Failed
             };
         }

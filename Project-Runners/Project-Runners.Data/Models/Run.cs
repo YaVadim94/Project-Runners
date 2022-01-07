@@ -12,7 +12,16 @@ namespace ProjectRunners.Data.Models
     {
         /// <summary> Статус </summary>
         public RunStatus Status { get; set; }
-        
+
+        /// <summary> Дата создания </summary>
+        public DateTimeOffset CreationDate { get; set; }
+
+        /// <summary> Дата запуска </summary>
+        public DateTimeOffset StartDate { get; set; }
+
+        /// <summary> Дата завершения </summary>
+        public DateTimeOffset EndDate { get; set; }
+
         /// <summary> Кейсы </summary>
         public ICollection<RunCase> Cases { get; set; }
 
